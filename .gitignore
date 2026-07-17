@@ -1,0 +1,13 @@
+datasets/*
+lib/*
+*.zip
+__pycache__/
+runs/
+setup_path.sh
+omnimedseg.egg-info/
+src/omnimedseg.egg-info/
+models/
+annotation_tool.py
+dataset_info.csv
+dataset_info.json
+extract_dataset_info.py

@@ -1,0 +1,15 @@
+import os 
+import cv2
+from tqdm import tqdm
+from src.utils.dataset_utils import *
+from src.converters.utils_fundus import *
+
+def convert_fives():
+    # Define paths
+    converted_path = os.path.join('datasets', 'Fundus', 'FIVES', 'converted')
+    ensure_directories(converted_path, ['vessels'])
+
+    extracted_base = os.path.join('datasets', 'Fundus', 'FIVES', 'extracted', 'FIVES A Fundus Image Dataset for AI-based Vessel Segmentation')
+    convention_map = {'image': 'Original', 'vessels': 'Ground truth'}
+
+    convert_train_test_dataset(extracted_base, converted_path, ['train', 'test'], convention_map)
