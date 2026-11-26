@@ -1,5 +1,5 @@
-datasets/*
-lib/*
+/datasets
+/lib
 *.zip
 __pycache__/
 runs/
@@ -11,3 +11,9 @@ annotation_tool.py
 dataset_info.csv
 dataset_info.json
 extract_dataset_info.py
+
+# test / tooling
+.pytest_cache/
+*.egg-info/
+build/
+dist/

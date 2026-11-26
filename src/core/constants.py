@@ -48,7 +48,6 @@ ULTRASOUND_DATASET_URLS = {
     "100_US": ["https://www.researchgate.net/profile/Jan-Egger-2/publication/329586355_100_2D_US_Images_and_Tumor_Segmentation_Masks/data/5c10ddd4a6fdcc494fede23a/105-US-Images.zip?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIiwicG9zaXRpb24iOiJwYWdlQ29udGVudCJ9fQ", "https://www.researchgate.net/profile/Jan-Egger-2/publication/329586355_100_2D_US_Images_and_Tumor_Segmentation_Masks/data/5c10df354585157ac1bbfa72/105-US-Masks.zip?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIiwicG9zaXRpb24iOiJwYWdlQ29udGVudCJ9fQ"],
     "FASS": "https://data.mendeley.com/public-files/datasets/4gcpm9dsc3/files/89e74076-ff57-4e81-9634-4fc29c6128ff/file_downloaded",
     "BUS_BRA": "https://zenodo.org/api/records/8231412/files-archive",
-    "OASBUD": "https://zenodo.org/records/545928/files/OASBUD.mat?download=1",
     "BUS_UCLM": "https://data.mendeley.com/public-api/zip/7fvgj4jsp7/download/2",
 }
 

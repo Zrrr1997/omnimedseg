@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omnimedseg"
+version = "1.0.0"
+description = "Download, convert, and standardize 156 public medical image segmentation datasets across 9 modalities."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Zdravko Marinov" },
+]
+keywords = ["medical imaging", "segmentation", "interactive segmentation", "datasets", "benchmark"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+dependencies = [
+    # core numerics / imaging
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "opencv-python>=4.8",
+    "Pillow>=10.0",
+    "scikit-image>=0.21",
+    "matplotlib>=3.7",
+    "connected-components-3d>=3.12",
+    # medical formats
+    "SimpleITK>=2.5.0",
+    "nibabel>=5.0",
+    "pydicom>=2.4,<3",
+    "pynrrd>=1.0",
+    "h5py>=3.9",
+    "dcm2niix>=1.0.20250506",
+    "dcmqi>=1.5.6",
+    "platipy>=0.7.2",
+    # downloading
+    "requests>=2.31",
+    "urllib3>=2.0",
+    "gdown>=5.0,<6",  # gdown 6 removed `fuzzy=`, which download_datasets.py relies on
+    "tcia_utils>=2.4.20",
+    "isic-cli>=12.4.0",
+    "undetected-chromedriver>=3.5",
+    "rarfile>=4.2",
+    "xmltodict>=0.13",
+    "tqdm>=4.66",
+    # dataset browser
+    "flask>=3.0",
+]
+
+[project.optional-dependencies]
+# Only needed for datasets hosted on datasetninja.com (INTRARETINAL_CYSTOID_FLUID); pulls in supervisely.
+datasetninja = ["dataset-tools"]
+dev = ["pytest>=8.0"]
+
+[project.urls]
+Datasets = "https://zrrr1997.github.io/omnimedseg-datasets/"
+Paper = "https://doi.org/10.5445/IR/1000194202"
+Data = "https://doi.org/10.35097/qkc5m4kzran3g1yc"
+
+[project.scripts]
+omnimedseg = "src.cli.main:main"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.setuptools.package-data]
+"src.converters" = ["*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "golden: re-converts real datasets and compares against stored checksums (slow, needs raw data)",
+]

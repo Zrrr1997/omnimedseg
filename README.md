@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
 [![Datasets](https://img.shields.io/badge/datasets-155-brightgreen.svg?style=flat-square&logo=databricks&logoColor=white)](https://zrrr1997.github.io/omnimedseg-datasets/)
 [![Modalities](https://img.shields.io/badge/modalities-9-orange.svg?style=flat-square&logo=academia&logoColor=white)](https://zrrr1997.github.io/omnimedseg-datasets/)
@@ -116,7 +116,7 @@ Medical image segmentation datasets are the foundation of modern deep learning i
 
 | Requirement | Version |
 |-------------|---------|
-| Python | 3.8+ |
+| Python | 3.10+ |
 | System | Linux |
 
 ### Quick Install
@@ -127,19 +127,36 @@ conda create -n omnimedseg python=3.10 -y
 conda activate omnimedseg
 
 # Clone the repository
-git clone https://github.com/omnimedseg.git
+git clone https://github.com/Zrrr1997/omnimedseg.git
 cd omnimedseg
 
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Install the package 
+# Install the package (all dependencies are declared in pyproject.toml)
 pip install -e .
 
-# Install system dependencies
+# Install system dependencies (7zip, unrar, dcm2niix, plastimatch)
 sh scripts/install_tools.sh
 source setup_path.sh
 ```
+
+> **Older Linux (glibc < 2.28, e.g. Ubuntu 18.04):** use `pip install --prefer-binary -e .`
+> so pip picks prebuilt wheels instead of trying to compile `pyarrow` from source.
+
+Optional extras:
+
+```bash
+pip install -e ".[datasetninja]"   # needed only for INTRARETINAL_CYSTOID_FLUID (datasetninja.com)
+pip install -e ".[dev]"            # pytest, for running the test suite
+```
+
+### Running the tests
+
+```bash
+pytest -m "not golden"   # fast: imports, CLI, dataset registry (no data needed)
+pytest -m golden         # re-converts HRF, KVASIR_SEG, MSD_SPLEEN and compares to stored checksums
+```
+
+The golden tests need the raw data on disk once:
+`omnimedseg --dataset HRF --download --convert --keep_raw_data` (same for `KVASIR_SEG`, `MSD_SPLEEN`).
 
 ## 🎯 Usage
 
