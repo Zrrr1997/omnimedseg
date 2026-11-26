@@ -1,463 +1,174 @@
 #!/usr/bin/env python
-"""Command-line interface for dataset download and conversion."""
+"""OmniMedSeg command-line interface.
+
+    omnimedseg list [--modality CT] [--license commercial-ok]   # browse the catalogue
+    omnimedseg info HRF                                          # one dataset card
+    omnimedseg prepare HRF KVASIR_SEG                            # download + convert
+    omnimedseg cite HRF KVASIR_SEG -o refs.bib                   # BibTeX for what you used
+
+Run `omnimedseg <command> --help` for details. The old flag syntax
+(`omnimedseg --dataset X --download --convert`) still works but is deprecated.
+"""
 
 import argparse
-import sys
 import logging
-import os
+import sys
+from typing import List, Optional
 
-from omnimedseg.core.pipeline import process_datasets, resolve_datasets
-from omnimedseg.core.cards import MODALITIES
-from omnimedseg.core.errors import PipelineError
-from omnimedseg.core.paths import data_root, set_data_root
-from omnimedseg.utils.logger import setup_logging, get_logger
+from omnimedseg.cli import commands
+from omnimedseg.cli.commands import MODALITY_CHOICES, CLIError
+from omnimedseg.core.cards import CardError, load_cards
+from omnimedseg.core.paths import set_data_root
 from omnimedseg.utils.banner import print_banner
+from omnimedseg.utils.logger import setup_logging
 
-logger = get_logger(__name__)
+logger = logging.getLogger(__name__)
 
-# Older names still accepted on the command line.
-MODALITY_ALIASES = {'Ultrasound_2D': 'Ultrasound'}
+# Commands whose stdout is data (no banner, quiet logs).
+_CATALOGUE_COMMANDS = {"list", "info", "cite"}
 
 
-def parse_args() -> argparse.Namespace:
-    """Parse command line arguments."""
+def _version() -> str:
+    try:
+        from importlib.metadata import version
+
+        return version("omnimedseg")
+    except Exception:
+        return "unknown"
+
+
+def _common_options(parser: argparse.ArgumentParser, suppress_defaults: bool) -> None:
+    """Options accepted both before and after the subcommand."""
+    default = argparse.SUPPRESS if suppress_defaults else None
+    parser.add_argument("--data-root", "--data_root", dest="data_root", default=default, metavar="DIR",
+                        help="where datasets are stored (default: $OMNIMEDSEG_DATA_ROOT, else ./datasets)")
+    parser.add_argument("-v", "--verbose", action="store_true", default=default if suppress_defaults else False,
+                        help="debug logging")
+    parser.add_argument("-q", "--quiet", action="store_true", default=default if suppress_defaults else False,
+                        help="only log errors")
+    parser.add_argument("--no-banner", action="store_true", default=default if suppress_defaults else False,
+                        help="do not print the ASCII banner")
+
+
+def _selection(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("datasets", nargs="*", metavar="DATASET", help="dataset name(s), e.g. HRF KVASIR_SEG")
+    parser.add_argument("-m", "--modality", action="append", choices=MODALITY_CHOICES, metavar="MODALITY",
+                        help="all datasets of a modality (repeatable): " + ", ".join(MODALITY_CHOICES))
+    parser.add_argument("--all", action="store_true", help="all datasets")
+
+
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Process medical imaging datasets - download, extract, and convert to standardized format.",
+        prog="omnimedseg",
+        description=f"Download, convert and explore {len(load_cards())} standardized medical image "
+                    "segmentation datasets.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-        Examples:
-        # Download and convert a single dataset
-        omnimedseg --dataset PAPILA --download --convert
+        epilog="""examples:
+  omnimedseg list --modality Fundus --license commercial-ok
+  omnimedseg info KVASIR_SEG
+  omnimedseg prepare HRF KVASIR_SEG --data-root /scratch/omnimedseg
+  omnimedseg download --modality Fundus
+  omnimedseg convert HRF --force --keep-raw
+  omnimedseg cite HRF KVASIR_SEG -o references.bib
+  omnimedseg browse --port 8080""",
+    )
+    parser.add_argument("--version", action="version", version=f"omnimedseg {_version()}")
+    _common_options(parser, suppress_defaults=False)
+    sub = parser.add_subparsers(dest="command", metavar="<command>")
 
-        # Process all datasets in a modality
-        omnimedseg --modality Fundus --download --convert
+    def add(name, help_text, func):
+        p = sub.add_parser(name, help=help_text, description=help_text)
+        _common_options(p, suppress_defaults=True)
+        p.set_defaults(func=func)
+        return p
 
-        # Extract only (no conversion)
-        omnimedseg --dataset PAPILA --extract
+    p = add("list", "list datasets with license and local status", commands.cmd_list)
+    p.add_argument("-m", "--modality", action="append", choices=MODALITY_CHOICES, metavar="MODALITY",
+                   help="only these modalities (repeatable)")
+    p.add_argument("--license", choices=sorted(commands.LICENSE_FILTERS),
+                   help="filter by commercial-use terms of the dataset license")
+    p.add_argument("--format", choices=["table", "csv", "json"], default="table")
 
-        # Convert without re-downloading
-        omnimedseg --dataset PAPILA --convert --force_convert
-        
-        # Browse datasets
-        omnimedseg --visualization
-        omnimedseg --visualization --port 8080 --max_images 20
-        
-        # Train a model (config automatically saved to runs/run_name/logs/config.json)
-        omnimedseg --train --modalities Fundus --datasets PAPILA --label_classes optic_cup
-        
-        # Train with custom image size
-        omnimedseg --train --modalities Fundus --datasets PAPILA --label_classes optic_cup --image_size 512
-        
-        # Train with custom run name
-        omnimedseg --train --run_name papila_optic_cup_v1 --modalities Fundus --datasets PAPILA
-        
-        # Predict on validation set with overlay
-        omnimedseg --predict_val --load_checkpoint runs/run_name/checkpoints/best_model.pth --modalities Fundus --datasets PAPILA
-        
-        # Predict with custom overlay settings
-        omnimedseg --predict_val --load_checkpoint runs/run_name/checkpoints/best_model.pth --modalities Fundus --datasets PAPILA --overlay_color red --overlay_alpha 0.3
-        
-        # Predict without overlay
-        omnimedseg --predict_val --load_checkpoint runs/run_name/checkpoints/best_model.pth --modalities Fundus --datasets PAPILA --no_overlay
-        
-        # List all runs
-        omnimedseg --list_runs
-                """
-    )
-    
-    # Dataset selection
-    parser.add_argument(
-        '--dataset', type=str, default=None,
-        help='Dataset name (e.g. NETRA). If not set, processes all datasets from --modality.'
-    )
-    parser.add_argument(
-        '--modality', type=str, default='Fundus',
-        choices=sorted(MODALITIES) + sorted(MODALITY_ALIASES),
-        help='Modality name (default: Fundus)'
-    )
-    
-    parser.add_argument(
-        '--data-root', '--data_root', dest='data_root', type=str, default=None,
-        help='Where datasets are stored (default: $OMNIMEDSEG_DATA_ROOT, else ./datasets)'
-    )
+    p = add("info", "show the dataset card(s) and local status", commands.cmd_info)
+    p.add_argument("datasets", nargs="+", metavar="DATASET")
 
-    # Actions
-    parser.add_argument(
-        '--download', action='store_true',
-        help='Download dataset(s)'
-    )
-    parser.add_argument(
-        '--extract', action='store_true',
-        help='Extract downloaded dataset(s)'
-    )
-    parser.add_argument(
-        '--convert', action='store_true',
-        help='Convert dataset(s) to standardized format'
-    )
-    parser.add_argument(
-        '--check_integrity', action='store_true',
-        help='Check if all files are downloaded, extracted, and converted correctly'
-    )
+    p = add("cite", "print BibTeX for the selected datasets (plus OmniMedSeg)", commands.cmd_cite)
+    _selection(p)
+    p.add_argument("-o", "--output", metavar="FILE", help="write to a .bib file instead of stdout")
+    p.add_argument("--no-omnimedseg", action="store_true", help="do not include the OmniMedSeg citation")
 
-    # Visualization/Browse
-    parser.add_argument(
-        '--visualization', action='store_true',
-        help='Start dataset visualization tool'
-    )
-    
-    # Browser options (only used with --visualization)
-    parser.add_argument(
-        '--root', type=str, default='datasets_to_review',
-        help='Root directory containing datasets (default: datasets_to_review)'
-    )
-    parser.add_argument(
-        '--size', type=int, default=512,
-        help='Image size for display (default: 512)'
-    )
-    parser.add_argument(
-        '--host', type=str, default='0.0.0.0',
-        help='Host to bind to (default: 0.0.0.0)'
-    )
-    parser.add_argument(
-        '--port', type=int, default=5000,
-        help='Port to bind to (default: 5000)'
-    )
-    parser.add_argument(
-        '--max_images', type=int, default=10,
-        help='Maximum number of images to load per dataset (default: 10)'
-    )
-    parser.add_argument(
-        '--workers', type=int, default=8,
-        help='Number of parallel workers for loading (default: 8)'
-    )
-    parser.add_argument(
-        '--debug', action='store_true',
-        help='Enable debug mode for the browser'
-    )
-    
-    # Training options
-    parser.add_argument(
-        '--train', action='store_true',
-        help='Train a segmentation model'
-    )
-    parser.add_argument(
-        '--predict', type=str,
-        help='Predict segmentation for an image or directory'
-    )
-    parser.add_argument(
-        '--predict_val', action='store_true',  
-        help='Predict on the validation set using saved split info'
-    )
-    parser.add_argument(
-        '--load_checkpoint', type=str,
-        help='Load checkpoint for prediction or resume training'
-    )
-    parser.add_argument(
-        '--modalities', type=str, nargs='+',
-        help='Modalities to use for training'
-    )
-    parser.add_argument(
-        '--datasets', type=str, nargs='+',
-        help='Specific datasets to train on'
-    )
-    parser.add_argument(
-        '--label_classes', type=str, nargs='+',
-        help='Label classes to include'
-    )
-    parser.add_argument(
-        '--exclude_datasets', type=str, nargs='+',
-        help='Datasets to exclude'
-    )
-    parser.add_argument(
-        '--exclude_classes', type=str, nargs='+',
-        help='Label classes to exclude'
-    )
-    parser.add_argument(
-        '--max_samples_per_dataset', type=int, default=None,
-        help='Maximum samples per dataset'
-    )
-    parser.add_argument(
-        '--epochs', type=int, default=100,
-        help='Number of epochs for training'
-    )
-    parser.add_argument(
-        '--batch_size', type=int, default=8,
-        help='Batch size for training'
-    )
-    parser.add_argument(
-        '--lr', type=float, default=1e-4,
-        help='Learning rate'
-    )
-    parser.add_argument(
-        '--val_split', type=float, default=0.2,
-        help='Validation split ratio'
-    )
-    parser.add_argument(
-        '--features', type=int, nargs='+', default=[64, 128, 256, 512],
-        help='Features per layer for the model'
-    )
-    parser.add_argument(
-        '--image_size', type=int, default=256,  # <-- ADD THIS
-        help='Input image size for training (default: 256)'
-    )
-    parser.add_argument(
-        '--bilinear', action='store_true', default=True,
-        help='Use bilinear upsampling'
-    )
-    parser.add_argument(
-        '--run_name', type=str, default=None,
-        help='Custom run name (auto-generated if not provided)'
-    )
-    parser.add_argument(
-        '--base_dir', type=str, default='runs',
-        help='Base directory for training runs (default: runs)'
-    )
-    parser.add_argument(
-        '--list_runs', action='store_true',
-        help='List all available training runs'
-    )
-    parser.add_argument(
-        '--device', type=str, default='cuda',
-        choices=['cuda', 'cpu'],
-        help='Device to use (default: cuda)'
-    )
-    parser.add_argument(
-        '--no_mixed_precision', action='store_true',
-        help='Disable mixed precision training'
-    )
-    
-    # Overlay options
-    parser.add_argument(
-        '--overlay', action='store_true', default=True,
-        help='Save overlay images with predictions (default: True)'
-    )
-    parser.add_argument(
-        '--no_overlay', action='store_true',
-        help='Disable overlay images'
-    )
-    parser.add_argument(
-        '--overlay_alpha', type=float, default=0.5,
-        help='Transparency of overlay (0-1, default: 0.5)'
-    )
-    parser.add_argument(
-        '--overlay_color', type=str, default='green',
-        choices=['green', 'red', 'blue', 'yellow', 'magenta', 'cyan', 'white'],
-        help='Overlay color: green, red, blue, yellow, magenta, cyan, white (default: green)'
-    )
-    
-    # Options
-    parser.add_argument(
-        '--force_convert', action='store_true',
-        help='Force conversion even if already converted'
-    )
-    parser.add_argument(
-        '--keep_raw_data', action='store_true',
-        help='Keep raw data after conversion'
-    )
-    parser.add_argument(
-        '--delete_raw_data', action='store_true',
-        help='Delete raw data (extracted files)'
-    )
-    parser.add_argument(
-        '--filter_empty_labels', action='store_true',
-        help='Filter out samples with empty labels'
-    )
-    
-    # Logging
-    parser.add_argument(
-        '--verbose', action='store_true',
-        help='Enable verbose logging (DEBUG level)'
-    )
-    parser.add_argument(
-        '--quiet', action='store_true',
-        help='Suppress all output except errors'
-    )
-    
-    # Add flag to disable banner
-    parser.add_argument(
-        '--no-banner', action='store_true',
-        help='Suppress the ASCII banner'
-    )
-    
-    args = parser.parse_args()
-    args.modality = MODALITY_ALIASES.get(args.modality, args.modality)
+    def conversion_options(p):
+        p.add_argument("--force", action="store_true", help="convert again even if already converted")
+        p.add_argument("--keep-raw", action="store_true", help="keep extracted raw data after conversion")
+        p.add_argument("--filter-empty-labels", action="store_true",
+                       help="drop samples whose labels are all empty")
+
+    p = add("prepare", "download and convert (the usual way to get a dataset)", commands.cmd_prepare)
+    _selection(p)
+    conversion_options(p)
+
+    p = add("download", "download (and, for most sources, extract) datasets", commands.cmd_download)
+    _selection(p)
+
+    p = add("extract", "extract already downloaded archives", commands.cmd_extract)
+    _selection(p)
+
+    p = add("convert", "convert downloaded datasets to the standard format", commands.cmd_convert)
+    _selection(p)
+    conversion_options(p)
+
+    p = add("verify", "check that converted files and their sources exist", commands.cmd_verify)
+    _selection(p)
+
+    p = add("clean", "delete raw data and/or samples with empty labels", commands.cmd_clean)
+    _selection(p)
+    p.add_argument("--raw", action="store_true", help="delete extracted raw data")
+    p.add_argument("--empty-labels", action="store_true", help="remove converted samples with empty labels")
+
+    p = add("browse", "start the web-based dataset browser", commands.cmd_browse)
+    p.add_argument("--root", default=None, help="folder to browse (default: the data root)")
+    p.add_argument("--host", default="0.0.0.0")
+    p.add_argument("--port", type=int, default=5000)
+    p.add_argument("--size", type=int, default=512, help="display size in pixels")
+    p.add_argument("--max-images", type=int, default=10, help="images loaded per dataset")
+    p.add_argument("--workers", type=int, default=8)
+    p.add_argument("--debug", action="store_true")
+
+    return parser
+
+
+def main(argv: Optional[List[str]] = None) -> None:
+    argv = list(sys.argv[1:] if argv is None else argv)
+
+    from omnimedseg.cli import legacy
+
+    if legacy.is_legacy(argv):
+        a = legacy.build_parser().parse_known_args(argv)[0]
+        if not a.no_banner:
+            print_banner()
+        setup_logging(level=logging.ERROR if a.quiet else logging.INFO, verbose=a.verbose)
+        sys.exit(legacy.main(argv))
+
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    if not args.command:
+        parser.print_help()
+        sys.exit(0)
+
+    catalogue = args.command in _CATALOGUE_COMMANDS
+    if not (args.no_banner or catalogue):
+        print_banner()
+    level = logging.ERROR if (args.quiet or (catalogue and not args.verbose)) else logging.INFO
+    setup_logging(level=level, verbose=args.verbose)
     if args.data_root:
         set_data_root(args.data_root)
-    return args
 
-
-def main() -> None:
-    """Main entry point for the CLI."""
-    print_banner()
-
-    args = parse_args()
-
-    # Setup logging first (so we can log if needed)
-    if args.quiet:
-        log_level = logging.ERROR
-    elif args.verbose:
-        log_level = logging.DEBUG
-    else:
-        log_level = logging.INFO
-
-    # Handle visualization/browse mode
-    if args.visualization:
-        try:
-            from omnimedseg.utils.visualize import start_visualization
-            
-            print("\n" + "=" * 60)
-            print("🚀 Starting Dataset Visualization Tool")
-            print("=" * 60)
-            
-            start_visualization(
-                root=args.root,
-                size=args.size,
-                host=args.host,
-                port=args.port,
-                debug=args.debug,
-                max_images=args.max_images,
-                workers=args.workers
-            )
-        except ImportError as e:
-            print(f"❌ Error: Could not import visualization module: {e}")
-            sys.exit(1)
-        except Exception as e:
-            print(f"❌ Error starting browser: {e}")
-            sys.exit(1)
-        return
-    
-    # Handle training/prediction
-    if args.train or args.predict or args.predict_val or args.list_runs:
-        try:
-            from omnimedseg.models.train import main as train_main
-            
-            # Build sys.argv for the training CLI
-            train_argv = [sys.argv[0]]
-            
-            # Basic actions
-            if args.train:
-                train_argv.append('--train')
-            if args.predict:
-                train_argv.extend(['--predict', args.predict])
-            if args.predict_val:
-                train_argv.append('--predict_val')
-            if args.load_checkpoint:
-                train_argv.extend(['--load_checkpoint', args.load_checkpoint])
-            if args.list_runs:
-                train_argv.append('--list_runs')
-            
-            # Data selection
-            if args.modalities:
-                train_argv.extend(['--modalities'] + args.modalities)
-            if args.datasets:
-                train_argv.extend(['--datasets'] + args.datasets)
-            if args.label_classes:
-                train_argv.extend(['--label_classes'] + args.label_classes)
-            if args.exclude_datasets:
-                train_argv.extend(['--exclude_datasets'] + args.exclude_datasets)
-            if args.exclude_classes:
-                train_argv.extend(['--exclude_classes'] + args.exclude_classes)
-            if args.max_samples_per_dataset:
-                train_argv.extend(['--max_samples_per_dataset', str(args.max_samples_per_dataset)])
-            
-            # Training parameters
-            if args.epochs:
-                train_argv.extend(['--epochs', str(args.epochs)])
-            if args.batch_size:
-                train_argv.extend(['--batch_size', str(args.batch_size)])
-            if args.lr:
-                train_argv.extend(['--lr', str(args.lr)])
-            if args.val_split:
-                train_argv.extend(['--val_split', str(args.val_split)])
-            
-            # Model parameters
-            if args.features:
-                train_argv.extend(['--features'] + [str(f) for f in args.features])
-            if args.image_size:  
-                train_argv.extend(['--image_size', str(args.image_size)])
-            if args.bilinear:
-                train_argv.append('--bilinear')
-            
-            # Run configuration
-            if args.run_name:
-                train_argv.extend(['--run_name', args.run_name])
-            if args.base_dir:
-                train_argv.extend(['--base_dir', args.base_dir])
-            if args.root:
-                train_argv.extend(['--root', args.root])
-            
-            # Device
-            if args.device:
-                train_argv.extend(['--device', args.device])
-            if args.no_mixed_precision:
-                train_argv.append('--no_mixed_precision')
-            
-            # Overlay options
-            if args.no_overlay:
-                train_argv.append('--no_overlay')
-            elif args.overlay:
-                train_argv.append('--overlay')
-            if args.overlay_alpha:
-                train_argv.extend(['--overlay_alpha', str(args.overlay_alpha)])
-            if args.overlay_color:
-                train_argv.extend(['--overlay_color', args.overlay_color])
-            
-            # Replace sys.argv and call train_main
-            sys.argv = train_argv
-            train_main()
-        except ImportError as e:
-            print(f"❌ Error: Could not import training module: {e}")
-            sys.exit(1)
-        except Exception as e:
-            print(f"❌ Error during training: {e}")
-            sys.exit(1)
-        return
-    
-    setup_logging(verbose=(log_level == logging.DEBUG))
-    
-    # Resolve datasets
     try:
-        datasets, modality = resolve_datasets(args.dataset, args.modality)
-    except ValueError as e:
-        logger.error(f"Error: {e}")
-        sys.exit(1)
-    
-    if not datasets:
-        logger.error(f"No datasets found for modality '{modality}'")
-        sys.exit(1)
-    
-    logger.info(f"Processing {len(datasets)} dataset(s) from modality: {modality}")
-    logger.info(f"Data root: {os.path.abspath(data_root())}")
-    if len(datasets) > 1 and args.dataset is None:
-        logger.info(f"Datasets: {', '.join(datasets[:5])}" + 
-                   (f" ... and {len(datasets)-5} more" if len(datasets) > 5 else ""))
-    
-    # Process
-    try:
-        process_datasets(
-            dataset_names=datasets,
-            modality=modality,
-            download=args.download,
-            convert=args.convert,
-            extract=args.extract,
-            delete_raw_data=args.delete_raw_data,
-            force_convert=args.force_convert,
-            keep_raw_data=args.keep_raw_data,
-            filter_empty=args.filter_empty_labels,
-            check_integrity=args.check_integrity
-        )
-        logger.info("✅ All processing complete!")
-    except KeyboardInterrupt:
-        logger.warning("⚠️  Interrupted by user")
-        sys.exit(130)
-    except PipelineError as e:
-        logger.error(f"❌ {e}")
-        for name, err in e.failures.items():
-            logger.error(f"   - {name}: {type(err).__name__}: {err}")
-        sys.exit(1)
-    except Exception as e:
-        logger.error(f"❌ Error during processing: {e}")
-        sys.exit(1)
+        code = args.func(args)
+    except (CLIError, CardError) as e:
+        logger.error(str(e))
+        code = 1
+    sys.exit(code)
 
 
 if __name__ == "__main__":

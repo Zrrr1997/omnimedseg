@@ -156,66 +156,75 @@ pytest -m golden         # re-converts HRF, KVASIR_SEG, MSD_SPLEEN and compares 
 ```
 
 The golden tests need the raw data on disk once:
-`omnimedseg --dataset HRF --download --convert --keep_raw_data` (same for `KVASIR_SEG`, `MSD_SPLEEN`).
+`omnimedseg prepare HRF KVASIR_SEG MSD_SPLEEN --keep-raw`.
 
 ## 🎯 Usage
 
-### Basic Commands
+```bash
+omnimedseg <command> [DATASET ...] [--modality M] [--all] [options]
+omnimedseg <command> --help
+```
 
-#### Choosing Where Data Is Stored
+| Command | What it does |
+|---------|--------------|
+| `list` | All datasets with license, commercial-use terms and local status |
+| `info DATASET` | The full dataset card (source, license, citation, RADAR4KIT DOI) |
+| `prepare DATASET` | Download **and** convert — the usual way to get a dataset |
+| `download` / `extract` / `convert` | The individual pipeline steps |
+| `verify DATASET` | Check that converted files and their sources exist |
+| `clean DATASET --raw` | Delete extracted raw data (`--empty-labels`: drop empty samples) |
+| `cite DATASET ...` | BibTeX for exactly the datasets you used (+ OmniMedSeg) |
+| `browse` | Web-based dataset browser |
+
+### Find datasets
+
+```bash
+omnimedseg list                                   # everything
+omnimedseg list --modality Fundus                 # one modality (repeat -m for several)
+omnimedseg list --license commercial-ok           # licenses allowing commercial use
+omnimedseg list --format csv > datasets.csv       # or --format json
+omnimedseg info KVASIR_SEG
+```
+
+### Get datasets
+
+```bash
+omnimedseg prepare PAPILA                         # download + convert one dataset
+omnimedseg prepare HRF KVASIR_SEG --keep-raw      # several; keep raw data after conversion
+omnimedseg prepare --modality Fundus              # a whole modality
+omnimedseg convert PAPILA --force                 # convert again without re-downloading
+omnimedseg verify PAPILA
+```
+
+If some datasets fail, the others still run; failures are summarized at the end and the exit code is 1.
+
+### Choosing where data is stored
 
 By default everything goes to `./datasets` (relative to where you run the command). To use another
 location, e.g. scratch space on a cluster, pass `--data-root` or set an environment variable:
 
 ```bash
-omnimedseg --data-root /scratch/$USER/omnimedseg --dataset PAPILA --download --convert
+omnimedseg prepare PAPILA --data-root /scratch/$USER/omnimedseg
 # or, for all commands in this shell:
 export OMNIMEDSEG_DATA_ROOT=/scratch/$USER/omnimedseg
 ```
 
-#### Download and Convert a Single Dataset
+### Cite what you used
 
 ```bash
-omnimedseg --dataset PAPILA --download --convert
+omnimedseg cite HRF KVASIR_SEG PAPILA -o references.bib
 ```
 
-
-#### Process All Datasets in a Modality
-
-```bash
-omnimedseg --modality Fundus --download --convert
-```
-
-#### Extract Only (Skip Download)
+### Browse dataset images
 
 ```bash
-omnimedseg --dataset PAPILA --extract
+omnimedseg browse                                 # serves the data root on http://localhost:5000
+omnimedseg browse --port 8080 --max-images 20
 ```
 
-#### Convert Without Re-downloading
-```
-omnimedseg --dataset PAPILA --convert --force_convert
-```
+> The previous flag syntax (`omnimedseg --dataset PAPILA --download --convert`) still works,
+> but prints a deprecation note with the equivalent command.
 
-#### Check Dataset Integrity
-```
-omnimedseg --dataset PAPILA --check_integrity
-```
-
-#### Keep Raw Data After Conversion
-```
-omnimedseg --dataset PAPILA --download --convert --keep_raw_data
-```
-
-
-### Visualize and Browse through Dataset Images
-```
-# Launch interactive dataset browser
-omnimedseg --visualization
-
-# With custom options
-omnimedseg --visualization --port 8080 --max_images 20 # set max images per dataset to view
-```
 <p align="center">
   <img src="assets/dataset_browser.png" alt="Dataset browser" width="100%">
   <br>
@@ -339,9 +348,9 @@ To add a dataset:
 ### Datasets that need a manual download
 
 Some sources can no longer be downloaded automatically (currently: **BUSI**). For these,
-`omnimedseg --dataset BUSI --download` stops with instructions on where to place the original archive
+`omnimedseg download BUSI` stops with instructions on where to place the original archive
 (e.g. `datasets/Ultrasound/BUSI/Dataset_BUSI.zip`); once it is there, the same command extracts it and
-`--convert` works as usual. Failed or partial conversions are moved to `converted.failed/` and raw data is
+`omnimedseg convert BUSI` works as usual. Failed or partial conversions are moved to `converted.failed/` and raw data is
 kept, so nothing has to be downloaded twice.
 
 

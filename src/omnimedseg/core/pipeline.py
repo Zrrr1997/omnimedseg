@@ -8,9 +8,9 @@ from omnimedseg.core.paths import data_root
 import os
 import shutil
 import logging
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List
 
-from omnimedseg.core.cards import MODALITIES, datasets_for_modality, get_card
+from omnimedseg.core.cards import get_card
 from omnimedseg.core.errors import DownloadError, ManualDownloadRequired, PipelineError
 from omnimedseg.converters.registry import convert_dataset
 from omnimedseg.downloaders.download_datasets import download_dataset, extract_all_zips
@@ -177,7 +177,7 @@ def process_datasets(
                 if not os.path.exists(extracted_path):
                     logger.warning(
                         f"⚠️  Please extract {dataset} first with:\n"
-                        f"   omnimedseg --dataset {dataset} --extract"
+                        f"   omnimedseg extract {dataset}"
                     )
                 else:
                     logger.info(f"✅ Checking integrity of {dataset}...")
@@ -193,35 +193,3 @@ def process_datasets(
 
     if failures:
         raise PipelineError(failures)
-
-
-def resolve_datasets(
-    dataset_name: Optional[str],
-    modality: str
-) -> Tuple[List[str], str]:
-    """
-    Resolve which datasets to process based on input arguments.
-
-    Args:
-        dataset_name: Single dataset name or None
-        modality: Modality name
-
-    Returns:
-        Tuple containing:
-            - List of dataset names
-            - Modality name
-
-    Raises:
-        ValueError: If dataset or modality is not found
-    """
-    if dataset_name is not None:
-        try:
-            card = get_card(dataset_name)
-        except LookupError as e:
-            raise ValueError(str(e)) from None
-        return [dataset_name], card.modality
-
-    if modality not in MODALITIES:
-        raise ValueError(f"Modality '{modality}' not found")
-
-    return datasets_for_modality(modality), modality

@@ -1603,8 +1603,11 @@ def start_visualization(root='datasets', size=512, host='0.0.0.0',
     Start the dataset browser with the given parameters.
     This function is meant to be called from other scripts.
     """
+    # The loaders read these module-level settings; set them from the arguments.
+    global ROOT, SIZE, MAX_IMAGES, WORKERS
+    ROOT, SIZE, MAX_IMAGES, WORKERS = root, size, max_images, workers
 
-    app = create_app()
+    app = create_app(root=root, size=size, host=host, port=port, debug=debug)
 
     print("=" * 60)
     print("🚀 Dataset Browser with Ultra-Fast 3D Loading")

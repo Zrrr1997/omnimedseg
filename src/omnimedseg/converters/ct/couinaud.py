@@ -46,7 +46,7 @@ def convert_couinaud(num_workers=8):
 
     extracted_base = os.path.join(data_root(), 'CT', 'COUINAUD', 'extracted')
     if not os.path.exists(os.path.join(data_root(), 'CT/MSD_HEPATIC_VESSEL/extracted')):
-        raise FileNotFoundError("Please download and extract the MSD_HEPATIC_VESSEL dataset first, as COUINAUD depends on it. \n You can do this by running: \n omnimedseg --dataset MSD_HEPATIC_VESSEL --download --extract")
+        raise FileNotFoundError("Please download and extract the MSD_HEPATIC_VESSEL dataset first, as COUINAUD depends on it. \n You can do this by running: \n omnimedseg download MSD_HEPATIC_VESSEL")
     
 
     extract_archives(os.path.join(extracted_base, 'dataset-master'))

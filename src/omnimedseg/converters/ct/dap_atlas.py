@@ -47,7 +47,7 @@ def convert_dap_atlas():
 
     extracted_base = os.path.join(data_root(), 'CT', 'DAP_ATLAS', 'extracted', 'Atlas_final_dataset_V1_533')
     if not os.path.exists(os.path.join(os.path.join(data_root(), 'CT/AUTOPET_2024_CT/extracted'))):
-        raise FileNotFoundError("Please download and extract the AUTOPET_2024_CT dataset first, as DAP_ATLAS depends on it. \n You can do this by running: \n omnimedseg --dataset AUTOPET_2024_CT --download --extract")
+        raise FileNotFoundError("Please download and extract the AUTOPET_2024_CT dataset first, as DAP_ATLAS depends on it. \n You can do this by running: \n omnimedseg download AUTOPET_2024_CT")
 
     autopet_base = os.path.join(os.path.join(data_root(), 'CT/AUTOPET_2024_CT/extracted/imagesTr'))
 

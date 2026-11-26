@@ -32,8 +32,8 @@ def setup_logging(level=logging.INFO, log_file=None, verbose=False):
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
     
-    # Console handler
-    console_handler = logging.StreamHandler(sys.stdout)
+    # Console handler (stderr, so command output on stdout stays machine-readable)
+    console_handler = logging.StreamHandler(sys.stderr)
     console_handler.setFormatter(formatter)
     root_logger.addHandler(console_handler)
     
