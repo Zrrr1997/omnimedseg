@@ -12,18 +12,7 @@ import pytest
 import omnimedseg
 from omnimedseg.core.constants import DOWNLOAD_URLS, MODALITY_MAP
 
-# Modality key in constants.py -> converter subpackage
-MODALITY_PACKAGES = {
-    "Fundus": "fundus",
-    "Ultrasound": "ultrasound",
-    "Endoscopy": "endoscopy",
-    "OCT": "oct",
-    "Microscopy": "microscopy",
-    "Dermoscopy": "dermoscopy",
-    "XRay": "xray",
-    "CT": "ct",
-    "MRI": "mri",
-}
+from omnimedseg.converters.registry import MODALITY_PACKAGES, _defined_converters, get_converter
 
 
 def _all_modules():
@@ -46,29 +35,29 @@ def test_modalities_match_converter_packages():
     assert set(DOWNLOAD_URLS) == set(MODALITY_PACKAGES)
 
 
-def _converter_registry(modality):
-    return importlib.import_module(f"omnimedseg.converters.{MODALITY_PACKAGES[modality]}").CONVERTERS
+@pytest.mark.parametrize("dataset", sorted(MODALITY_MAP))
+def test_every_dataset_resolves_to_exactly_one_converter(dataset):
+    converter = get_converter(MODALITY_MAP[dataset], dataset)
+    assert callable(converter)
 
 
-@pytest.mark.parametrize("modality", sorted(MODALITY_PACKAGES))
-def test_every_dataset_has_a_converter(modality):
-    registry = _converter_registry(modality)
-    missing = sorted(name for name in DOWNLOAD_URLS[modality] if name not in registry)
-    assert not missing, f"{modality}: datasets with a URL but no converter: {missing}"
+def test_dataset_converters_take_no_required_arguments():
+    """The pipeline calls converter() without arguments."""
+    import inspect
+
+    bad = []
+    for dataset, modality in MODALITY_MAP.items():
+        sig = inspect.signature(get_converter(modality, dataset))
+        if any(p.default is p.empty and p.kind in (p.POSITIONAL_ONLY, p.POSITIONAL_OR_KEYWORD) for p in sig.parameters.values()):
+            bad.append(dataset)
+    assert not bad, f"converters with required arguments: {bad}"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Known issue: auto-discovery registers helper functions named convert_* "
-    "(e.g. convert_rtstruct, convert_msd) as datasets. Fixed in the dataset-registry step.",
-)
-def test_no_converters_without_dataset():
-    stray = {}
-    for modality in MODALITY_PACKAGES:
-        extra = sorted(set(_converter_registry(modality)) - set(DOWNLOAD_URLS[modality]))
-        if extra:
-            stray[modality] = extra
-    assert not stray, f"converters that are not datasets: {stray}"
+def test_helpers_are_not_mistaken_for_datasets():
+    with pytest.raises(LookupError):
+        get_converter("CT", "RTSTRUCTS")
+    with pytest.raises(LookupError):
+        get_converter("CT", "DICOM_SEGS")
 
 
 def test_dataset_names_unique_across_modalities():

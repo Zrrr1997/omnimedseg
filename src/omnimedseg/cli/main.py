@@ -7,10 +7,15 @@ import logging
 import os
 
 from omnimedseg.core.pipeline import process_datasets, resolve_datasets
+from omnimedseg.core.constants import DOWNLOAD_URLS
+from omnimedseg.core.errors import PipelineError
 from omnimedseg.utils.logger import setup_logging, get_logger
 from omnimedseg.utils.banner import print_banner
 
 logger = get_logger(__name__)
+
+# Older names still accepted on the command line.
+MODALITY_ALIASES = {'Ultrasound_2D': 'Ultrasound'}
 
 
 def parse_args() -> argparse.Namespace:
@@ -66,7 +71,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         '--modality', type=str, default='Fundus',
-        choices=['Fundus', 'Ultrasound_2D', 'Endoscopy', 'Microscopy', 'OCT', 'XRay', 'CT', 'MRI', 'Dermoscopy'],
+        choices=sorted(DOWNLOAD_URLS) + sorted(MODALITY_ALIASES),
         help='Modality name (default: Fundus)'
     )
     
@@ -268,7 +273,9 @@ def parse_args() -> argparse.Namespace:
         help='Suppress the ASCII banner'
     )
     
-    return parser.parse_args()
+    args = parser.parse_args()
+    args.modality = MODALITY_ALIASES.get(args.modality, args.modality)
+    return args
 
 
 def main() -> None:
@@ -433,6 +440,11 @@ def main() -> None:
         logger.info("✅ All processing complete!")
     except KeyboardInterrupt:
         logger.warning("⚠️  Interrupted by user")
+        sys.exit(130)
+    except PipelineError as e:
+        logger.error(f"❌ {e}")
+        for name, err in e.failures.items():
+            logger.error(f"   - {name}: {type(err).__name__}: {err}")
         sys.exit(1)
     except Exception as e:
         logger.error(f"❌ Error during processing: {e}")

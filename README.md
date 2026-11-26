@@ -289,10 +289,20 @@ graph LR
 
 ## 📝 Adding a New Dataset
 
-1. Add dataset download URL to `src/omnimedseg/core/constants.py`
-2. Create converter in `src/omnimedseg/converters/[modality]/[dataset].py`
-3. Make a PR
-3. That's it!
+1. Add the dataset download URL to `src/omnimedseg/core/constants.py`
+2. Create a converter in `src/omnimedseg/converters/[modality]/[dataset].py` that defines
+   `convert_<dataset_name_in_lowercase>()` (no required arguments). It is found automatically by name;
+   helper functions may use any other name.
+3. Run `pytest -m "not golden"` — it checks that every dataset resolves to exactly one converter
+4. Make a PR
+
+### Datasets that need a manual download
+
+Some sources can no longer be downloaded automatically (currently: **BUSI**). For these,
+`omnimedseg --dataset BUSI --download` stops with instructions on where to place the original archive
+(e.g. `datasets/Ultrasound/BUSI/Dataset_BUSI.zip`); once it is there, the same command extracts it and
+`--convert` works as usual. Failed or partial conversions are moved to `converted.failed/` and raw data is
+kept, so nothing has to be downloaded twice.
 
 
 

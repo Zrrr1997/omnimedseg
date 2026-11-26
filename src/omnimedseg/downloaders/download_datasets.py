@@ -65,6 +65,9 @@ def download_file(url, dest_path, name, user_agent=None, verify_ssl=True, part='
 
     except Exception as e:
         print(f"❌ Error downloading {name}: {e}")
+        # Remove a truncated file, otherwise already_downloaded() would skip it on every later run.
+        if os.path.isfile(dest_path):
+            os.remove(dest_path)
         return False
 
 

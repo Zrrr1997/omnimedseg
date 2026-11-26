@@ -1,15 +1,14 @@
-from omnimedseg.converters.convert_fundus import convert_fundus_dataset
-from omnimedseg.converters.convert_ultrasound import convert_ultrasound_dataset
-from omnimedseg.converters.convert_endoscopy import convert_endoscopy_dataset
-from omnimedseg.converters.convert_oct import convert_oct_dataset
-from omnimedseg.converters.convert_microscopy import convert_microscopy_dataset
-from omnimedseg.converters.convert_xray import convert_xray_dataset
-from omnimedseg.converters.convert_dermoscopy import convert_dermoscopy_dataset
-from omnimedseg.converters.convert_ct import convert_ct_dataset
-from omnimedseg.converters.convert_mri import convert_mri_dataset
-
-
 CHAKSU_PATTERN = ['Test/1.0_Original', 'Train/1.0_Original', 'Test/3.0_Doctors', 'Train/3.0_Doctors', 'Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Cup/Mean/', 'Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Cup/Mean/', 'Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Cup/Mean/', 'Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Disc/Mean/', 'Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Disc/Mean/', 'Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Disc/Mean/', 'Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Cup/Mean/', 'Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Cup/Mean/', 'Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Cup/Mean/', 'Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Disc/Mean/', 'Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Disc/Mean/', 'Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Disc/Mean/']
+# Datasets whose source can no longer be downloaded automatically. The user places the
+# original archive(s) in datasets/<Modality>/<NAME>/ and the pipeline takes it from there.
+MANUAL_DOWNLOADS = {
+    "BUSI": (
+        "The original BUSI download (https://scholar.cu.edu.eg/Dataset_BUSI.zip) is offline. "
+        "Obtain Dataset_BUSI.zip (Al-Dhabyani et al., Data in Brief 28, 2020, "
+        "doi:10.1016/j.dib.2019.104863) and place it at datasets/Ultrasound/BUSI/Dataset_BUSI.zip"
+    ),
+}
+
 FILTER_PATTERNS = {
     'CHAKSU': CHAKSU_PATTERN,
 }
@@ -240,17 +239,6 @@ DOWNLOAD_URLS = {
     'MRI': MRI_DATASET_URLS
 }
 
-CONVERTERS = {
-    'Fundus': convert_fundus_dataset,
-    'Ultrasound': convert_ultrasound_dataset,
-    'Endoscopy': convert_endoscopy_dataset,
-    'OCT': convert_oct_dataset,
-    'Microscopy': convert_microscopy_dataset,
-    'Dermoscopy': convert_dermoscopy_dataset,
-    'XRay': convert_xray_dataset,
-    'CT': convert_ct_dataset,
-    'MRI': convert_mri_dataset
-}
 
 if __name__ == "__main__":
     pass
