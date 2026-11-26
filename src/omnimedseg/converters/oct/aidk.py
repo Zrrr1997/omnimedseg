@@ -70,7 +70,7 @@ def convert_aidk():
             for idx, file in enumerate(image_files)
         }
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing AIDK images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing AIDK images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

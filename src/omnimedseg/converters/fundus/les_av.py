@@ -33,7 +33,7 @@ def convert_les_av():
     }
 
     image_dir = paths_extracted['image']
-    for file in tqdm(os.listdir(image_dir), desc="🖼️ Processing LES_AV images"):
+    for file in tqdm(os.listdir(image_dir), desc="Processing LES_AV images"):
         filename = f"{idx:06d}.png"
         filename_map[filename] = {
             label: os.path.join(paths_extracted[label], file) for label in labels

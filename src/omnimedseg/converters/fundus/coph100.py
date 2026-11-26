@@ -15,7 +15,7 @@ def convert_coph100():
     extracted_base = os.path.join(data_root(), 'Fundus', 'COPH100', 'extracted')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(os.path.join(extracted_base)) if re.fullmatch(r'[\d\-]+', f)]
 
-    for path in tqdm(sorted(image_paths), desc="🖼️  Processing COph100 images"):
+    for path in tqdm(sorted(image_paths), desc="Processing COph100 images"):
 
         image_paths = [os.path.join(path, el) for el in os.listdir(path) if '.jpg' in el]
         for image_path in image_paths:

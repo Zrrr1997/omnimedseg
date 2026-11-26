@@ -41,7 +41,7 @@ def convert_hipbone():
 
     with ThreadPoolExecutor() as executor:
         futures = {executor.submit(process_image, file, converted_path): file for file in image_paths}
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing HIPBONE images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing HIPBONE images"):
             result = future.result()
             if result:
                 filename, mapping = result

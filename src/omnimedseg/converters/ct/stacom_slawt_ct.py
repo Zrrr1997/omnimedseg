@@ -39,7 +39,7 @@ def convert_stacom_slawt_ct(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_stacom_slawt_ct, (i, file, converted_path)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing STACOM_SLAWT_CT images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing STACOM_SLAWT_CT images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

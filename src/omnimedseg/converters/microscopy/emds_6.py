@@ -56,7 +56,7 @@ def convert_emds_6():
     args_list = [(idx, file, class_names, converted_path) for idx, file in enumerate(image_paths)]
 
     with ThreadPoolExecutor() as executor:
-        results = list(tqdm(executor.map(process_image, args_list), total=len(args_list), desc="🖼️  Processing EMDS_6 images"))
+        results = list(tqdm(executor.map(process_image, args_list), total=len(args_list), desc="Processing EMDS_6 images"))
 
     for filename, class_name, file, label_file in results:
         class_map[class_name].append(filename)

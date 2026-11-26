@@ -47,7 +47,7 @@ def convert_endovis_15():
 
         with ThreadPoolExecutor() as executor:
             futures = [executor.submit(process_file, args) for args in args_list]
-            for future in tqdm(as_completed(futures), total=len(futures), desc=f"🖼️  Processing ENDOVIS_15 {split} images"):
+            for future in tqdm(as_completed(futures), total=len(futures), desc=f"Processing ENDOVIS_15 {split} images"):
                 filename, file, label_file = future.result()
                 split_map[split].append(filename)
                 filename_map[filename] = {

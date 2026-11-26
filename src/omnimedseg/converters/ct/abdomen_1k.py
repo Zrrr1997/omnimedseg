@@ -33,13 +33,8 @@ def process_file_abdomen_1k(idx_file_pair, extracted_base, converted_path, label
     }
 
 def convert_abdomen_1k():
-    print(
-        "\n" + "=" * 80 +
-        "\n⚠️  WARNING: --keep_raw is disabled for ABDOMEN_1K (too large)\n"
-        "   To reproduce the raw data, run again with --extract\n"
-        "   (make sure you have enough disk space!)\n" +
-        "=" * 80 + "\n"
-    )
+    print("note: --keep-raw has no effect for ABDOMEN_1K (raw data is too large to keep); "
+          "run `omnimedseg extract ABDOMEN_1K` to recreate it")
     converted_path = os.path.join(data_root(), 'CT', 'ABDOMEN_1K', 'converted')
     label_classes = ['liver', 'kidneys', 'spleen', 'pancreas']
     ensure_directories(converted_path, label_classes)
@@ -65,7 +60,7 @@ def convert_abdomen_1k():
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_fn, task) for task in tasks]
         results = []
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing ABDOMEN_1K images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing ABDOMEN_1K images"):
             results.append(future.result())
 
     for filename, mapping in results:

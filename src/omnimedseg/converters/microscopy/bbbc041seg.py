@@ -48,7 +48,7 @@ def convert_bbbc041seg():
 
     with ThreadPoolExecutor(max_workers=os.cpu_count() or 4) as executor:
         futures = [executor.submit(process_image, (idx, path)) for idx, path in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing BBBC041SEG images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing BBBC041SEG images"):
             result = future.result()
             if result:
                 filename, entry = result

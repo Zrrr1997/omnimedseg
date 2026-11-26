@@ -104,7 +104,7 @@ def unzip_tcia(extracted_base, compressed_base):
     # Parallel unzip with progrsess bar
     with ProcessPoolExecutor() as executor:
         worker = partial(unzip_single_tcia_folder, extracted_base=extracted_base)
-        for _ in tqdm(executor.map(worker, zip_paths), total=len(zip_paths), desc="📦 Unzipping TCIA folders"):
+        for _ in tqdm(executor.map(worker, zip_paths), total=len(zip_paths), desc="Unzipping TCIA folders"):
             pass
 
 def is_rtstruct(dicom_dir):
@@ -128,7 +128,7 @@ def is_dicom_seg(dicom_dir):
             if getattr(ds, "Modality", None) == "SEG":
                 return True
     except Exception as e:
-        print(f"⚠️ Could not check for DICOM-SEG in {dicom_dir}: {e}")
+        print(f"warning: could not check for DICOM-SEG in {dicom_dir}: {e}")
     return False
 
 def pediatric_label_map(nifti_seg):
@@ -237,7 +237,7 @@ def process_dicom_case(file, name, extracted_base, converted_path):
             output_files.append(output_file)
 
         except Exception as e:
-            print(f"❌ Failed to convert {dicom_dir} with both dcm2niix and SimpleITK: {e}")
+            print(f"Failed to convert {dicom_dir} with both dcm2niix and SimpleITK: {e}")
             return
 
     #  Log results
@@ -246,7 +246,7 @@ def process_dicom_case(file, name, extracted_base, converted_path):
             for out in output_files:
                 f.write(f"{dicom_dir} -> {out}\n")
     except Exception as e:
-        print(f"⚠️ Failed to log {dicom_dir}: {e}")
+        print(f"warning: failed to log {dicom_dir}: {e}")
 
 
 def convert_extracted_dicoms(name, extracted_base, converted_path):
@@ -258,7 +258,7 @@ def convert_extracted_dicoms(name, extracted_base, converted_path):
             for file in image_paths
         }
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc=f"🖼️  Converting {name} images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc=f"Converting {name} images"):
             result = future.result()
 
 
@@ -381,7 +381,7 @@ def match_and_save_niftis(name, converted_path, label_substring, label_name):
             for idx, file in enumerate(nifti_paths)
         }
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc=f"🖼️  Matching {name} images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc=f"Matching {name} images"):
             result = future.result()
             if result:
                 filename, mapping = result
@@ -443,7 +443,7 @@ def process_rtstruct(file, label_substring):
                     return   
             else:
                 if 'PEDIATRIC_CT_SEG' in file:
-                    print("Please install plastimatch for converting PEDIATRIC_CT_SEG!")
+                    print("Please install plastimatch for converting PEDIATRIC_CT_SEG")
                     return
                 elif 'PANCREATIC_CT_CBCT_SEG' in file:
                     rtstruct_files = [
@@ -547,7 +547,7 @@ def process_rtstruct(file, label_substring):
         else:
             return None
     except Exception as e:
-        print(f"❌ Failed processing {file}: {e}")
+        print(f"Failed processing {file}: {e}")
         return None
 
 def convert_rtstructs(name, converted_path, label_substring):
@@ -558,7 +558,7 @@ def convert_rtstructs(name, converted_path, label_substring):
 
     with ProcessPoolExecutor() as executor:
         list(tqdm(executor.map(worker, nifti_paths), total=len(nifti_paths),
-                  desc=f"🖼️  Converting {name} RTSTRUCT files"))
+                  desc=f"Converting {name} RTSTRUCT files"))
 
 def reorder_files_and_json_inplace(image_dir, json_path):
     # Load JSON
@@ -648,7 +648,7 @@ def convert_msd(name, target, subdir, images_dir='imagesTr', labels_dir='labelsT
             executor.map(lambda args: process_file_msd(*args, converted_path, filename_map, lock, target, images_dir, labels_dir),
                          [(file, idx) for idx, file in enumerate(image_paths, start=start)]),
             total=len(image_paths),
-            desc=f"🖼️  Processing {name} images"
+            desc=f"Processing {name} images"
         ))
 
     save_mapping(converted_path, filename_map)
@@ -743,17 +743,17 @@ def align_all_pairs(converted_path, max_workers=None, show_progress=True):
     pairs = get_image_label_pairs(converted_path)
     
     if not pairs:
-        print(f"⚠️ No image-label pairs found in {converted_path}")
+        print(f"warning: no image-label pairs found in {converted_path}")
         return 0, 0, []
     
-    print(f"📊 Found {len(pairs)} image-label pairs to process")
+    print(f"Found {len(pairs)} image-label pairs to process")
     
     successful = 0
     failed = 0
     failed_pairs = []
     
     if show_progress:
-        print(f"🚀 Processing with {max_workers or 'all available'} workers...")
+        print(f"Processing with {max_workers or 'all available'} workers...")
     
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
         # Submit all tasks
@@ -784,7 +784,7 @@ def align_all_pairs(converted_path, max_workers=None, show_progress=True):
     # Print summary
     if show_progress:        
         if failed_pairs:
-            print(f"\n⚠️ Failed pairs:")
+            print(f"\nwarning: failed pairs:")
             for image_path, error in failed_pairs[:5]:  # Show first 5 failures
                 print(f"   - {os.path.basename(image_path)}: {error}")
             if len(failed_pairs) > 5:

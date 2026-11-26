@@ -31,7 +31,7 @@ def convert_dicom_segs(name, converted_path):
 
     with ProcessPoolExecutor() as executor:
         list(tqdm(executor.map(worker, nifti_paths), total=len(nifti_paths),
-                  desc=f"🖼️  Converting {name} DICOM_SEG files"))
+                  desc=f"Converting {name} DICOM_SEG files"))
 
 
 def process_dicom_seg(path):
@@ -48,7 +48,7 @@ def process_dicom_seg(path):
             f.write(f"{seg_src} -> {os.path.join(path, f'dicom_seg_0.nii.gz')}\n")
 
     except Exception as e:
-        print(f"❌ Failed to process DICOM SEG {path}: {e}")
+        print(f"Failed to process DICOM SEG {path}: {e}")
         return None
 
 

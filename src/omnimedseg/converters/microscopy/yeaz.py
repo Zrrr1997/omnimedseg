@@ -38,7 +38,7 @@ def convert_yeaz():
     args_list = [(idx, file, converted_path) for idx, file in enumerate(image_files)]
 
     with ThreadPoolExecutor() as executor:
-        results = list(tqdm(executor.map(process_image, args_list), total=len(args_list), desc="🖼️  Processing YEAZ images"))
+        results = list(tqdm(executor.map(process_image, args_list), total=len(args_list), desc="Processing YEAZ images"))
 
     for filename, mapping in results:
         filename_map[filename] = mapping

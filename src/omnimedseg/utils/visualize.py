@@ -81,7 +81,7 @@ def get_nifti_shape(path):
         img = nib.load(path)
         return img.shape
     except Exception as e:
-        print(f"⚠️ Error getting shape for {path}: {e}")
+        print(f"Error getting shape for {path}: {e}")
         return None
 
 def load_nifti_slice(path, slice_idx):
@@ -98,7 +98,7 @@ def load_nifti_slice(path, slice_idx):
             # If not 3D, try to get the first slice
             return np.array(data[:, :, 0])
     except Exception as e:
-        print(f"⚠️ Error loading slice from {path}: {e}")
+        print(f"Error loading slice from {path}: {e}")
         return None
 
 def normalize_ct_image(image_data, window_center=40, window_width=400):
@@ -195,7 +195,7 @@ def process_single_image_fast(img_file, img_dir, label_paths_by_image, size, mod
             return img_pil, colored_mask, 0, len(label_paths)
             
     except Exception as e:
-        print(f"⚠️ Error processing {img_file}: {e}")
+        print(f"Error processing {img_file}: {e}")
         # Return empty image
         empty_img = Image.new("RGB", (size, size), (100, 100, 100))
         empty_mask = Image.new("RGB", (size, size), (0, 0, 0))
@@ -248,7 +248,7 @@ def create_colored_mask_from_labels(label_paths, slice_idx, size):
                         colored_mask[:, :, c]
                     )
             except Exception as e:
-                print(f"⚠️ Error processing mask {label_path}: {e}")
+                print(f"Error processing mask {label_path}: {e}")
                 continue
     
     return Image.fromarray(colored_mask)
@@ -292,7 +292,7 @@ def create_colored_mask_from_labels_2d(label_paths, size):
                         colored_mask[:, :, c]
                     )
             except Exception as e:
-                print(f"⚠️ Error processing mask {label_path}: {e}")
+                print(f"Error processing mask {label_path}: {e}")
                 continue
     
     return Image.fromarray(colored_mask)
@@ -386,7 +386,7 @@ def preload_images(modality, dataset):
     """Pre-load and cache all images for a dataset with parallel processing"""
     with state_lock:
         if global_state.get("is_loading", False):
-            print("⏳ Already loading, please wait...")
+            print("Already loading, please wait...")
             return 0
         
         global_state["is_loading"] = True
@@ -395,7 +395,7 @@ def preload_images(modality, dataset):
         label_dir = find_label_directories(modality, dataset)
         
         if not img_dir:
-            print(f"❌ No image directory found for {modality}/{dataset}")
+            print(f"No image directory found for {modality}/{dataset}")
             global_state["is_loading"] = False
             return 0
         
@@ -403,18 +403,18 @@ def preload_images(modality, dataset):
         image_files = get_images(img_dir, MAX_IMAGES)
         
         if not image_files:
-            print(f"❌ No images found in {img_dir}")
+            print(f"No images found in {img_dir}")
             global_state["is_loading"] = False
             return 0
         
-        print(f"📂 Loading {len(image_files)} images from {modality}/{dataset}")
+        print(f"Loading {len(image_files)} images from {modality}/{dataset}")
         
         # Get label subdirectories
         label_subdirs = []
         if label_dir and os.path.exists(label_dir):
             label_subdirs = get_dirs(label_dir)
             if label_subdirs:
-                print(f"📂 Found {len(label_subdirs)} label classes")
+                print(f"Found {len(label_subdirs)} label classes")
         
         # Build label paths for each image
         label_paths_by_image = {}
@@ -422,7 +422,7 @@ def preload_images(modality, dataset):
             label_paths_by_image[img_file] = find_label_paths(img_file, label_dir, label_subdirs) if label_dir else []
         
         # Process images in parallel
-        print(f"🔄 Processing with {WORKERS} workers (loading only middle slice)...")
+        print(f"Processing with {WORKERS} workers (loading only middle slice)...")
         
         image_data_list = []
         mask_data_list = []
@@ -468,12 +468,12 @@ def preload_images(modality, dataset):
                     image_labels_list.append(class_names)
                     
                     if num_labels > 0:
-                        print(f"  ✅ {img_file} (slice {slice_idx})")
+                        print(f"  {img_file} (slice {slice_idx})")
                     else:
-                        print(f"  ✅ {img_file} (no labels)")
+                        print(f"  {img_file} (no labels)")
                     
                 except Exception as e:
-                    print(f"⚠️ Error processing {img_file}: {e}")
+                    print(f"Error processing {img_file}: {e}")
                     # Add empty entry
                     empty_img = Image.new("RGB", (SIZE, SIZE), (100, 100, 100))
                     empty_mask = Image.new("RGB", (SIZE, SIZE), (0, 0, 0))
@@ -501,7 +501,7 @@ def preload_images(modality, dataset):
         global_state["total"] = len(image_names)
         global_state["is_loading"] = False
         
-        print(f"✅ Loaded {len(image_names)} images")
+        print(f"Loaded {len(image_names)} images")
         return len(image_names)
 
 # ------------------------------------------------
@@ -1609,52 +1609,17 @@ def start_visualization(root='datasets', size=512, host='0.0.0.0',
 
     app = create_app(root=root, size=size, host=host, port=port, debug=debug)
 
-    print("=" * 60)
-    print("🚀 Dataset Browser with Ultra-Fast 3D Loading")
-    print("=" * 60)
-    print(f"📁 Root directory: {root}")
-    print(f"📐 Image size: {size}x{size}")
-    print(f"📊 Max images per dataset: {max_images}")
-    print(f"⚡ Parallel workers: {workers}")
-    print(f"🌐 Server: http://{host}:{port}")
-    print("=" * 60)
-    print("\n⚡ No login required - just browse!")
-    print("⌨️  Keyboard shortcuts:")
-    print("   → or Space: Next image")
-    print("   ←: Previous image")
-    print("   R: Rotate image")
-    print("=" * 60)
-    
+    print(f"OmniMedSeg dataset browser: http://{host}:{port}")
+    print(f"  data root:    {os.path.abspath(root)}")
+    print(f"  images/set:   {max_images} (3D volumes: middle slice only)")
+    print(f"  display size: {size}x{size}, workers: {workers}")
+    print("  keys: right/space = next, left = previous, R = rotate")
+    print("Press Ctrl+C to stop.")
+
     app.run(host=host, port=port, debug=debug, threaded=True)
 
 
 if __name__ == "__main__":
     args = parse_args()
-    app = create_app()
-
-    args = parse_args()
-    print("=" * 60)
-    print("🚀 Dataset Browser with Ultra-Fast 3D Loading")
-    print("=" * 60)
-    print(f"📁 Root directory: {args.root}")
-    print(f"📐 Image size: {SIZE}x{SIZE}")
-    print(f"📊 Max images per dataset: {args.max_images}")
-    print(f"⚡ Parallel workers: {WORKERS}")
-    print(f"🎯 Loading ONLY middle slice from 3D volumes (ultra-fast!)")
-    print(f"🌐 Server: http://{args.host}:{args.port}")
-    print("=" * 60)
-    print("\n⚡ No login required - just browse!")
-    print("⌨️  Keyboard shortcuts:")
-    print("   → or Space: Next image")
-    print("   ←: Previous image")
-    print("   R: Rotate image")
-    print("\n💡 Features:")
-    print("   • Supports both 2D images and 3D NIfTI files")
-    print("   • CT images normalized with windowing")
-    print("   • Only loads the middle slice - no full volume loading!")
-    print("   • Dark/Light mode toggle")
-    print("   • Particle background animation")
-    print("   • Glass-morphism cards with gradient borders")
-    print("=" * 60)
-    
-    app.run(host=args.host, port=args.port, debug=args.debug, threaded=True)
+    start_visualization(root=args.root, size=args.size, host=args.host, port=args.port,
+                        debug=args.debug, max_images=args.max_images, workers=args.workers)

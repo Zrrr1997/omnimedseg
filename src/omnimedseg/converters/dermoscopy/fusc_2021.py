@@ -18,7 +18,7 @@ def convert_fusc_2021():
     filename_map = {}
     split_map = {'train': [], 'val': []}
 
-    for file in tqdm(image_paths, desc="🖼️  Processing FUSC_2021 images"):
+    for file in tqdm(image_paths, desc="Processing FUSC_2021 images"):
         filename = f"{idx:06d}.png"
 
         image = cv2.imread(file)

@@ -48,10 +48,10 @@ def convert_covid19_cxr():
     licenses = df_meta['license'].tolist()
     image_license_map = dict(zip(image_fns, licenses))
     # Iterate over rows
-    for index, row in tqdm(df.iterrows(), desc="🖼️  Processing COVID19_CXR images"):
+    for index, row in tqdm(df.iterrows(), desc="Processing COVID19_CXR images"):
         image_path = os.path.join(extracted_base, 'images', row["Filename"][0])
         if image_license_map.get(os.path.basename(image_path), "unknown") in ["nan", "CC-BY-NC-ND"]:
-            print(f"⚠️ Skipping {image_path} due to license restrictions.")
+            print(f"warning: skipping {image_path} due to license restrictions.")
             continue
         filename = f"{idx:06d}.png"
         image = cv2.imread(image_path)

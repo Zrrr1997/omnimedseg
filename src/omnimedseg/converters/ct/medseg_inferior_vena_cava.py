@@ -38,7 +38,7 @@ def convert_medseg_inferior_vena_cava(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_medseg_inferior_vena_cava, (i, file, converted_path, label_classes)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing MEDSEG_INFERIOR_VENA_CAVA images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing MEDSEG_INFERIOR_VENA_CAVA images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

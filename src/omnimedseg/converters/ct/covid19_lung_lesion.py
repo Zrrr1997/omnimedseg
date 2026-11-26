@@ -31,7 +31,7 @@ def convert_covid19_lung_lesion():
                 process_image,
                 [(file, converted_path, {}, idx) for idx, file in enumerate(image_paths)]
             ),
-            desc="🖼️  Processing COVID19_LUNG_LESION images",
+            desc="Processing COVID19_LUNG_LESION images",
             total=len(image_paths)
         ))
 

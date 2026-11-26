@@ -24,7 +24,7 @@ def process_file_netra(args):
     label_path = file.replace('NETRA-RAW', 'NETRA-ANNOTATED')
     label = cv2.imread(label_path)
     if label is None:
-        print(f"⚠️ Could not read label for {file}")
+        print(f"warning: could not read label for {file}")
         return None
 
     if img.shape != label.shape:
@@ -78,7 +78,7 @@ def convert_netra():
     filename_map = {}
 
     with ThreadPoolExecutor() as executor:
-        results = list(tqdm(executor.map(process_file_netra, args_list), total=len(args_list), desc="🖼️  Processing NETRA images"))
+        results = list(tqdm(executor.map(process_file_netra, args_list), total=len(args_list), desc="Processing NETRA images"))
 
     for result in results:
         if result is not None:

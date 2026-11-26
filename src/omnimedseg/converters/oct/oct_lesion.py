@@ -43,7 +43,7 @@ def convert_oct_lesion():
     with ThreadPoolExecutor() as executor:
         futures = {executor.submit(process_file, file, idx, converted_path): idx for idx, file in enumerate(image_files)}
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing OCT_LESION images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing OCT_LESION images"):
             filename, file = future.result()
             filename_map[filename] = {
                 'image': file,

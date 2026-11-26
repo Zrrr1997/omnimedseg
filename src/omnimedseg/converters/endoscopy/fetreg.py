@@ -44,7 +44,7 @@ def convert_fetreg():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, task) for task in tasks]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing FETREG images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing FETREG images"):
             filename, file, label_file = future.result()
             filename_map[filename] = {
                 'image': file,

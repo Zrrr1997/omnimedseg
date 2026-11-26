@@ -14,12 +14,12 @@ def convert_ocutox():
     idx = 0
     filename_map = {}
     image_files = os.listdir(os.path.join(extracted_base, 'images'))
-    for basefile in tqdm(os.listdir(os.path.join(extracted_base, 'masks')), desc="🖼️  Processing OcuTox images", unit="file"):
+    for basefile in tqdm(os.listdir(os.path.join(extracted_base, 'masks')), desc="Processing OcuTox images", unit="file"):
 
         file = os.path.join(extracted_base, 'masks', basefile)
         image_file = [el for el in image_files if basefile.split('.')[0].replace('-a', '').replace('-i', '').replace('-2', '').replace('-3','') == el.split('.')[0]]
         if len(image_file) == 0:
-            print(f"⚠️ Could not read image for {file}")
+            print(f"warning: could not read image for {file}")
             continue
         else:
             image_file = image_file[0]
@@ -27,7 +27,7 @@ def convert_ocutox():
         label = cv2.imread(file)
 
         if image is None:
-            print(f"⚠️ Could not read image for {file}")
+            print(f"warning: could not read image for {file}")
             continue
 
         filename = f"{idx:06d}.png"

@@ -14,7 +14,7 @@ def convert_hvdropdb():
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(os.path.join(extracted_base))]
     target_mapping = {'Vessels': 'vessels', 'OpticDisc': 'optic_disc', 'Ridge': 'ridge'}
 
-    for path in tqdm(sorted(image_paths), desc="🖼️  Processing HVDROPDB images"):
+    for path in tqdm(sorted(image_paths), desc="Processing HVDROPDB images"):
 
         image_subpaths = [os.path.join(path, el) for el in os.listdir(path) if 'images' in el]
         for image_path in image_subpaths:

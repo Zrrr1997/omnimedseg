@@ -6,6 +6,23 @@ from datetime import datetime
 import os
 
 
+class PlainFormatter(logging.Formatter):
+    """INFO: just the message. WARNING and above: 'warning: message' / 'error: message'."""
+
+    def format(self, record):
+        msg = record.getMessage()
+        if record.exc_info:
+            msg = f"{msg}\n{self.formatException(record.exc_info)}"
+        if record.levelno >= logging.WARNING:
+            return f"{record.levelname.lower()}: {msg}"
+        return msg
+
+
+class VerboseFormatter(logging.Formatter):
+    def __init__(self):
+        super().__init__("%(asctime)s %(levelname)-7s %(name)s: %(message)s", datefmt="%H:%M:%S")
+
+
 def setup_logging(level=logging.INFO, log_file=None, verbose=False):
     """
     Set up logging configuration.
@@ -18,12 +35,9 @@ def setup_logging(level=logging.INFO, log_file=None, verbose=False):
     if verbose:
         level = logging.DEBUG
     
-    # Create formatter
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
-    )
-    
+    # Plain messages by default; timestamps and logger names only in verbose mode.
+    formatter = VerboseFormatter() if level <= logging.DEBUG else PlainFormatter()
+
     # Configure root logger
     root_logger = logging.getLogger()
     root_logger.setLevel(level)

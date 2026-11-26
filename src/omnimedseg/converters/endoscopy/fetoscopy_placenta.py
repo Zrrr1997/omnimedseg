@@ -39,7 +39,7 @@ def convert_fetoscopy_placenta():
         for idx, file in enumerate(image_files):
             futures.append(executor.submit(process_image, file, idx, converted_path))
 
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing FETOSCOPY_PLACENTA images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing FETOSCOPY_PLACENTA images"):
             filename, mapping = f.result()
             filename_map[filename] = mapping
 

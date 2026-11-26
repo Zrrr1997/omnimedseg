@@ -35,7 +35,7 @@ def convert_dicom_segs(name, converted_path):
 
     with ProcessPoolExecutor() as executor:
         list(tqdm(executor.map(worker, nifti_paths), total=len(nifti_paths),
-                  desc=f"🖼️  Converting {name} DICOM_SEG files"))
+                  desc=f"Converting {name} DICOM_SEG files"))
 
 
 def process_dicom_seg(path):
@@ -102,7 +102,7 @@ def process_dicom_seg(path):
                     output_file = os.path.join(path, f"{patient_id}.nii.gz")
                     sitk.WriteImage(image, output_file)
                 except Exception as e:
-                    print(f"❌ Failed to convert {dicom_dir} with both dcm2niix and SimpleITK: {e}")
+                    print(f"Failed to convert {dicom_dir} with both dcm2niix and SimpleITK: {e}")
                     return
 
         nifti_files = [
@@ -160,7 +160,7 @@ def process_dicom_seg(path):
             shutil.rmtree(path)
         return True
     except Exception as e:
-        print(f"❌ Failed to process DICOM SEG {path}: {e}")
+        print(f"Failed to process DICOM SEG {path}: {e}")
         return None
 
 def remove_condition(file):

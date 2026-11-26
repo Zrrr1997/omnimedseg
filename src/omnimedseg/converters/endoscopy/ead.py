@@ -24,7 +24,7 @@ def convert_ead():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, (idx, file, converted_path)) for idx, file in enumerate(image_files)]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing EAD images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing EAD images"):
             filename, file, label_file = f.result()
             filename_map[filename] = {
                 'image': file,

@@ -66,7 +66,7 @@ def main(argv: List[str]) -> int:
     a.modality = MODALITY_ALIASES.get(a.modality, a.modality)
     if a.data_root:
         set_data_root(a.data_root)
-    print(f"ℹ️  This flag syntax is deprecated. Equivalent: `{_suggestion(a)}`", file=sys.stderr)
+    print(f"note: this flag syntax is deprecated; use `{_suggestion(a)}`", file=sys.stderr)
 
     if a.visualization:
         from omnimedseg.utils.visualize import start_visualization

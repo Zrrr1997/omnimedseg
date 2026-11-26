@@ -20,7 +20,7 @@ def check_filename_map(name, modality):
     filename_map_path = os.path.join(base_path, 'filename_map.json')
 
     if not os.path.exists(filename_map_path):
-        print(f'❌ Filename map file {filename_map_path} does not exist!')
+        print(f'error: filename map file {filename_map_path} does not exist')
         return
 
     with open(filename_map_path, 'r') as f:
@@ -32,39 +32,39 @@ def check_filename_map(name, modality):
         image_path = os.path.join(base_path, 'images', filename)
 
         if not os.path.exists(image_path):
-            print(f'❌ Missing image file: {image_path}')
+            print(f'Missing image file: {image_path}')
             missing += 1
 
         for label_type, label_path in paths.items():
             if type(label_path) == str:
                 if not os.path.exists(label_path):
-                    print(f'❌ Missing label "{label_type}" file: {label_path}')
+                    print(f'Missing label "{label_type}" file: {label_path}')
                     missing += 1
             else:
                 for label in label_path:
                     if not os.path.exists(label):
-                        print(f'❌ Missing label "{label_type}" file: {label}')
+                        print(f'Missing label "{label_type}" file: {label}')
                         missing += 1
     if missing == 0:
-        print(f"✅ All files in filename_map.json for {name} are accounted for.")
+        print(f"All files in filename_map.json for {name} are accounted for.")
     else:
-        print(f"⚠️ Total missing files: {missing} for {name}. Please check if the conversion of {name} was complete!")
+        print(f"warning: total missing files: {missing} for {name}. Please check if the conversion of {name} was complete")
         exit()
 
 def remove_raw_data(name, modality):
     base_path = os.path.join(data_root(), modality, name, 'extracted')
     if os.path.exists(base_path):
-        print(f"🗑️  Removing raw data at {base_path}")
+        print(f"Removing raw data at {base_path}")
         shutil.rmtree(base_path)
     else:
-        print(f"⚠️  Raw data path does not exist: {base_path}. Nothing to do...")
+        print(f"warning: raw data path does not exist: {base_path}. Nothing to do.")
 
 def filter_empty_labels(name, modality):
     base_path = os.path.join(data_root(), modality, name, 'converted')
     filename_map_path = os.path.join(base_path, 'filename_map.json')
 
     if not os.path.exists(filename_map_path):
-        print(f'❌ Filename map file {filename_map_path} does not exist!')
+        print(f'error: filename map file {filename_map_path} does not exist')
         return
 
     with open(filename_map_path, 'r') as f:
@@ -97,20 +97,20 @@ def filter_empty_labels(name, modality):
     save_mapping(base_path, new_filename_map)
 
 
-    print(f"✅ Filtered out {filtered_count} samples with empty labels from {name}.")
+    print(f"Filtered out {filtered_count} samples with empty labels from {name}.")
 
 
 def extract_archives(data_path, pattern=None):
     zip_files = [f for f in os.listdir(data_path) if is_compressed_file(os.path.join(data_path, f))]
     if pattern is not None:
         zip_files = [f for f in zip_files if pattern in f]
-    print("🧾 Found compressed files:", zip_files)
+    print("Found compressed files:", zip_files)
     for zip_file in zip_files:
         zip_path = os.path.join(data_path, zip_file)
         if is_unzipped(data_path, zip_path):
-            print(f"✅ Already extracted: {zip_file}")
+            print(f"Already extracted: {zip_file}")
         else:
-            print(f"📦 Extracting: {zip_file}")
+            print(f"Extracting: {zip_file}")
             unzip_file(zip_path, extract_to=data_path)
 
 def ensure_directories(base_path, classes):
@@ -138,7 +138,7 @@ def save_mapping(converted_path, filename_map, json_fn="filename_map"):
     map_path = os.path.join(converted_path, f'{json_fn}.json')
     with open(map_path, 'w') as f:
         json.dump(filename_map, f, indent=2)
-    print(f"\n📄 Saved filename map to: {map_path}")
+    print(f"Saved filename map to {map_path}")
 
 def contour_to_mask(cont, img_shape):
     """Return mask given a contour and the shape of image
@@ -194,7 +194,7 @@ def json_mask_to_png(json_filename, class_mapping=None):
             mask.paste(bitmap_arr, (origin_x, origin_y), bitmap_img)
 
         except Exception as e:
-            print(f"❌ Error in {json_filename}: {e}")
+            print(f"Error in {json_filename}: {e}")
             continue
 
     return mask

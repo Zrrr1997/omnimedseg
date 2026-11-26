@@ -14,7 +14,7 @@ def convert_trend():
 
     for path in image_paths:
         image_files = [os.path.join(path, el) for el in os.listdir(path)]
-        for image_file in tqdm(sorted(image_files), desc="🖼️  Processing TREND images"):
+        for image_file in tqdm(sorted(image_files), desc="Processing TREND images"):
             filename = f"{idx:06d}.png"
             img = cv2.imread(image_file)
             label_file = image_file.replace('1_HEALTHY YOUNG_RAW_GOOD_QUALITY', '2_HEALTHY YOUNG SEGMENTED')

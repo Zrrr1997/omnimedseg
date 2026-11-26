@@ -15,7 +15,7 @@ def convert_hrf():
     idx = 0
     filename_map = {}
 
-    for file in tqdm(os.listdir(os.path.join(extracted_base, convention_map['image'])), desc="🖼️  Processing images..."):
+    for file in tqdm(os.listdir(os.path.join(extracted_base, convention_map['image'])), desc="Processing images"):
         image_file = os.path.join(extracted_base, convention_map['image'], file)
         label_file = image_file.replace(convention_map['image'], convention_map['vessels'])
         label_file = label_file.replace('.jpg', '.tif')

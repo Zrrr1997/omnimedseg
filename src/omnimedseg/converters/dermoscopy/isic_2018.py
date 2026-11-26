@@ -89,7 +89,7 @@ def convert_isic_2018():
     # Parallel processing
     with ThreadPoolExecutor() as executor:
         futures = {executor.submit(process_image, (i, path)): i for i, path in enumerate(image_paths)}
-        for future in tqdm(as_completed(futures), total=len(image_paths), desc="🖼️  Processing ISIC_2018 images"):
+        for future in tqdm(as_completed(futures), total=len(image_paths), desc="Processing ISIC_2018 images"):
             filename, temp_dict = future.result()
             filename_map[filename] = temp_dict
 

@@ -63,7 +63,7 @@ def convert_ribseg_v2(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_ribseg_v2, (i, file, converted_path)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing RIBSEG_V2 images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing RIBSEG_V2 images"):
             filename, mapping, split = future.result()
             filename_map[filename] = mapping
             split_map[split].append(filename)

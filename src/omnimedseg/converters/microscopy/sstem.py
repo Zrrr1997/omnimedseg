@@ -39,7 +39,7 @@ def convert_sstem():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, args) for args in args_list]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing SSTEM images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing SSTEM images"):
             filename, mapping = f.result()
             filename_map[filename] = mapping
 

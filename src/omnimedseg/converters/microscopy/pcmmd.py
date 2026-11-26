@@ -42,7 +42,7 @@ def convert_pcmmd():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, args) for args in args_list]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing PCMMD images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing PCMMD images"):
             result = f.result()
             if result is not None:
                 filename, mapping = result

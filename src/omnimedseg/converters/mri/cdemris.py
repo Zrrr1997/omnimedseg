@@ -42,7 +42,7 @@ def convert_cdemris():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, (idx, file)) for idx, file in enumerate(image_paths)]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing CDEMRIS images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing CDEMRIS images"):
             filename, temp_dict = f.result()
             filename_map[filename] = temp_dict
 

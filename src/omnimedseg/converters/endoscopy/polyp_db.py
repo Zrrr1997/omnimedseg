@@ -54,7 +54,7 @@ def convert_polyp_db():
     with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
         futures = [executor.submit(process_file, file) for file in all_image_files]
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing POLYP_DB images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing POLYP_DB images"):
             filename, file, label_file = future.result()
             filename_map[filename] = {
                 'image': file,

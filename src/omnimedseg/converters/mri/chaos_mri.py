@@ -270,7 +270,7 @@ def convert_chaos_mri(max_workers=None):
     
     save_mapping(output_dir, filename_map)
     
-    print(f"Conversion complete! Processed {len(case_ids)} cases.")
+    print(f"Conversion complete. Processed {len(case_ids)} cases.")
     print(f"Output saved to: {output_dir}")
 
 
@@ -318,6 +318,6 @@ def convert_chaos_mri_threaded(max_workers=8):
             future.result()  # Wait for completion
     
     save_mapping(output_dir, filename_map)
-    print(f"Conversion complete! Processed {len(case_ids)} cases.")
+    print(f"Conversion complete. Processed {len(case_ids)} cases.")
 
 

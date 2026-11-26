@@ -139,6 +139,11 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: Optional[List[str]] = None) -> None:
     argv = list(sys.argv[1:] if argv is None else argv)
+    # Converters print to stdout and logs go to stderr: flush stdout per line so the two stay in order.
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+    except (AttributeError, ValueError):
+        pass
 
     from omnimedseg.cli import legacy
 

@@ -36,7 +36,7 @@ def convert_mmotu():
         with ThreadPoolExecutor() as executor:
             futures = {executor.submit(process_image, file, split, split_map, label_map, converted_path, idx + i): file for i, file in enumerate(image_files)}
 
-            for future in tqdm(as_completed(futures), total=len(image_files), desc=f"🖼️  Processing MMOTU {split} images"):
+            for future in tqdm(as_completed(futures), total=len(image_files), desc=f"Processing MMOTU {split} images"):
                 filename, file = future.result()
                 filename_map[filename] = {
                     'image': file,

@@ -69,7 +69,7 @@ def convert_dap_atlas():
     with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
         for filename, data in tqdm(executor.map(process_dap_atlas_case, args_list),
                                 total=len(args_list),
-                                desc="🖼️ Processing DAP_ATLAS images"):
+                                desc="Processing DAP_ATLAS images"):
             filename_map[filename] = data
 
 

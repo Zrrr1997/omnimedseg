@@ -81,7 +81,7 @@ def convert_pandental():
 
     with ThreadPoolExecutor() as executor:
         futures = {executor.submit(process_file, idx, file): idx for idx, file in enumerate(image_paths)}
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing PANDENTAL images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing PANDENTAL images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

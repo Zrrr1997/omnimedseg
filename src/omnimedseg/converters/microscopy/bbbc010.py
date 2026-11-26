@@ -46,7 +46,7 @@ def convert_bbbc010():
             executor.submit(process_image, idx, file, image_files_2, extracted_base, converted_path)
             for idx, file in enumerate(image_files)
         ]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing BBBC010 images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing BBBC010 images"):
             filename, mapping = f.result()
             filename_map[filename] = mapping
 

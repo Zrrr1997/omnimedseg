@@ -39,7 +39,7 @@ def convert_bbbc038():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, arg) for arg in args]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing BBBC038 images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing BBBC038 images"):
             result = f.result()
             if result is not None:
                 filename, mapping = result

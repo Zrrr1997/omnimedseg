@@ -47,7 +47,7 @@ def convert_kits19(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_kits19, (i, file, converted_path)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing KITS19 images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing KITS19 images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

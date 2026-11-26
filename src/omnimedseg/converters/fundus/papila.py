@@ -25,7 +25,7 @@ def convert_papila():
 
         img = cv2.imread(file)
         if img is None:
-            print(f"❌ Could not load {file}")
+            print(f"Could not load {file}")
             return None
 
         img_shape = img.shape
@@ -63,7 +63,7 @@ def convert_papila():
         }
     with ThreadPoolExecutor(max_workers=8) as executor:
         futures = [executor.submit(process_image, idx_file) for idx_file in indexed_files]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing PAPILA images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing PAPILA images"):
             result = future.result()
             if result is not None:
                 filename, data = result

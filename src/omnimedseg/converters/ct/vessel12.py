@@ -44,7 +44,7 @@ def convert_vessel12(num_workers=8):
     filename_map = {}
     with ProcessPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_vessel12, args) for args in args_list]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing VESSEL12 images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing VESSEL12 images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

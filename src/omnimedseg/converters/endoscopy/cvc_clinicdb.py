@@ -27,7 +27,7 @@ def convert_cvc_clinicdb():
     args_list = [(file, idx, converted_path) for idx, file in enumerate(image_files)]
 
     with ThreadPoolExecutor() as executor:
-        results = list(tqdm(executor.map(process_file, args_list), total=len(args_list), desc="🖼️  Processing CVC_CLINICDB images"))
+        results = list(tqdm(executor.map(process_file, args_list), total=len(args_list), desc="Processing CVC_CLINICDB images"))
 
     for filename, file, label_file in results:
         filename_map[filename] = {

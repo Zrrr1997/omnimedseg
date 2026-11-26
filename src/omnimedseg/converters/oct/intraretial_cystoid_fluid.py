@@ -41,7 +41,7 @@ def convert_intraretinal_cystoid_fluid():
             for idx, file in enumerate(image_files)
         }
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing INTRARETINAL_CYSTOID_FLUID images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing INTRARETINAL_CYSTOID_FLUID images"):
             idx = futures[future]
             try:
                 filename, file, label_file = future.result()

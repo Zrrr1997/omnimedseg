@@ -39,7 +39,7 @@ def convert_pddca():
                 convert_pddca_case, idx, path, converted_path, label_classes, label_map
             ))
 
-        for f in tqdm(futures, desc="🖼️  Processing PDDCA images"):
+        for f in tqdm(futures, desc="Processing PDDCA images"):
             filename, case_map = f.result()
             filename_map[filename] = case_map
 

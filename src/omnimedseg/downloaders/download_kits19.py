@@ -52,13 +52,13 @@ def download_case(cid, session):
                             bar.update(1)
 
                 move(str(temp_path), str(destination))
-            return f"✅ Finished case {cid}"
+            return f"Finished case {cid}"
         except Exception as e:
             if tries < 5:
                 print(f"Retry {cid} (attempt {tries}) in 30s: {e}")
                 time.sleep(30)
             else:
-                return f"❌ Failed case {cid}: {e}"
+                return f"Failed case {cid}: {e}"
 
 
 if __name__ == "__main__":

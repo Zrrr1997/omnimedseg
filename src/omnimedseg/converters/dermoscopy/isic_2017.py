@@ -69,7 +69,7 @@ def convert_isic_2017():
             save_label('lesion', lesion_path)
             split_map['val'].append(filename)
         else:
-            print(f'Error image {image_id} not found in any directory!')
+            print(f'Error image {image_id} not found in any directory')
 
 
         return filename, temp_dict
@@ -77,7 +77,7 @@ def convert_isic_2017():
     # Parallel processing
     with ThreadPoolExecutor() as executor:
         futures = {executor.submit(process_image, (i, path)): i for i, path in enumerate(image_paths)}
-        for future in tqdm(as_completed(futures), total=len(image_paths), desc="🖼️ Processing ISIC_2017 images"):
+        for future in tqdm(as_completed(futures), total=len(image_paths), desc="Processing ISIC_2017 images"):
             filename, temp_dict = future.result()
             filename_map[filename] = temp_dict
 

@@ -40,13 +40,13 @@ def convert_ham_10000(workers=8):
             for idx, file in enumerate(image_paths)
         }
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️   Processing HAM_10000..."):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing HAM_10000"):
             try:
                 filename, mapping = future.result()
                 filename_map[filename] = mapping
             except Exception as e:
                 idx, file = futures[future]
-                tqdm.write(f"❌ Failed {file}: {e}")
+                tqdm.write(f"Failed {file}: {e}")
 
     save_mapping(converted_path, filename_map)
-    print(f"✅ Done! Processed {len(filename_map)} images.")
+    print(f"Done. Processed {len(filename_map)} images.")

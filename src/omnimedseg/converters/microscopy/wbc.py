@@ -41,7 +41,7 @@ def convert_wbc():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, args) for args in args_list]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing WBC images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing WBC images"):
             filename, mapping = f.result()
             filename_map[filename] = mapping
 

@@ -45,7 +45,7 @@ def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> 
 
     if card.download.method == "manual":
         if _has_raw_files(dataset_dir):
-            logger.info(f"📁 {dataset} requires manual download; using the files found in {dataset_dir}")
+            logger.info(f"{dataset} is a manual download; using the files in {dataset_dir}")
             extract_all_zips(dataset_dir, dataset, filter_pattern=filter_pattern, new_folder=new_folder)
             return
         raise ManualDownloadRequired(
@@ -53,7 +53,7 @@ def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> 
             f"(with the current data root, the folder is: {os.path.abspath(dataset_dir)})"
         )
 
-    logger.info(f"📥 Downloading {dataset}...")
+    logger.info(f"Downloading {dataset}")
     download_dataset(
         dataset,
         card.download.url_arg,
@@ -63,7 +63,7 @@ def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> 
     )
     if not _has_raw_files(dataset_dir):
         if os.path.isdir(os.path.join(dataset_dir, 'converted')):
-            logger.warning(f"⚠️  No raw files for {dataset}, but a converted version exists; continuing.")
+            logger.warning(f"no raw files for {dataset}, but a converted version exists; continuing")
             return
         raise DownloadError(
             f"Download of {dataset} produced no files in {dataset_dir}. "
@@ -78,17 +78,16 @@ def _convert(dataset: str, modality: str, filter_pattern, new_folder: bool,
     failed_path = os.path.join(dataset_dir, 'converted.failed')
 
     if os.path.exists(converted_path) and not force_convert:
-        logger.info(f"⏭️  {dataset} already converted. Use --force_convert to override.")
+        logger.info(f"{dataset} is already converted (use --force to convert again)")
         return
 
     # Ensure raw data exists before conversion
     extracted_path = os.path.join(dataset_dir, 'extracted')
     compressed_path = os.path.join(dataset_dir, 'compressed')
     if not os.path.exists(extracted_path) and not os.path.exists(compressed_path):
-        logger.info(f"📦 Extracting {dataset} before conversion...")
+        logger.info(f"Extracting {dataset}")
         extract_all_zips(dataset_dir, dataset, filter_pattern=filter_pattern, new_folder=new_folder)
 
-    logger.info(f"🔄 Converting {dataset}...")
     try:
         convert_dataset(modality, dataset)
     except BaseException:
@@ -96,7 +95,7 @@ def _convert(dataset: str, modality: str, filter_pattern, new_folder: bool,
         if os.path.exists(converted_path):
             shutil.rmtree(failed_path, ignore_errors=True)
             os.rename(converted_path, failed_path)
-            logger.error(f"❌ Conversion of {dataset} failed; partial output moved to {failed_path}")
+            logger.error(f"conversion of {dataset} failed; partial output moved to {failed_path}")
         raise
 
     shutil.rmtree(failed_path, ignore_errors=True)
@@ -142,7 +141,7 @@ def process_datasets(
 
     for dataset in dataset_names:
         dataset_dir = os.path.join(data_root(), modality, dataset)
-        logger.info(f"Processing dataset: {dataset} (modality: {modality})")
+        logger.info(f"\n{dataset} (modality: {modality})")
         try:
             card = get_card(dataset)
             filter_pattern = list(card.extract.filter_patterns) or None
@@ -154,7 +153,7 @@ def process_datasets(
 
             # 2. Extract
             if extract:
-                logger.info(f"📦 Extracting {dataset}...")
+                logger.info(f"Extracting {dataset}")
                 extract_all_zips(dataset_dir, dataset, filter_pattern=filter_pattern, new_folder=new_folder)
 
             # 3. Convert
@@ -163,12 +162,12 @@ def process_datasets(
 
             # 4. Delete raw data
             if delete_raw_data:
-                logger.info(f"🗑️  Deleting raw data for {dataset}...")
+                logger.info(f"Deleting raw data of {dataset}")
                 remove_raw_data(dataset, modality)
 
             # 5. Filter empty labels
             if filter_empty:
-                logger.info(f"🔍 Filtering empty labels for {dataset}...")
+                logger.info(f"Removing samples with empty labels from {dataset}")
                 filter_empty_labels(dataset, modality)
 
             # 6. Check integrity
@@ -176,20 +175,19 @@ def process_datasets(
                 extracted_path = os.path.join(dataset_dir, 'extracted')
                 if not os.path.exists(extracted_path):
                     logger.warning(
-                        f"⚠️  Please extract {dataset} first with:\n"
-                        f"   omnimedseg extract {dataset}"
+                        f"{dataset} is not extracted; run `omnimedseg extract {dataset}` first"
                     )
                 else:
-                    logger.info(f"✅ Checking integrity of {dataset}...")
+                    logger.info(f"Verifying {dataset}")
                     check_filename_map(dataset, modality)
         except KeyboardInterrupt:
             raise
         except Exception as e:
-            logger.error(f"❌ {dataset} failed: {e}")
+            logger.error(f"{dataset} failed: {e}")
             failures[dataset] = e
             continue
 
-        logger.info(f"✅ Finished processing {dataset}")
+        logger.info(f"Done: {dataset}")
 
     if failures:
         raise PipelineError(failures)
