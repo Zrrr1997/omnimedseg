@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -25,11 +26,11 @@ def _process_medseg_inferior_vena_cava(args):
 
 
 def convert_medseg_inferior_vena_cava(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'MEDSEG_INFERIOR_VENA_CAVA', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'MEDSEG_INFERIOR_VENA_CAVA', 'converted')
     label_classes = ['inferior_vena_cava']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'MEDSEG_INFERIOR_VENA_CAVA', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'MEDSEG_INFERIOR_VENA_CAVA', 'extracted')
     
     image_paths = [os.path.join(extracted_base, '30508407', el) for el in os.listdir(os.path.join(extracted_base, '30508407')) if el.endswith('.nii.gz')]
 

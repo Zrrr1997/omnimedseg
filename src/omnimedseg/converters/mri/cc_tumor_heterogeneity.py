@@ -1,15 +1,16 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 import nibabel as nib
 
 def convert_cc_tumor_heterogeneity():
-    converted_path = os.path.join('datasets', 'MRI', 'CC_TUMOR_HETEROGENEITY', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'CC_TUMOR_HETEROGENEITY', 'converted')
     label_classes = ['cervical_tumor']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'CC_TUMOR_HETEROGENEITY', 'extracted')
-    compressed_base = os.path.join('datasets', 'MRI', 'CC_TUMOR_HETEROGENEITY', 'compressed')
+    extracted_base = os.path.join(data_root(), 'MRI', 'CC_TUMOR_HETEROGENEITY', 'extracted')
+    compressed_base = os.path.join(data_root(), 'MRI', 'CC_TUMOR_HETEROGENEITY', 'compressed')
     unzip_tcia(extracted_base, compressed_base)
     convert_extracted_dicoms('CC_TUMOR_HETEROGENEITY', extracted_base, converted_path)
     convert_rtstructs('CC_TUMOR_HETEROGENEITY', converted_path, 'CT-SEG')
@@ -18,7 +19,7 @@ def convert_cc_tumor_heterogeneity():
 
 
 def match_and_save_niftis_cc_tumor():
-    converted_path = os.path.join('datasets', 'MRI', 'CC_TUMOR_HETEROGENEITY', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'CC_TUMOR_HETEROGENEITY', 'converted')
 
     patients = [os.path.join(converted_path, 'all_niftis', el) for el in os.listdir(os.path.join(converted_path, 'all_niftis'))]
     idx = 0

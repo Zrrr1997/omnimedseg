@@ -32,7 +32,8 @@ def _hash_array(arr: np.ndarray, extra: bytes = b"") -> str:
     return h.hexdigest()
 
 
-def hash_file(path: Path) -> str:
+def hash_file(path: Path, root_prefix: str = None) -> str:
+    """Hash one output file. ``root_prefix``: a data root to rewrite to 'datasets' in JSON (paths are stored there)."""
     name = path.name
     if name.endswith(".png"):
         arr = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
@@ -44,14 +45,17 @@ def hash_file(path: Path) -> str:
         affine = np.round(img.affine, 4).tobytes()
         return _hash_array(np.asanyarray(img.dataobj), extra=affine)
     if name.endswith(".json"):
-        return hashlib.sha256(json.dumps(json.loads(path.read_text()), sort_keys=True).encode()).hexdigest()
+        text = path.read_text()
+        if root_prefix:
+            text = text.replace(json.dumps(root_prefix.rstrip("/") + "/")[1:-1], "datasets/")
+        return hashlib.sha256(json.dumps(json.loads(text), sort_keys=True).encode()).hexdigest()
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def hash_converted(converted_dir: Path) -> dict:
+def hash_converted(converted_dir: Path, root_prefix: str = None) -> dict:
     """Return {relative_path: hash} for every file below a dataset's converted/ folder."""
     files = sorted(p for p in converted_dir.rglob("*") if p.is_file())
-    return {str(p.relative_to(converted_dir)): hash_file(p) for p in files}
+    return {str(p.relative_to(converted_dir)): hash_file(p, root_prefix) for p in files}
 
 
 def golden_path(dataset: str) -> Path:

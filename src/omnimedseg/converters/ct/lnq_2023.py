@@ -1,15 +1,16 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 import SimpleITK as sitk
 
 def convert_lnq_2023():
-    converted_path = os.path.join('datasets', 'CT', 'LNQ_2023', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'LNQ_2023', 'converted')
     label_classes = ['lymph_node']
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'LNQ_2023', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'LNQ_2023', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'LNQ_2023', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'LNQ_2023', 'extracted')
     #unzip_tcia(extracted_base, compressed_base)
     #convert_extracted_dicoms('LNQ_2023', extracted_base, converted_path)
     convert_dicom_segs('LNQ_2023', converted_path)

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -17,7 +18,7 @@ def _process_couinaud(args):
     data = {'image': file}
     # Copy label
     for i, dest in enumerate(['couinaud_annotation', 'liver_annotation']):
-        label_file = os.path.join('datasets', 'CT', 'COUINAUD', 'extracted', 'dataset-master', dest, os.path.basename(file))
+        label_file = os.path.join(data_root(), 'CT', 'COUINAUD', 'extracted', 'dataset-master', dest, os.path.basename(file))
         if os.path.exists(label_file):
             if dest == 'liver_annotation':
                 dst_label = os.path.join(converted_path, 'labels', 'liver', filename)
@@ -37,14 +38,14 @@ def _process_couinaud(args):
 
 
 def convert_couinaud(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'COUINAUD', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'COUINAUD', 'converted')
     label_classes = ['liver']
     for i in range(1, 9):
         label_classes.append(f'couinaud_segment_{i}')
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'COUINAUD', 'extracted')
-    if not os.path.exists('datasets/CT/MSD_HEPATIC_VESSEL/extracted'):
+    extracted_base = os.path.join(data_root(), 'CT', 'COUINAUD', 'extracted')
+    if not os.path.exists(os.path.join(data_root(), 'CT/MSD_HEPATIC_VESSEL/extracted')):
         raise FileNotFoundError("Please download and extract the MSD_HEPATIC_VESSEL dataset first, as COUINAUD depends on it. \n You can do this by running: \n omnimedseg --dataset MSD_HEPATIC_VESSEL --download --extract")
     
 

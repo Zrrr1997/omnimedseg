@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -9,13 +10,13 @@ from collections import defaultdict
 import nibabel as nib
 
 def convert_atriaseg_2018():
-    converted_path = os.path.join('datasets', 'MRI', 'ATRIASEG_2018', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'ATRIASEG_2018', 'converted')
 
     # Create label mapping
     label_classes = ['left_atrium_cavity', 'left_atrium_wall']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'ATRIASEG_2018', 'extracted')
+    extracted_base = os.path.join(data_root(), 'MRI', 'ATRIASEG_2018', 'extracted')
 
     image_paths = []
     for split in ['Training Set', 'Testing Set']:

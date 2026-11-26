@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import nibabel as nib
@@ -34,10 +35,10 @@ def process_file(idx_file, converted_path):
     }
 
 def convert_btxrd():
-    converted_path = os.path.join('datasets', 'XRay', 'BTXRD', 'converted')
+    converted_path = os.path.join(data_root(), 'XRay', 'BTXRD', 'converted')
     ensure_directories(converted_path, ['bone_tumor'])
 
-    extracted_base = os.path.join('datasets', 'XRay', 'BTXRD', 'extracted', 'BTXRD', 'images')
+    extracted_base = os.path.join(data_root(), 'XRay', 'BTXRD', 'extracted', 'BTXRD', 'images')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 
     filename_map = {}

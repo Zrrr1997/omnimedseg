@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -26,7 +27,7 @@ def process_file(args):
     return filename, file, label_file
 
 def convert_endovis_15():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'ENDOVIS_15', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'ENDOVIS_15', 'converted')
     ensure_directories(converted_path, ['shaft', 'manipulator', 'instrument'])
     idx = 0
     filename_map = {}
@@ -34,7 +35,7 @@ def convert_endovis_15():
     split_dict = {'train': 'Segmentation_Rigid_Training/Training', 'test': 'Testing'}
     split_subpath = {'train': '/Raw/', 'test': ''}
 
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'ENDOVIS_15', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'ENDOVIS_15', 'extracted')
 
     for split in ['train', 'test']:
         image_paths = [os.path.join(extracted_base, split_dict[split], f) for f in os.listdir(os.path.join(extracted_base, split_dict[split])) if 'OP' in f]

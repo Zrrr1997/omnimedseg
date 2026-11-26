@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -30,10 +31,10 @@ def process_file(file, idx, converted_path):
     return filename, file
 
 def convert_oct_lesion():
-    converted_path = os.path.join('datasets', 'OCT', 'OCT_LESION', 'converted')
+    converted_path = os.path.join(data_root(), 'OCT', 'OCT_LESION', 'converted')
     ensure_directories(converted_path, ['lesion'])
 
-    extracted_base = os.path.join('datasets', 'OCT', 'OCT_LESION', 'extracted')
+    extracted_base = os.path.join(data_root(), 'OCT', 'OCT_LESION', 'extracted')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 

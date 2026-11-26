@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -8,11 +9,11 @@ from omnimedseg.converters.utils_ct import *
 
 
 def convert_luna():
-    converted_path = os.path.join('datasets', 'CT', 'LUNA', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'LUNA', 'converted')
     label_classes = ['left_lung', 'right_lung', 'airways', 'lungs']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'LUNA', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'LUNA', 'extracted')
     for i in np.arange(0, 2):
         for zip_file in os.listdir(os.path.join(extracted_base, f'files-archive_{i}')):
             if '.zip' not in zip_file:

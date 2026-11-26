@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -17,9 +18,9 @@ def process_file(args):
     return filename, file, label_file
 
 def convert_cvc_clinicdb():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'CVC_CLINICDB', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'CVC_CLINICDB', 'converted')
     ensure_directories(converted_path, ['polyp'])
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'CVC_CLINICDB', 'extracted', 'ds', 'img')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'CVC_CLINICDB', 'extracted', 'ds', 'img')
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
     filename_map = {}
 

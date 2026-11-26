@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,13 +8,13 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_spider():
-    converted_path = os.path.join('datasets', 'MRI', 'SPIDER', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'SPIDER', 'converted')
 
     # Create label mapping
     label_classes = ['vertebrae', 'IVD', 'spinal_canal']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'SPIDER', 'extracted', 'images')
+    extracted_base = os.path.join(data_root(), 'MRI', 'SPIDER', 'extracted', 'images')
 
     image_paths = [os.path.join(extracted_base, el) for el in os.listdir(os.path.join(extracted_base)) if '.mha' in el]
 

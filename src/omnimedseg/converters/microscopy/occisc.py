@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -7,10 +8,10 @@ from omnimedseg.utils.dataset_utils import *
 import h5py
 from scipy.io import loadmat
 def convert_occisc():
-    converted_path = os.path.join('datasets', 'Microscopy', 'OCCISC', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'OCCISC', 'converted')
     ensure_directories(converted_path, ['cervical_cell', 'nucleus', 'cytoplasm'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'OCCISC', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'OCCISC', 'extracted')
     image_files = []
     image_files = [os.path.join(extracted_base, 'Dataset', 'EDF', f) for f in os.listdir(os.path.join(extracted_base, 'Dataset', 'EDF')) if '_GT' not in f]
 

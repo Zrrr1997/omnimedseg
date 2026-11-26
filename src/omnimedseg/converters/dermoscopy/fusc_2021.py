@@ -1,14 +1,15 @@
 
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
 from omnimedseg.utils.dataset_utils import *
 
 def convert_fusc_2021():
-    converted_path = os.path.join('datasets', 'Dermoscopy', 'FUSC_2021', 'converted')
+    converted_path = os.path.join(data_root(), 'Dermoscopy', 'FUSC_2021', 'converted')
     ensure_directories(converted_path, ['foot_ulcer'])
 
-    extracted_base = os.path.join('datasets', 'Dermoscopy', 'FUSC_2021', 'extracted', 'wound-segmentation-master', 'data', 'Foot Ulcer Segmentation Challenge')
+    extracted_base = os.path.join(data_root(), 'Dermoscopy', 'FUSC_2021', 'extracted', 'wound-segmentation-master', 'data', 'Foot Ulcer Segmentation Challenge')
     image_paths = []
     for split in ['train', 'validation']:
         image_paths += [os.path.join(extracted_base, split, 'images', f) for f in os.listdir(os.path.join(extracted_base, split, 'images'))]

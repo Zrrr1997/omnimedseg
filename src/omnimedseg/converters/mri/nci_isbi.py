@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 import nibabel as nib
@@ -56,12 +57,12 @@ def process_image(idx, image_path, label_paths, converted_path):
 
 
 def convert_nci_isbi():
-    converted_path = os.path.join('datasets', 'MRI', 'NCI_ISBI', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'NCI_ISBI', 'converted')
     label_classes = ['prostate_central_gland', 'prostate_peripheral_zone']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'NCI_ISBI', 'extracted')
-    compressed_base = os.path.join('datasets', 'MRI', 'NCI_ISBI', 'compressed')
+    extracted_base = os.path.join(data_root(), 'MRI', 'NCI_ISBI', 'extracted')
+    compressed_base = os.path.join(data_root(), 'MRI', 'NCI_ISBI', 'compressed')
     unzip_tcia(extracted_base, compressed_base)
     convert_extracted_dicoms('NCI_ISBI', extracted_base, converted_path)
 

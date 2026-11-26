@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -7,7 +8,7 @@ from omnimedseg.converters.utils_dermoscopy import *
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def convert_isic_2016():
-    base_dir = os.path.join('datasets', 'Dermoscopy', 'ISIC_2016')
+    base_dir = os.path.join(data_root(), 'Dermoscopy', 'ISIC_2016')
     converted_path = os.path.join(base_dir, 'converted')
     ensure_directories(converted_path, ['lesion', 'globules', 'streaks'])
 

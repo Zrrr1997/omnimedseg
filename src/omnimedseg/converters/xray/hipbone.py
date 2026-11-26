@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import nibabel as nib
@@ -30,10 +31,10 @@ def process_image(file, converted_path):
         return None
 
 def convert_hipbone():
-    converted_path = os.path.join('datasets', 'XRay', 'HIPBONE', 'converted')
+    converted_path = os.path.join(data_root(), 'XRay', 'HIPBONE', 'converted')
     ensure_directories(converted_path, ['hipbone', 'femur'])
 
-    extracted_base = os.path.join('datasets', 'XRay', 'HIPBONE', 'extracted', 'images')
+    extracted_base = os.path.join(data_root(), 'XRay', 'HIPBONE', 'extracted', 'images')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 
     filename_map = {}

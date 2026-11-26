@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import threading
 import logging
@@ -498,7 +499,7 @@ def process_rtstruct(file, label_substring):
                         series_uid = ref_series.SeriesInstanceUID
                         valid_series_uid.append(series_uid)
 
-                        image_source = os.path.join('datasets', 'MRI', dataset, 'extracted', series_uid, series_uid)
+                        image_source = os.path.join(data_root(), 'MRI', dataset, 'extracted', series_uid, series_uid)
                         os.makedirs(os.path.join(file, f'{i}'), exist_ok=True)
                         rt_path = os.path.join(file, f'{i}')
                         if dataset == 'CROSSMODA':
@@ -629,11 +630,11 @@ def process_file_msd(file, idx, converted_path, filename_map, lock, targets, ima
 
 
 def convert_msd(name, target, subdir, images_dir='imagesTr', labels_dir='labelsTr', start=0, modality='CT'):
-    converted_path = os.path.join('datasets', modality, name, 'converted')
+    converted_path = os.path.join(data_root(), modality, name, 'converted')
     label_classes = [target] if type(target) == str else target
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', modality, name, 'extracted', subdir, images_dir)
+    extracted_base = os.path.join(data_root(), modality, name, 'extracted', subdir, images_dir)
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if '._' not in f and '.DS' not in f]
 
     filename_map = {}

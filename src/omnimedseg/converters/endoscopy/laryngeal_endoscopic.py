@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -34,10 +35,10 @@ def process_image(idx_file):
     return filename, file, label_classes, label_file
 
 def convert_laryngeal_endoscopic():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'LARYNGEAL_ENDOSCOPIC', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'LARYNGEAL_ENDOSCOPIC', 'converted')
     label_classes = ['vocal_folds', 'tissue', 'glottal_space', 'tumor', 'instrument', 'intubation']
     ensure_directories(converted_path, label_classes)
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'LARYNGEAL_ENDOSCOPIC', 'extracted', 'vocalfolds-master', 'img')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'LARYNGEAL_ENDOSCOPIC', 'extracted', 'vocalfolds-master', 'img')
     image_files = []
 
     for i in np.arange(1, 5):

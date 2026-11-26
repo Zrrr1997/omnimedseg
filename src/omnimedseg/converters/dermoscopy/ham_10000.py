@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -24,10 +25,10 @@ def process_file(idx, file, converted_path):
 
 
 def convert_ham_10000(workers=8):
-    converted_path = os.path.join('datasets', 'Dermoscopy', 'HAM_10000', 'converted')
+    converted_path = os.path.join(data_root(), 'Dermoscopy', 'HAM_10000', 'converted')
     ensure_directories(converted_path, ['lesion'])
 
-    extracted_base = os.path.join('datasets', 'Dermoscopy', 'HAM_10000', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Dermoscopy', 'HAM_10000', 'extracted')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if f.endswith('.jpg')]
 
     filename_map = {}

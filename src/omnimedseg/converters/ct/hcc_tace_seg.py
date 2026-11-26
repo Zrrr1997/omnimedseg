@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 import nibabel as nib
@@ -13,12 +14,12 @@ from nibabel.orientations import (
 )
 
 def convert_hcc_tace_seg():
-    converted_path = os.path.join('datasets', 'CT', 'HCC_TACE_SEG', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'HCC_TACE_SEG', 'converted')
     label_classes = ['liver', 'liver_tumor', 'liver_vessel', 'aorta']
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'HCC_TACE_SEG', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'HCC_TACE_SEG', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'HCC_TACE_SEG', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'HCC_TACE_SEG', 'extracted')
     unzip_tcia(extracted_base, compressed_base)
     convert_extracted_dicoms('HCC_TACE_SEG', extracted_base, converted_path)
     convert_dicom_segs('HCC_TACE_SEG', converted_path)
@@ -45,7 +46,7 @@ def process_dicom_seg(path):
             for el in os.listdir(path)
             if el.endswith('.dcm')
         )
-        df = pd.read_excel(os.path.join('datasets', 'CT', 'HCC_TACE_SEG', 'HCC-TACE-Seg_v1_202201-nbia-digest.xlsx'), engine="openpyxl")
+        df = pd.read_excel(os.path.join(data_root(), 'CT', 'HCC_TACE_SEG', 'HCC-TACE-Seg_v1_202201-nbia-digest.xlsx'), engine="openpyxl")
 
         cmd = [
             "segimage2itkimage",
@@ -69,7 +70,7 @@ def process_dicom_seg(path):
         filtered = [el for el in filtered if el != dcm_source_series]
 
         for image_series in filtered:
-            dicom_dir = os.path.join('datasets', 'CT', 'HCC_TACE_SEG', 'extracted', image_series, image_series)
+            dicom_dir = os.path.join(data_root(), 'CT', 'HCC_TACE_SEG', 'extracted', image_series, image_series)
             try:
                 old_files = [
                     os.path.join(path, f)

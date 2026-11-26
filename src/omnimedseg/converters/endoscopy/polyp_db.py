@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 import threading
@@ -6,11 +7,11 @@ from omnimedseg.utils.dataset_utils import *
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def convert_polyp_db():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'POLYP_DB', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'POLYP_DB', 'converted')
     ensure_directories(converted_path, ['polyp'])
 
     extracted_base = os.path.join(
-        'datasets', 'Endoscopy', 'POLYP_DB', 'extracted', 'PolypDB', 'PolypDB_modality_wise'
+        data_root(), 'Endoscopy', 'POLYP_DB', 'extracted', 'PolypDB', 'PolypDB_modality_wise'
     )
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 

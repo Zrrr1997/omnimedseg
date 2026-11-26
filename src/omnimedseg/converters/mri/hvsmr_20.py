@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,13 +8,13 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_hvsmr_20():
-    converted_path = os.path.join('datasets', 'MRI', 'HVSMR_20', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'HVSMR_20', 'converted')
 
     # Create label mapping
     label_classes = ['left_ventricle', 'right_ventricle', 'left_atrium', 'right_atrium', 'aorta', 'pulmonary_atrery', 'superior_vena_cava', 'inferior_vena_cava']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'HVSMR_20', 'extracted', 'orig')
+    extracted_base = os.path.join(data_root(), 'MRI', 'HVSMR_20', 'extracted', 'orig')
 
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if 'orig.nii.gz' in f]
 

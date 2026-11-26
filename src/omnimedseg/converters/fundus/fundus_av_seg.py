@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,13 +6,13 @@ from omnimedseg.utils.dataset_utils import *
 
 def convert_fundus_av_seg():
     # Define paths
-    converted_path = os.path.join('datasets', 'Fundus', 'FUNDUS_AV_SEG', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'FUNDUS_AV_SEG', 'converted')
     ensure_directories(converted_path, ['arteries', 'veins', 'vessels'])
     idx = 0
 
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'FUNDUS_AV_SEG', 'extracted', 'Fundus-AVSeg')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'FUNDUS_AV_SEG', 'extracted', 'Fundus-AVSeg')
     images_dir = os.path.join(extracted_base, 'images')
     annotations_dir = os.path.join(extracted_base, 'annotation')
 

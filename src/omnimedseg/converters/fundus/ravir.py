@@ -1,14 +1,15 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
 from omnimedseg.utils.dataset_utils import *
 
 def convert_ravir():
-    converted_path = os.path.join('datasets', 'Fundus', 'RAVIR', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'RAVIR', 'converted')
     ensure_directories(converted_path, ['vessels'])
     idx = 0
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Fundus', 'RAVIR', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'RAVIR', 'extracted')
     image_files = [os.path.join(extracted_base, 'RAVIR Dataset', 'train', 'training_images', f) for f in os.listdir(os.path.join(extracted_base, 'RAVIR Dataset', 'train', 'training_images'))]
 
     for file in tqdm(sorted(image_files), desc="🖼️  Processing RAVIR images"):

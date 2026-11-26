@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from omnimedseg.utils.dataset_utils import *
@@ -10,11 +11,11 @@ import nibabel as nib
 
 
 def convert_pddca():
-    converted_path = os.path.join('datasets', 'CT', 'PDDCA', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'PDDCA', 'converted')
     label_classes = ['brain_stem', 'chiasm', 'mandible', 'optic_nerve_left', 'optic_nerve_right', 'parotid_left', 'parotid_right', 'submandibular_left', 'submandibular_right']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'PDDCA', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'PDDCA', 'extracted')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if '0522' in f]
 
     label_map = {

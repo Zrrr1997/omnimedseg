@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,13 +8,13 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_tom500():
-    converted_path = os.path.join('datasets', 'MRI', 'TOM500', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'TOM500', 'converted')
 
     # Create label mapping
     label_classes = ['superior_rectus', 'superior_oblique', 'lacrimal_gland', 'optic_nerve', 'lateral_rectus', 'medial_rectus', 'eyeball', 'orbital_fat', 'inferior_rectus']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'TOM500', 'extracted', 'TOM500')
+    extracted_base = os.path.join(data_root(), 'MRI', 'TOM500', 'extracted', 'TOM500')
 
     image_paths = []
     image_paths += [os.path.join(extracted_base, 'train', 'image', el) for el in os.listdir(os.path.join(extracted_base, 'train', 'image')) if '.nii' in el]

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import json
@@ -7,9 +8,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from omnimedseg.utils.dataset_utils import *
 
 def convert_slimia():
-    converted_path = os.path.join('datasets', 'Microscopy', 'SLIMIA', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'SLIMIA', 'converted')
     ensure_directories(converted_path, ['spheroid'])
-    extracted_base = os.path.join('datasets', 'Microscopy', 'SLIMIA', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'SLIMIA', 'extracted')
 
     image_files = []
     for root, dirs, files in os.walk(extracted_base):

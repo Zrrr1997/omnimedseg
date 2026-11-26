@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -30,11 +31,11 @@ def _process_pengwin(args):
 
 
 def convert_pengwin(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'PENGWIN', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'PENGWIN', 'converted')
     label_classes = ['sacrum', 'left_hipbone', 'right_hipbone']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'PENGWIN', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'PENGWIN', 'extracted')
     image_paths = []
     image_paths += [os.path.join(extracted_base, 'PENGWIN_CT_train_images_part1', f) for f in os.listdir(os.path.join(extracted_base, 'PENGWIN_CT_train_images_part1'))]
     image_paths += [os.path.join(extracted_base, 'PENGWIN_CT_train_images_part2', f) for f in os.listdir(os.path.join(extracted_base, 'PENGWIN_CT_train_images_part2'))]

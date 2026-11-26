@@ -1,4 +1,5 @@
 """Faster parallel downloader for KiTS23 dataset"""
+import os
 import sys
 import math
 import time
@@ -13,13 +14,15 @@ from tqdm import tqdm
 TRAINING_CASE_NUMBERS = list(range(300)) + list(range(400, 589))
 
 # Destination path inside extracted structure
+# Images go next to the segmentations from the KiTS23 repo: extracted/kits23-main/dataset/case_*/
+# (the data root is passed in by OmniMedSeg via OMNIMEDSEG_DATA_ROOT)
 DST_PTH = (
-    Path("datasets")
+    Path(os.environ.get("OMNIMEDSEG_DATA_ROOT", "datasets"))
     / "CT"
     / "KITS23"
     / "extracted"
-    / "dataset"
     / "kits23-main"
+    / "dataset"
 )
 
 # Tuning parameters

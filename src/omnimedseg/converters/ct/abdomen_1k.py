@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from omnimedseg.utils.dataset_utils import *
@@ -39,11 +40,11 @@ def convert_abdomen_1k():
         "   (make sure you have enough disk space!)\n" +
         "=" * 80 + "\n"
     )
-    converted_path = os.path.join('datasets', 'CT', 'ABDOMEN_1K', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'ABDOMEN_1K', 'converted')
     label_classes = ['liver', 'kidneys', 'spleen', 'pancreas']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'ABDOMEN_1K', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'ABDOMEN_1K', 'extracted')
     image_paths = []
     for i in range(1, 4):
         image_paths += sorted([

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,13 +8,13 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_segthy():
-    converted_path = os.path.join('datasets', 'MRI', 'SEGTHY', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'SEGTHY', 'converted')
 
     # Create label mapping
     label_classes = ['thyroid', 'left_carotid', 'right_carotid', 'left_jugular_vein', 'right_jugular_vein']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'SEGTHY', 'extracted', 'MRI_volunteer_dataset', 'MRI')
+    extracted_base = os.path.join(data_root(), 'MRI', 'SEGTHY', 'extracted', 'MRI_volunteer_dataset', 'MRI')
 
     image_paths = [os.path.join(extracted_base, el) for el in os.listdir(os.path.join(extracted_base)) if '.nii.gz' in el]
 

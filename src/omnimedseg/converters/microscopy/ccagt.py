@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -6,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from omnimedseg.utils.dataset_utils import *
 
 def convert_ccagt():
-    converted_path = os.path.join('datasets', 'Microscopy', 'CCAGT', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'CCAGT', 'converted')
     label_names = {
         1: 'nucleus',
         2: 'cluster',
@@ -19,7 +20,7 @@ def convert_ccagt():
     all_labels = list(label_names.values())
     ensure_directories(converted_path, all_labels + ['images'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'CCAGT', 'extracted', 'wg4bpm33hj-2', 'images')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'CCAGT', 'extracted', 'wg4bpm33hj-2', 'images')
     extract_archives(extracted_base)
     extract_archives(extracted_base.replace('images', 'masks'))
 

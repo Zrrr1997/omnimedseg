@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import xmltodict
@@ -37,9 +38,9 @@ def process_file(file, extracted_base, converted_path):
         return None
 
 def convert_ddti():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'DDTI', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'DDTI', 'converted')
     ensure_directories(converted_path, ['thyroid_tumor'])
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'DDTI', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'DDTI', 'extracted')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if '.xml' not in f]
     filename_map = {}

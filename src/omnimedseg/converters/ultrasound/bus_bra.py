@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -23,10 +24,10 @@ def process_file(file, extracted_base, converted_path):
         return None
 
 def convert_bus_bra():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'BUS_BRA', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'BUS_BRA', 'converted')
     ensure_directories(converted_path, ['breast_tumor'])
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'BUS_BRA', 'extracted', 'BUSBRA', 'Images')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'BUS_BRA', 'extracted', 'BUSBRA', 'Images')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 

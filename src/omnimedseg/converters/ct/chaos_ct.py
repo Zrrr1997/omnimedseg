@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor
@@ -28,11 +29,11 @@ def process_nifti(file, idx, converted_path, filename_map):
     shutil.copy(file, os.path.join(converted_path, 'images', filename))
 
 def convert_chaos_ct():
-    converted_path = os.path.join('datasets', 'CT', 'CHAOS_CT', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'CHAOS_CT', 'converted')
     label_classes = ['liver']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'CHAOS_CT', 'extracted', 'Train_Sets', 'CT')
+    extracted_base = os.path.join(data_root(), 'CT', 'CHAOS_CT', 'extracted', 'Train_Sets', 'CT')
     image_paths = [os.path.join(extracted_base, f, 'DICOM_anon') for f in os.listdir(extracted_base)]
 
     filename_map = {}

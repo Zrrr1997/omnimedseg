@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -9,13 +10,13 @@ from omnimedseg.converters.utils_ct import *
 import matplotlib.pyplot as plt
 
 def convert_spine():
-    converted_path = os.path.join('datasets', 'MRI', 'SPINE', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'SPINE', 'converted')
 
     # Create label mapping
     label_classes = ['L1', 'L2', 'L3', 'L4', 'L5', 'S1', 'T10', 'T11', 'T12']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'SPINE', 'extracted')
+    extracted_base = os.path.join(data_root(), 'MRI', 'SPINE', 'extracted')
 
     image_paths = []
     image_paths = [os.path.join(extracted_base, el) for el in os.listdir(os.path.join(extracted_base)) if '.dcm' in el]

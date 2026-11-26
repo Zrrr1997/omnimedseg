@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -6,12 +7,12 @@ from concurrent.futures import ProcessPoolExecutor
 
 
 def convert_qin_prostate():
-    converted_path = os.path.join('datasets', 'MRI', 'QIN_PROSTATE', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'QIN_PROSTATE', 'converted')
     label_classes = ['prostate_peripheral_zone', 'prostate', 'prostate_tumor', 'prostate_normal_tissue']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'QIN_PROSTATE', 'extracted')
-    compressed_base = os.path.join('datasets', 'MRI', 'QIN_PROSTATE', 'compressed')
+    extracted_base = os.path.join(data_root(), 'MRI', 'QIN_PROSTATE', 'extracted')
+    compressed_base = os.path.join(data_root(), 'MRI', 'QIN_PROSTATE', 'compressed')
     unzip_tcia(extracted_base, compressed_base)
     convert_extracted_dicoms('QIN_PROSTATE', extracted_base, converted_path)
     convert_dicom_segs('QIN_PROSTATE', converted_path)

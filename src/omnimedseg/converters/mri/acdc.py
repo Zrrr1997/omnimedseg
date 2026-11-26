@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -8,13 +9,13 @@ from omnimedseg.converters.utils_ct import *
 from collections import defaultdict
 
 def convert_acdc():
-    converted_path = os.path.join('datasets', 'MRI', 'ACDC', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'ACDC', 'converted')
 
     # Create label mapping
     label_classes = ['right_ventricle', 'myocardium', 'left_ventricle']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'ACDC', 'extracted', 'ACDC', 'database')
+    extracted_base = os.path.join(data_root(), 'MRI', 'ACDC', 'extracted', 'ACDC', 'database')
 
     image_paths = []
     for split in ['training', 'testing']:

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,11 +6,11 @@ from omnimedseg.utils.dataset_utils import *
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def convert_chaksu():
-    converted_path = os.path.join('datasets', 'Fundus', 'CHAKSU', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'CHAKSU', 'converted')
     ensure_directories(converted_path, ['optic_disc', 'optic_cup'])
     idx = 0
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Fundus', 'CHAKSU', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'CHAKSU', 'extracted')
     split_map = {'train': [], 'test': []}
 
     for i in np.arange(1, 6):

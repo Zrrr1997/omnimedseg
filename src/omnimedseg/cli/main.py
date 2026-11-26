@@ -9,6 +9,7 @@ import os
 from omnimedseg.core.pipeline import process_datasets, resolve_datasets
 from omnimedseg.core.cards import MODALITIES
 from omnimedseg.core.errors import PipelineError
+from omnimedseg.core.paths import data_root, set_data_root
 from omnimedseg.utils.logger import setup_logging, get_logger
 from omnimedseg.utils.banner import print_banner
 
@@ -75,6 +76,11 @@ def parse_args() -> argparse.Namespace:
         help='Modality name (default: Fundus)'
     )
     
+    parser.add_argument(
+        '--data-root', '--data_root', dest='data_root', type=str, default=None,
+        help='Where datasets are stored (default: $OMNIMEDSEG_DATA_ROOT, else ./datasets)'
+    )
+
     # Actions
     parser.add_argument(
         '--download', action='store_true',
@@ -275,6 +281,8 @@ def parse_args() -> argparse.Namespace:
     
     args = parser.parse_args()
     args.modality = MODALITY_ALIASES.get(args.modality, args.modality)
+    if args.data_root:
+        set_data_root(args.data_root)
     return args
 
 
@@ -419,6 +427,7 @@ def main() -> None:
         sys.exit(1)
     
     logger.info(f"Processing {len(datasets)} dataset(s) from modality: {modality}")
+    logger.info(f"Data root: {os.path.abspath(data_root())}")
     if len(datasets) > 1 and args.dataset is None:
         logger.info(f"Datasets: {', '.join(datasets[:5])}" + 
                    (f" ... and {len(datasets)-5} more" if len(datasets) > 5 else ""))

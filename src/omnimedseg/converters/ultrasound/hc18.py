@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -30,10 +31,10 @@ def process_image(file, converted_path):
         return None
 
 def convert_hc18():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'HC18', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'HC18', 'converted')
     ensure_directories(converted_path, ['fetal_head'])
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'HC18', 'extracted', 'training_set')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'HC18', 'extracted', 'training_set')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if 'Annotation' not in f]
 

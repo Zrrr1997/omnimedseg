@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import base64
 import io
 import json
@@ -15,7 +16,7 @@ from PIL import Image
 from omnimedseg.utils.postprocess_download import is_compressed_file, is_unzipped, unzip_file
 
 def check_filename_map(name, modality):
-    base_path = os.path.join('datasets', modality, name, 'converted')
+    base_path = os.path.join(data_root(), modality, name, 'converted')
     filename_map_path = os.path.join(base_path, 'filename_map.json')
 
     if not os.path.exists(filename_map_path):
@@ -51,7 +52,7 @@ def check_filename_map(name, modality):
         exit()
 
 def remove_raw_data(name, modality):
-    base_path = os.path.join('datasets', modality, name, 'extracted')
+    base_path = os.path.join(data_root(), modality, name, 'extracted')
     if os.path.exists(base_path):
         print(f"🗑️  Removing raw data at {base_path}")
         shutil.rmtree(base_path)
@@ -59,7 +60,7 @@ def remove_raw_data(name, modality):
         print(f"⚠️  Raw data path does not exist: {base_path}. Nothing to do...")
 
 def filter_empty_labels(name, modality):
-    base_path = os.path.join('datasets', modality, name, 'converted')
+    base_path = os.path.join(data_root(), modality, name, 'converted')
     filename_map_path = os.path.join(base_path, 'filename_map.json')
 
     if not os.path.exists(filename_map_path):

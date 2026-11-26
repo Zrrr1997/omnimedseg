@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -9,13 +10,13 @@ from omnimedseg.converters.utils_ct import *
 
 
 def convert_isles_2022():
-    converted_path = os.path.join('datasets', 'MRI', 'ISLES_2022', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'ISLES_2022', 'converted')
 
     # Create label mapping
     label_classes = ['stroke_lesion']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'ISLES_2022', 'extracted', 'ISLES-2022')
+    extracted_base = os.path.join(data_root(), 'MRI', 'ISLES_2022', 'extracted', 'ISLES-2022')
     
     image_paths = []
     image_paths += [os.path.join(extracted_base, f, f'ses-0001', 'anat', f'sub-strokecase{f[-4:]}_ses-0001_FLAIR.nii.gz') for f in os.listdir(extracted_base) if 'sub-strokecase' in f]

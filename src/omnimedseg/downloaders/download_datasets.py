@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from urllib.parse import urlparse
 from tqdm import tqdm
@@ -544,14 +545,21 @@ def handle_researchgate(name, url, dest_folder):
 def handle_kits19(dest_folder):
     download_file('https://github.com/neheller/kits19/archive/refs/heads/master.zip', os.path.join(dest_folder, 'master.zip'), 'KITS19')
     extract_all_zips(dest_folder, 'KITS19')
-    shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'download_kits19.py'),"datasets/CT/KITS19/extracted/kits19-master/starter_code/download_kits19.py")
-    os.system('python datasets/CT/KITS19/extracted/kits19-master/starter_code/download_kits19.py')
+    _run_kits_script('download_kits19.py', os.path.join(data_root(), "CT/KITS19/extracted/kits19-master/starter_code"))
     
 def handle_kits23(dest_folder):
     download_file('https://github.com/neheller/kits23/archive/refs/heads/main.zip', os.path.join(dest_folder, 'master.zip'), 'KITS23')
     extract_all_zips(dest_folder, 'KITS23')
-    shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'download_kits23.py'),"datasets/CT/KITS23/extracted/kits23-main/kits23/download_kits23.py")
-    os.system('python datasets/CT/KITS23/extracted/kits23-main/kits23/download_kits23.py')
+    _run_kits_script('download_kits23.py', os.path.join(data_root(), "CT/KITS23/extracted/kits23-main/kits23"))
+
+
+def _run_kits_script(script, target_dir):
+    """Copy a bundled KiTS image downloader next to the KiTS starter code and run it with this interpreter."""
+    import sys
+    target = os.path.join(target_dir, script)
+    shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), script), target)
+    env = dict(os.environ, OMNIMEDSEG_DATA_ROOT=data_root())
+    subprocess.run([sys.executable, target], check=True, env=env)
 
 
 def get_chrome_version():
@@ -1291,8 +1299,9 @@ class SourceDispatcher:
     ]
     
     @classmethod
-    def dispatch(cls, name, url, modality, base_dir="datasets", filter_pattern=None, new_folder=False):
+    def dispatch(cls, name, url, modality, base_dir=None, filter_pattern=None, new_folder=False):
         """Dispatch to the appropriate handler."""
+        base_dir = base_dir or data_root()
         dest_folder = os.path.join(base_dir, modality, name)
         os.makedirs(dest_folder, exist_ok=True)
         
@@ -1359,7 +1368,7 @@ class SourceDispatcher:
 # MAIN FUNCTION
 # ============================================================================
 
-def download_dataset(name, url, modality, base_dir="datasets", filter_pattern=None, new_folder=False):
+def download_dataset(name, url, modality, base_dir=None, filter_pattern=None, new_folder=False):
     """
     Main entry point for downloading datasets.
     
@@ -1367,7 +1376,7 @@ def download_dataset(name, url, modality, base_dir="datasets", filter_pattern=No
         name (str): Name of the dataset
         url (str or list): URL(s) to download from
         modality (str): Modality type (e.g., 'CT', 'MRI', 'Dermoscopy')
-        base_dir (str): Base directory for datasets
+        base_dir (str): Base directory for datasets (default: the configured data root)
         filter_pattern (str, optional): Pattern to filter files during extraction
         new_folder (bool): Whether to create a new folder for each archive
     """

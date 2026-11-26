@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 import threading
@@ -6,12 +7,12 @@ from omnimedseg.utils.dataset_utils import *
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def convert_bagls():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'BAGLS', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'BAGLS', 'converted')
     ensure_directories(converted_path, ['glottal_space'])
     filename_map = {}
     split_map = {'train': [], 'test': []}
 
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'BAGLS', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'BAGLS', 'extracted')
     split_convention = {'train': 'training', 'test': 'test'}
     
     all_jobs = []

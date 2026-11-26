@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,7 +8,7 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_verse_2019():
-    converted_path = os.path.join('datasets', 'CT', 'VERSE_2019', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'VERSE_2019', 'converted')
 
     # Create label mapping
     label_map = {i: f'C{i}' if i < 8 else f'T{i}' if i < 20 else f'L{i}' if i < 26 else 'T13'
@@ -15,7 +16,7 @@ def convert_verse_2019():
     label_classes = list(label_map.values())
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'VERSE_2019', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'VERSE_2019', 'extracted')
     image_paths = []
     for split in ['training', 'validation', 'test']:
         split_dir = os.path.join(extracted_base, f'dataset-verse19{split}', 'rawdata')

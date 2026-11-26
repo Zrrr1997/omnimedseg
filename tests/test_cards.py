@@ -12,7 +12,7 @@ KNOWN_MISSING_RADAR = {"POLYP_GEN"}
 
 
 def test_all_cards_load():
-    assert len(CARDS) == 154
+    assert len(CARDS) == 155
 
 
 def test_every_modality_has_cards():

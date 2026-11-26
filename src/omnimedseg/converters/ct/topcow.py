@@ -1,4 +1,5 @@
 
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -30,11 +31,11 @@ def _process_topcow(args):
 
 
 def convert_topcow(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'TOPCOW', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'TOPCOW', 'converted')
     label_classes = ['topcow_ba', 'topcow_r_pca', 'topcow_l_pca', 'topcow_r_ica', 'topcow_r_mca', 'topcow_l_ica', 'topcow_l_mca', 'topcow_r_pcom', 'topcow_l_pcom', 'topcow_acom', 'topcow_r_aca', 'topcow_l_aca', 'topcow_3rd_a2']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'TOPCOW', 'extracted', 'TopCoW2024_Data_Release', 'imagesTr')
+    extracted_base = os.path.join(data_root(), 'CT', 'TOPCOW', 'extracted', 'TopCoW2024_Data_Release', 'imagesTr')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(os.path.join(extracted_base))]
 
     filename_map = {}

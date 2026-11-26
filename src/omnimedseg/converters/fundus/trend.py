@@ -1,14 +1,15 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
 from omnimedseg.utils.dataset_utils import *
 
 def convert_trend():
-    converted_path = os.path.join('datasets', 'Fundus', 'TREND', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'TREND', 'converted')
     ensure_directories(converted_path, ['vessels'])
     idx = 0
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Fundus', 'TREND', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'TREND', 'extracted')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(os.path.join(extracted_base)) if ('1_HEALTHY' in f or '4_HEALTHY' in f) and '.zip' not in f]
 
     for path in image_paths:

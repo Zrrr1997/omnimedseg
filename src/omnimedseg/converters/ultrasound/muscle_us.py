@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -23,9 +24,9 @@ def process_image_muscle_us(args):
 
 def convert_muscle_us():
 
-    converted_path = os.path.join('datasets', 'Ultrasound', 'MUSCLE_US', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'MUSCLE_US', 'converted')
     ensure_directories(converted_path, ['biceps_brachii', 'tibialis_anterior', 'gastrocnemius_medialis'])
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'MUSCLE_US', 'extracted', 'Polito-Radboud-DeepLearningUS')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'MUSCLE_US', 'extracted', 'Polito-Radboud-DeepLearningUS')
 
     muscle_map = {'BB': 'biceps_brachii', 'GM': 'gastrocnemius_medialis', 'TA': 'tibialis_anterior'}
     filename_map = {}

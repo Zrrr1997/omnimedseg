@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,7 +8,7 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_hypo_subfields():
-    converted_path = os.path.join('datasets', 'MRI', 'HYPO_SUBFIELDS', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'HYPO_SUBFIELDS', 'converted')
 
     # Create label mapping
     label_classes = ['left_CA2', 'left_CA1', 'left_CA4&DG', 'left_ERC', 'left_CA3', 'left_SUB', 'left_hippocampus_tail']
@@ -15,7 +16,7 @@ def convert_hypo_subfields():
     label_classes += right_classes
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'HYPO_SUBFIELDS', 'extracted', 'hippo_subfield', '7T_T2w_0.7_for_subfield_delineation')
+    extracted_base = os.path.join(data_root(), 'MRI', 'HYPO_SUBFIELDS', 'extracted', 'hippo_subfield', '7T_T2w_0.7_for_subfield_delineation')
 
     image_paths = [os.path.join(extracted_base, el) for el in os.listdir(os.path.join(extracted_base)) if '.nii' in el]
 

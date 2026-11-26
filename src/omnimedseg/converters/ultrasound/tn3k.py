@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -21,9 +22,9 @@ def process_image(file, converted_path, target, idx):
 
 def convert_tn3k(name='TN3K', target='thyroid_tumor'):
 
-    converted_path = os.path.join('datasets', 'Ultrasound', name, 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', name, 'converted')
     ensure_directories(converted_path, [target])
-    extracted_base = os.path.join('datasets', 'Ultrasound', name, 'extracted', 'Thyroid Dataset', name.lower())
+    extracted_base = os.path.join(data_root(), 'Ultrasound', name, 'extracted', 'Thyroid Dataset', name.lower())
 
     filename_map = {}
     idx = 0

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import nibabel as nib
@@ -22,10 +23,10 @@ def process_image(file, converted_path):
 process_image.idx = 0
 
 def convert_ptx_498():
-    converted_path = os.path.join('datasets', 'XRay', 'PTX_498', 'converted')
+    converted_path = os.path.join(data_root(), 'XRay', 'PTX_498', 'converted')
     ensure_directories(converted_path, ['pneumothorax'])
 
-    extracted_base = os.path.join('datasets', 'XRay', 'PTX_498', 'extracted')
+    extracted_base = os.path.join(data_root(), 'XRay', 'PTX_498', 'extracted')
     image_paths = []
     for site in ['SiteA', 'SiteB', 'SiteC']:
         image_paths += [os.path.join(extracted_base, site, f) for f in os.listdir(os.path.join(extracted_base, site)) if 'img.png' in f]

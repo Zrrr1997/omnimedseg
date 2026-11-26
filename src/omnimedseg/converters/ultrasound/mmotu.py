@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -19,11 +20,11 @@ def process_image(file, split, split_map, label_map, converted_path, idx):
     return filename, file
 
 def convert_mmotu():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'MMOTU', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'MMOTU', 'converted')
     ensure_directories(converted_path, ['ovarian_tumor'])
     idx = 0
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'MMOTU', 'extracted', 'dataset', 'OTU_2D')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'MMOTU', 'extracted', 'dataset', 'OTU_2D')
 
     split_map = {'train': 'train_', 'test': ''}
     split_dict = {'train': [], 'test': []}

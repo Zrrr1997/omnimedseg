@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -35,11 +36,11 @@ def _process_kits19(args):
 
 
 def convert_kits19(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'KITS19', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'KITS19', 'converted')
     label_classes = ['kidneys', 'kidney_tumor']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'KITS19', 'extracted', 'kits19-master', 'data')
+    extracted_base = os.path.join(data_root(), 'CT', 'KITS19', 'extracted', 'kits19-master', 'data')
     image_paths = [os.path.join(extracted_base, f, 'imaging.nii.gz') for f in os.listdir(os.path.join(extracted_base)) if 'case' in f]
 
     filename_map = {}

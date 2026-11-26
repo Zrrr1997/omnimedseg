@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -15,9 +16,9 @@ def process_image(idx_file):
     return filename, file, label_file
 
 def convert_ead():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'EAD', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'EAD', 'converted')
     ensure_directories(converted_path, ['artefact'])
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'EAD', 'extracted', 'EAD2020_train', 'EAD2020-Phase-II-Detection_Segmentation-99Frames', 'originalImages')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'EAD', 'extracted', 'EAD2020_train', 'EAD2020-Phase-II-Detection_Segmentation-99Frames', 'originalImages')
     image_files = [os.path.join(extracted_base,  f) for f in os.listdir(extracted_base)]
     filename_map = {}
 

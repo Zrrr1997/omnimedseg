@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import json
@@ -27,10 +28,10 @@ def process_image(args):
     return (filename, {'image': file, 'plasma_cell': label_file})
 
 def convert_pcmmd():
-    converted_path = os.path.join('datasets', 'Microscopy', 'PCMMD', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'PCMMD', 'converted')
     ensure_directories(converted_path, ['plasma_cell'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'PCMMD', 'extracted', 'PCMMD Plasma Cells for Multiple Myeloma Diagnosis', 'data', 'segmentation')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'PCMMD', 'extracted', 'PCMMD Plasma Cells for Multiple Myeloma Diagnosis', 'data', 'segmentation')
     image_files = []
     image_files += [os.path.join(extracted_base, 'non-plasma cells', 'images', f) for f in os.listdir(os.path.join(extracted_base, 'non-plasma cells', 'images'))]
     image_files += [os.path.join(extracted_base, 'plasma cells', 'images', f) for f in os.listdir(os.path.join(extracted_base, 'plasma cells', 'images'))]

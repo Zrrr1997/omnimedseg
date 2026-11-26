@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -43,10 +44,10 @@ def process_image(args):
     return result
 
 def convert_brifiseg():
-    converted_path = os.path.join('datasets', 'Microscopy', 'BRIFISEG', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'BRIFISEG', 'converted')
     ensure_directories(converted_path, ['nucleus', 'nucleus_border', 'nucleus_center'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'BRIFISEG', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'BRIFISEG', 'extracted')
     image_files = []
     image_files += [os.path.join(extracted_base, 'Task015_RPE1', 'imagesTr', f) for f in os.listdir(os.path.join(extracted_base, 'Task015_RPE1', 'imagesTr'))]
     image_files += [os.path.join(extracted_base, 'Task015_RPE1', 'imagesTs', f) for f in os.listdir(os.path.join(extracted_base, 'Task015_RPE1', 'imagesTs'))]

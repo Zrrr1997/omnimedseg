@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 import pydicom
@@ -232,8 +233,8 @@ def convert_chaos_mri(max_workers=None):
         max_workers: Number of parallel processes (default: CPU count)
     """
     
-    base_dir = os.path.join('datasets', 'MRI', 'CHAOS_MRI', 'extracted', 'Train_Sets', 'MR')
-    output_dir = os.path.join('datasets', 'MRI', 'CHAOS_MRI', 'converted')
+    base_dir = os.path.join(data_root(), 'MRI', 'CHAOS_MRI', 'extracted', 'Train_Sets', 'MR')
+    output_dir = os.path.join(data_root(), 'MRI', 'CHAOS_MRI', 'converted')
     filename_map = {}
     
     # Create output directories
@@ -281,8 +282,8 @@ def convert_chaos_mri_threaded(max_workers=8):
     import threading
     from concurrent.futures import ThreadPoolExecutor
     
-    base_dir = os.path.join('datasets', 'MRI', 'CHAOS_MRI', 'extracted', 'Train_Sets', 'MR')
-    output_dir = os.path.join('datasets', 'MRI', 'CHAOS_MRI', 'converted')
+    base_dir = os.path.join(data_root(), 'MRI', 'CHAOS_MRI', 'extracted', 'Train_Sets', 'MR')
+    output_dir = os.path.join(data_root(), 'MRI', 'CHAOS_MRI', 'converted')
     filename_map = {}
     map_lock = threading.Lock()
     

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -27,10 +28,10 @@ def process_file(args):
     }
 
 def convert_sstem():
-    converted_path = os.path.join('datasets', 'Microscopy', 'SSTEM', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'SSTEM', 'converted')
     ensure_directories(converted_path, ['synapse', 'mitochondria', 'membrane'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'SSTEM', 'extracted', 'groundtruth-drosophila-vnc-master', 'stack1', 'raw')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'SSTEM', 'extracted', 'groundtruth-drosophila-vnc-master', 'stack1', 'raw')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 
     filename_map = {}

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,11 +6,11 @@ from omnimedseg.utils.dataset_utils import *
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def convert_papila():
-    converted_path = os.path.join('datasets', 'Fundus', 'PAPILA', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'PAPILA', 'converted')
     ensure_directories(converted_path, ['optic_disc', 'optic_cup'])
     idx = 0
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Fundus', 'PAPILA', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'PAPILA', 'extracted')
 
     image_files = [os.path.join(extracted_base, 'PapilaDB-PAPILA-17f8fa7746adb20275b5b6a0d99dc9dfe3007e9f', 'FundusImages', f) for f in os.listdir(os.path.join(extracted_base, 'PapilaDB-PAPILA-17f8fa7746adb20275b5b6a0d99dc9dfe3007e9f', 'FundusImages'))]
     os.makedirs(os.path.join(converted_path, 'labels', 'optic_disc_annotator_1'), exist_ok=True)

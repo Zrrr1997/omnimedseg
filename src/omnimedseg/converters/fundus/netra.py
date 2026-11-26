@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -62,10 +63,10 @@ def process_file_netra(args):
     }
 
 def convert_netra():
-    converted_path = os.path.join('datasets', 'Fundus', 'NETRA', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'NETRA', 'converted')
     ensure_directories(converted_path, ['optic_disc', 'optic_cup'])
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'NETRA', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'NETRA', 'extracted')
     raw_path = os.path.join(extracted_base, 'NETRA-RAW')
 
     ambiguous_cases = ['212', '292', '347', '350', '441', '507', '521', '551', '556', '567', '577']

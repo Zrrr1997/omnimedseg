@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -10,12 +11,12 @@ import numpy as np
 import shutil
 
 def convert_ct_lymph_nodes():
-    converted_path = os.path.join('datasets', 'CT', 'CT_LYMPH_NODES', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'CT_LYMPH_NODES', 'converted')
     label_classes = ['lymph_node']
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'CT_LYMPH_NODES', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'CT_LYMPH_NODES', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'CT_LYMPH_NODES', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'CT_LYMPH_NODES', 'extracted')
     unzip_tcia(extracted_base, compressed_base)
     convert_extracted_dicoms('CT_LYMPH_NODES', extracted_base, converted_path)
     convert_dicom_segs('CT_LYMPH_NODES', converted_path)
@@ -37,7 +38,7 @@ def process_dicom_seg(path):
     try:
 
         img_file = [os.path.join(path, el) for el in os.listdir(path) if el.endswith('.nii.gz')][0]
-        seg_src = os.path.join(os.path.join('datasets', 'CT', 'CT_LYMPH_NODES', 'extracted', 'MED_ABD_LYMPH_MASKS', os.path.basename(path), f'{os.path.basename(path)}_mask.nii.gz'))
+        seg_src = os.path.join(os.path.join(data_root(), 'CT', 'CT_LYMPH_NODES', 'extracted', 'MED_ABD_LYMPH_MASKS', os.path.basename(path), f'{os.path.basename(path)}_mask.nii.gz'))
         shutil.copy(seg_src, os.path.join(path, 'dicom_seg_0.nii.gz'))
         seg = sitk.ReadImage(os.path.join(path, 'dicom_seg_0.nii.gz'))
         seg_binary = sitk.BinaryThreshold(seg, lowerThreshold=1, upperThreshold=65535, insideValue=1, outsideValue=0)

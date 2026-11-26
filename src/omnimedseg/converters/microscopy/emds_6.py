@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -18,7 +19,7 @@ def process_image(args):
     return filename, class_name, file, label_file
 
 def convert_emds_6():
-    converted_path = os.path.join('datasets', 'Microscopy', 'EMDS_6', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'EMDS_6', 'converted')
     ensure_directories(converted_path, ['microorganism'])
     class_names = {
         1: "actinophrys",
@@ -45,7 +46,7 @@ def convert_emds_6():
     }
     class_map = {name: [] for name in class_names.values()}
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'EMDS_6', 'extracted', 'EMDS-6', 'EMDS5-Original')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'EMDS_6', 'extracted', 'EMDS-6', 'EMDS5-Original')
     image_paths = []
     for index in range(1, 22):
         image_paths += [os.path.join(extracted_base, f"{index:02d}", f) for f in os.listdir(os.path.join(extracted_base, f"{index:02d}"))]

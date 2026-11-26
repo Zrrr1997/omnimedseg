@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,13 +8,13 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_picai():
-    converted_path = os.path.join('datasets', 'MRI', 'PICAI', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'PICAI', 'converted')
 
     # Create label mapping
     label_classes = ['prostate_lesion']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'PICAI', 'extracted')
+    extracted_base = os.path.join(data_root(), 'MRI', 'PICAI', 'extracted')
 
     image_paths = []
     for i in range(10000, 11476):

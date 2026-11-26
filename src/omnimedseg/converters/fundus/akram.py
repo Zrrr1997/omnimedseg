@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,11 +6,11 @@ from omnimedseg.utils.dataset_utils import *
 
 def convert_akram():
     # Define paths
-    converted_path = os.path.join('datasets', 'Fundus', 'AKRAM', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'AKRAM', 'converted')
     ensure_directories(converted_path, ['vessels', 'arteries', 'veins'])
 
     extracted_base = os.path.join(
-        'datasets', 'Fundus', 'AKRAM', 'extracted',
+        data_root(), 'Fundus', 'AKRAM', 'extracted',
         'Data on Fundus Images for Vessels Segmentation, Detection of Hypertensive Retinopathy, Diabetic Retinopathy and Papilledema'
     )
     extract_archives(extracted_base)

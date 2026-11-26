@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -25,11 +26,11 @@ def _process_autopet_2024_ct(args):
 
 
 def convert_autopet_2024_ct(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'AUTOPET_2024_CT', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'AUTOPET_2024_CT', 'converted')
     label_classes = ['lesion']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'AUTOPET_2024_CT', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'AUTOPET_2024_CT', 'extracted')
     image_paths = [os.path.join(extracted_base, 'imagesTr', el) for el in os.listdir(os.path.join(extracted_base, 'imagesTr')) if '_0000' in el]
 
     filename_map = {}

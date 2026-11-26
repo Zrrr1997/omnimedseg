@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -7,12 +8,12 @@ from tqdm import tqdm
 import shutil
 
 def convert_crossmoda():
-    converted_path = os.path.join('datasets', 'MRI', 'CROSSMODA', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'CROSSMODA', 'converted')
     label_classes = ['vestibular_shwannoma', 'cochlea']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'CROSSMODA', 'extracted')
-    compressed_base = os.path.join('datasets', 'MRI', 'CROSSMODA', 'compressed')
+    extracted_base = os.path.join(data_root(), 'MRI', 'CROSSMODA', 'extracted')
+    compressed_base = os.path.join(data_root(), 'MRI', 'CROSSMODA', 'compressed')
     #unzip_tcia(extracted_base, compressed_base)
     #convert_extracted_dicoms('CROSSMODA', extracted_base, converted_path)
     #convert_rtstructs('CROSSMODA', converted_path, 'CT-SEG')
@@ -115,7 +116,7 @@ def process_patient(patient, idx_start, converted_path, image_dest):
 
 
 def match_and_save_niftis_crossmoda():
-    converted_path = os.path.join("datasets", "MRI", "CROSSMODA", "converted")
+    converted_path = os.path.join(data_root(), "MRI", "CROSSMODA", "converted")
     all_patients = os.path.join(converted_path, "all_niftis")
     patients = [os.path.join(all_patients, el) for el in os.listdir(all_patients)]
 

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -16,12 +17,12 @@ def process_image_fluorescent_neuronal_cells(file, idx, converted_path):
     return filename, file, label_file
 
 def convert_fluorescent_neuronal_cells():
-    converted_path = os.path.join('datasets', 'Microscopy', 'FLUORESCENT_NEURONAL_CELLS', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'FLUORESCENT_NEURONAL_CELLS', 'converted')
     ensure_directories(converted_path, ['neuronal_cell'])
 
     filename_map = {}
     split_map = {'trainval': [], 'test': []}
-    extracted_base = os.path.join('datasets', 'Microscopy', 'FLUORESCENT_NEURONAL_CELLS', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'FLUORESCENT_NEURONAL_CELLS', 'extracted')
 
     idx = 0
     futures = []

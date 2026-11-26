@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -19,11 +20,11 @@ def process_image(file, converted_path, idx):
     }
 
 def convert_busi():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'BUSI', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'BUSI', 'converted')
     ensure_directories(converted_path, ['breast_tumor'])
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'BUSI', 'extracted', 'Dataset_BUSI_with_GT')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'BUSI', 'extracted', 'Dataset_BUSI_with_GT')
 
     image_files_benign = [os.path.join(extracted_base, 'benign', f) for f in os.listdir(os.path.join(extracted_base, 'benign')) if 'mask' not in f]
     image_files_malignant = [os.path.join(extracted_base, 'malignant', f) for f in os.listdir(os.path.join(extracted_base, 'malignant')) if 'mask' not in f]

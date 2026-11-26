@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -26,10 +27,10 @@ def process_image(args):
     }
 
 def convert_wbc():
-    converted_path = os.path.join('datasets', 'Microscopy', 'WBC', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'WBC', 'converted')
     ensure_directories(converted_path, ['nucleus', 'cytoplasm', 'white_blood_cell'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'WBC', 'extracted', 'segmentation_WBC-master')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'WBC', 'extracted', 'segmentation_WBC-master')
     image_files = []
     image_files += [os.path.join(extracted_base, 'Dataset 1', f) for f in os.listdir(os.path.join(extracted_base, 'Dataset 1')) if '.bmp' in f]
     image_files += [os.path.join(extracted_base, 'Dataset 2', f) for f in os.listdir(os.path.join(extracted_base, 'Dataset 2')) if '.bmp' in f]

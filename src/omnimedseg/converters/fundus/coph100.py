@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import re
 import cv2
@@ -7,11 +8,11 @@ from omnimedseg.utils.dataset_utils import *
 
 def convert_coph100():
     copy_COph100_from_ROP()
-    converted_path = os.path.join('datasets', 'Fundus', 'COPH100', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'COPH100', 'converted')
     ensure_directories(converted_path, ['vessels'])
     idx = 0
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Fundus', 'COPH100', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'COPH100', 'extracted')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(os.path.join(extracted_base)) if re.fullmatch(r'[\d\-]+', f)]
 
     for path in tqdm(sorted(image_paths), desc="🖼️  Processing COph100 images"):
@@ -355,10 +356,10 @@ def copy_COph100_from_ROP():
         {'source': '076_M_GA33_BW1470_PA37_DG0_PF0_D1_S02_13.jpg', 'destination': './076-1\\076_M_GA33_BW1470_PA37_DG0_PF0_D1_S02_13.jpg'},
         {'source': '076_M_GA33_BW1470_PA40_DG0_PF0_D1_S03_3.jpg', 'destination': './076-1\\076_M_GA33_BW1470_PA40_DG0_PF0_D1_S03_3.jpg'},
     ]
-    source_folder = 'datasets/Fundus/COPH100/extracted/images_stack_without_captions/'
+    source_folder = os.path.join(data_root(), 'Fundus/COPH100/extracted/images_stack_without_captions/')
     for row in data:
         source_file = row['source']
-        destination_path = os.path.join('datasets/Fundus/COPH100/extracted/', row['destination'].replace('./', '').replace('\\', '/'))
+        destination_path = os.path.join(os.path.join(data_root(), 'Fundus/COPH100/extracted/'), row['destination'].replace('./', '').replace('\\', '/'))
 
         source_file_path = os.path.join(source_folder, source_file)
 

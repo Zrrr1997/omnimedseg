@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -31,7 +32,7 @@ def remap_labels(label_classes):
         
 
 def convert_dap_atlas():
-    converted_path = os.path.join('datasets', 'CT', 'DAP_ATLAS', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'DAP_ATLAS', 'converted')
 
     label_map = pd.read_csv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dap_atlas_map.csv'))
 
@@ -44,11 +45,11 @@ def convert_dap_atlas():
 
     ensure_directories(converted_path, np.unique(label_classes))
 
-    extracted_base = os.path.join('datasets', 'CT', 'DAP_ATLAS', 'extracted', 'Atlas_final_dataset_V1_533')
-    if not os.path.exists(os.path.join('datasets/CT/AUTOPET_2024_CT/extracted')):
+    extracted_base = os.path.join(data_root(), 'CT', 'DAP_ATLAS', 'extracted', 'Atlas_final_dataset_V1_533')
+    if not os.path.exists(os.path.join(os.path.join(data_root(), 'CT/AUTOPET_2024_CT/extracted'))):
         raise FileNotFoundError("Please download and extract the AUTOPET_2024_CT dataset first, as DAP_ATLAS depends on it. \n You can do this by running: \n omnimedseg --dataset AUTOPET_2024_CT --download --extract")
 
-    autopet_base = os.path.join('datasets/CT/AUTOPET_2024_CT/extracted/imagesTr')
+    autopet_base = os.path.join(os.path.join(data_root(), 'CT/AUTOPET_2024_CT/extracted/imagesTr'))
 
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if '.nii.gz' in f]
     image_paths_filtered = []
@@ -81,7 +82,7 @@ def process_dap_atlas_case(args):
     label_img = sitk.ReadImage(file)
     
     identifier = os.path.basename(file).split('_')[-1].split('.')[0]
-    autopet_base = os.path.join('datasets/CT/AUTOPET_2024_CT/extracted/imagesTr')
+    autopet_base = os.path.join(os.path.join(data_root(), 'CT/AUTOPET_2024_CT/extracted/imagesTr'))
     img_file = [os.path.join(autopet_base, el) for el in os.listdir(autopet_base) if identifier in el and '_0000' in el][0]
 
     shutil.move(img_file, os.path.join(converted_path, 'images', filename))

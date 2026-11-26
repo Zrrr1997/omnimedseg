@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -25,11 +26,11 @@ def _process_covid19_20(args):
 
 
 def convert_covid19_20(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'COVID19_20', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'COVID19_20', 'converted')
     label_classes = ['lung_lesion']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'COVID19_20', 'extracted', 'COVID-19-20_v2', 'Train')
+    extracted_base = os.path.join(data_root(), 'CT', 'COVID19_20', 'extracted', 'COVID-19-20_v2', 'Train')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(os.path.join(extracted_base)) if '_ct.nii.gz' in f]
 
     filename_map = {}

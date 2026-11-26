@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -8,12 +9,12 @@ from tqdm import tqdm
 
 
 def convert_nsclc_radiogenomics():
-    converted_path = os.path.join('datasets', 'CT', 'NSCLC_RADIOGENOMICS', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'NSCLC_RADIOGENOMICS', 'converted')
     label_classes = ['lung_tumor']
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'NSCLC_RADIOGENOMICS', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'NSCLC_RADIOGENOMICS', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'NSCLC_RADIOGENOMICS', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'NSCLC_RADIOGENOMICS', 'extracted')
     unzip_tcia(extracted_base, compressed_base)
 
     convert_extracted_dicoms('NSCLC_RADIOGENOMICS', extracted_base, converted_path)

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,13 +8,13 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_hntsmrg():
-    converted_path = os.path.join('datasets', 'MRI', 'HNTSMRG', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'HNTSMRG', 'converted')
 
     # Create label mapping
     label_classes = ['tumor', 'metastatic_lymph_node']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'HNTSMRG', 'extracted', 'HNTSMRG24_train')
+    extracted_base = os.path.join(data_root(), 'MRI', 'HNTSMRG', 'extracted', 'HNTSMRG24_train')
 
     image_paths = []
     image_paths += [os.path.join(extracted_base, f, 'midRT', f'{f}_midRT_T2.nii.gz') for f in os.listdir(extracted_base)]

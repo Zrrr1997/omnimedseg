@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -10,12 +11,12 @@ import numpy as np
 import shutil
 
 def convert_colorectal_liver_metastases():
-    converted_path = os.path.join('datasets', 'CT', 'COLORECTAL_LIVER_METASTASES', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'COLORECTAL_LIVER_METASTASES', 'converted')
     label_classes = ['liver', 'liver_remnant', 'liver_vein', 'portal_vein', 'liver_tumor']
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'COLORECTAL_LIVER_METASTASES', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'COLORECTAL_LIVER_METASTASES', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'COLORECTAL_LIVER_METASTASES', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'COLORECTAL_LIVER_METASTASES', 'extracted')
     unzip_tcia(extracted_base, compressed_base)
     convert_extracted_dicoms('COLORECTAL_LIVER_METASTASES', extracted_base, converted_path)
     convert_dicom_segs('COLORECTAL_LIVER_METASTASES', converted_path)

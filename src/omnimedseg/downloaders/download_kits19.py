@@ -1,5 +1,6 @@
 from pathlib import Path
 from shutil import move
+import os
 import sys
 import time
 import math
@@ -17,7 +18,7 @@ CHUNK_SIZE = 1024 * 1024 # 1 MB
 
 def get_destination(i):
     """Build destination path for case i"""
-    destination = Path("datasets") / "CT" / "KITS19" / "extracted" / "kits19-master" / \
+    destination = Path(os.environ.get("OMNIMEDSEG_DATA_ROOT", "datasets")) / "CT" / "KITS19" / "extracted" / "kits19-master" / \
                   "data" / f"case_{i:05d}" / "imaging.nii.gz"
     destination.parent.mkdir(parents=True, exist_ok=True)
     return destination

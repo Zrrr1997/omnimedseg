@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from omnimedseg.utils.dataset_utils import *
@@ -34,17 +35,17 @@ def convert_uls():
         "   (make sure you have enough disk space!)\n" +
         "=" * 80 + "\n"
     )
-    converted_path = os.path.join('datasets', 'CT', 'ULS', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'ULS', 'converted')
     label_classes = ['lesion']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'ULS', 'extracted', 'ULS23')
+    extracted_base = os.path.join(data_root(), 'CT', 'ULS', 'extracted', 'ULS23')
 
     '''
     for subdir in ['novel_data/ULS23_DeepLesion3D', 'novel_data/ULS23_Radboudumc_Bone', 'novel_data/ULS23_Radboudumc_Pancreas', 'processed_data/fully_annotated/kits21', 'processed_data/fully_annotated/LIDC-IDRI', 'processed_data/fully_annotated/LiTS', 'processed_data/fully_annotated/MDSC_Task06_Lung', 'processed_data/fully_annotated/MDSC_Task07_Pancreas', 'processed_data/fully_annotated/MDSC_Task10_Colon', 'processed_data/fully_annotated/NIH_LN_ABD', 'processed_data/fully_annotated/NIH_LN_MED']:
         unzip_file(os.path.join(extracted_base, subdir, 'images.zip'), os.path.join(extracted_base, subdir))
     
-    extracted_base_labels = os.path.join('datasets', 'CT', 'ULS', 'extracted', 'ULS23-main', 'annotations', 'ULS23')
+    extracted_base_labels = os.path.join(data_root(), 'CT', 'ULS', 'extracted', 'ULS23-main', 'annotations', 'ULS23')
     for subdir in ['novel_data/ULS23_DeepLesion3D', 'novel_data/ULS23_Radboudumc_Bone', 'novel_data/ULS23_Radboudumc_Pancreas', 'processed_data/fully_annotated/kits21', 'processed_data/fully_annotated/LIDC-IDRI', 'processed_data/fully_annotated/LiTS', 'processed_data/fully_annotated/MDSC_Task06_Lung', 'processed_data/fully_annotated/MDSC_Task07_Pancreas', 'processed_data/fully_annotated/MDSC_Task10_Colon', 'processed_data/fully_annotated/NIH_LN_ABD', 'processed_data/fully_annotated/NIH_LN_MED']:
         zip_files = [os.path.join(extracted_base_labels, subdir, 'labels', el) for el in os.listdir(os.path.join(extracted_base_labels, subdir, 'labels')) if '.zip' in el]
         for zip_file in zip_files:

@@ -1,14 +1,15 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_adrenal_acc_kit67():
-    converted_path = os.path.join('datasets', 'CT', 'ADRENAL_ACC_KIT67', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'ADRENAL_ACC_KIT67', 'converted')
     label_classes = ['adrenocortical_carcinoma']
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'ADRENAL_ACC_KIT67', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'ADRENAL_ACC_KIT67', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'ADRENAL_ACC_KIT67', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'ADRENAL_ACC_KIT67', 'extracted')
     unzip_tcia(extracted_base, compressed_base)
 
     convert_extracted_dicoms('ADRENAL_ACC_KIT67', extracted_base, converted_path)

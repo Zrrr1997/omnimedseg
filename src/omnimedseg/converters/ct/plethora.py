@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -7,12 +8,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
 def convert_plethora():
-    converted_path = os.path.join('datasets', 'CT', 'PLETHORA', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'PLETHORA', 'converted')
     label_classes = ['left_lung', 'right_lung', 'pleural_effusion', 'pleural_effusion_annotator_1', 'pleural_effusion_annotator_2']
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'PLETHORA', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'PLETHORA', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'PLETHORA', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'PLETHORA', 'extracted')
     #unzip_tcia(extracted_base, compressed_base)
     #convert_extracted_dicoms('PLETHORA', extracted_base, converted_path)
     match_plethora()
@@ -66,9 +67,9 @@ def process_patient(patient, idx, nifti_dir, converted_path, extracted_base):
 
 
 def match_plethora():
-    nifti_dir = 'datasets/CT/PLETHORA/converted/all_niftis'
-    converted_path = os.path.join('datasets', 'CT', 'PLETHORA', 'converted')
-    extracted_base = os.path.join('datasets', 'CT', 'PLETHORA', 'extracted')
+    nifti_dir = os.path.join(data_root(), 'CT/PLETHORA/converted/all_niftis')
+    converted_path = os.path.join(data_root(), 'CT', 'PLETHORA', 'converted')
+    extracted_base = os.path.join(data_root(), 'CT', 'PLETHORA', 'extracted')
 
     # Ensure label directories exist
     for lbl_dir in ['left_lung', 'right_lung', 'pleural_effusion_annotator_1',

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,10 +6,10 @@ from omnimedseg.utils.dataset_utils import *
 
 def convert_ocutox():
     # Define paths
-    converted_path = os.path.join('datasets', 'Fundus', 'OCUTOX', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'OCUTOX', 'converted')
     ensure_directories(converted_path, ['lesions'])
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'OCUTOX', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'OCUTOX', 'extracted')
 
     idx = 0
     filename_map = {}

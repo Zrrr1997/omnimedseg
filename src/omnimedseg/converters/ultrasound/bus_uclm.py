@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -24,10 +25,10 @@ def process_image(file, converted_path):
         return None
 
 def convert_bus_uclm():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'BUS_UCLM', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'BUS_UCLM', 'converted')
     ensure_directories(converted_path, ['breast_tumor'])
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'BUS_UCLM', 'extracted', 'BUS-UCLM Breast ultrasound lesion segmentation dataset', 'BUS-UCLM', 'images')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'BUS_UCLM', 'extracted', 'BUS-UCLM Breast ultrasound lesion segmentation dataset', 'BUS-UCLM', 'images')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 

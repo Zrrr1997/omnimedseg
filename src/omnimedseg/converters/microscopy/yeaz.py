@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -24,10 +25,10 @@ def process_image(args):
     }
 
 def convert_yeaz():
-    converted_path = os.path.join('datasets', 'Microscopy', 'YEAZ', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'YEAZ', 'converted')
     ensure_directories(converted_path, ['yeast_cell'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'YEAZ', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'YEAZ', 'extracted')
     image_files = []
     image_files += [os.path.join(extracted_base, 'gold-standard-BF-V-1', f) for f in os.listdir(os.path.join(extracted_base, 'gold-standard-BF-V-1')) if 'im.tif' in f]
     image_files += [os.path.join(extracted_base, 'gold-standard-PhC-plus-2', f) for f in os.listdir(os.path.join(extracted_base, 'gold-standard-PhC-plus-2')) if 'im.tif' in f]

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -21,10 +22,10 @@ def process_image(args):
     return filename, file, label_path
 
 def convert_vicar():
-    converted_path = os.path.join('datasets', 'Microscopy', 'VICAR', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'VICAR', 'converted')
     ensure_directories(converted_path, ['cell'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'VICAR', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'VICAR', 'extracted')
     image_paths = []
     for subpath in ['A2058', 'G361', 'HOB', 'PC3', 'PNT1A']:
         image_paths += [os.path.join(extracted_base, subpath, f) for f in os.listdir(os.path.join(extracted_base, subpath)) if '.tif' in f]

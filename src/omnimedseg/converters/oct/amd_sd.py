@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -7,15 +8,15 @@ from omnimedseg.utils.dataset_utils import *
 import threading
 
 def convert_amd_sd():
-    converted_path = os.path.join('datasets', 'OCT', 'AMD_SD', 'converted')
+    converted_path = os.path.join(data_root(), 'OCT', 'AMD_SD', 'converted')
     ensure_directories(converted_path, ['intraretinal_fluid', 'subretinal_fluid', 'PED', 'SHRM', 'IS_OS'])
 
-    extracted_base = os.path.join('datasets', 'OCT', 'AMD_SD', 'extracted', 'AMD-SD', 'images')
+    extracted_base = os.path.join(data_root(), 'OCT', 'AMD_SD', 'extracted', 'AMD-SD', 'images')
 
-    with open(os.path.join('datasets', 'OCT', 'AMD_SD', 'extracted', 'AMD-SD', 'training.txt'), 'r') as f:
+    with open(os.path.join(data_root(), 'OCT', 'AMD_SD', 'extracted', 'AMD-SD', 'training.txt'), 'r') as f:
         training_ids = set(el.strip() for el in f.readlines())
 
-    with open(os.path.join('datasets', 'OCT', 'AMD_SD', 'extracted', 'AMD-SD', 'validation.txt'), 'r') as f:
+    with open(os.path.join(data_root(), 'OCT', 'AMD_SD', 'extracted', 'AMD-SD', 'validation.txt'), 'r') as f:
         validation_ids = set(el.strip() for el in f.readlines())
 
     image_files = []

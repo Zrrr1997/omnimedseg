@@ -29,3 +29,12 @@ def test_manual_download_exits_nonzero_with_instructions(tmp_path):
     result = _run("--dataset", "BUSI", "--download", cwd=tmp_path)
     assert result.returncode == 1
     assert "Dataset_BUSI.zip" in result.stderr + result.stdout
+
+
+def test_data_root_option(tmp_path):
+    root = tmp_path / "my_data"
+    result = _run("--data-root", str(root), "--dataset", "BUSI", "--download", cwd=tmp_path)
+    out = result.stderr + result.stdout
+    assert result.returncode == 1
+    assert str(root / "Ultrasound" / "BUSI") in out
+    assert f"Data root: {root}" in out

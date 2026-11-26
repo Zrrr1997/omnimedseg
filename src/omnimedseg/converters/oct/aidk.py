@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -44,10 +45,10 @@ def convert_single_image_aidk(idx, file, converted_path, filename_map_lock):
     }
 
 def convert_aidk():
-    converted_path = os.path.join('datasets', 'OCT', 'AIDK', 'converted')
+    converted_path = os.path.join(data_root(), 'OCT', 'AIDK', 'converted')
     ensure_directories(converted_path, ['cornea', 'lesion', 'iris', 'images'])
 
-    extracted_base = os.path.join('datasets', 'OCT', 'AIDK', 'extracted', 'AIDK_Dataset')
+    extracted_base = os.path.join(data_root(), 'OCT', 'AIDK', 'extracted', 'AIDK_Dataset')
 
     image_files = []
     image_files += [

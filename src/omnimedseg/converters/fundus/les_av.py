@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,10 +6,10 @@ from omnimedseg.utils.dataset_utils import *
 
 def convert_les_av():
     # Define paths
-    converted_path = os.path.join('datasets', 'Fundus', 'LES_AV', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'LES_AV', 'converted')
     ensure_directories(converted_path, ['vessels', 'arteries', 'veins'])
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'LES_AV', 'extracted', 'LES-AV')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'LES_AV', 'extracted', 'LES-AV')
 
     idx = 0
     filename_map = {}

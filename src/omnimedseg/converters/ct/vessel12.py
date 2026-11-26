@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import re
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -24,11 +25,11 @@ def _process_vessel12(args):
 
 
 def convert_vessel12(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'VESSEL12', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'VESSEL12', 'converted')
     label_classes = ['lungs']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'VESSEL12', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'VESSEL12', 'extracted')
     subdirs = ['VESSEL12_01-05', 'VESSEL12_06-10', 'VESSEL12_11_15', 'VESSEL12_16-20']
 
     # Collect image paths

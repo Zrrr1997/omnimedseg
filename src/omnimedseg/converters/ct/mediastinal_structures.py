@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -43,11 +44,11 @@ def _process_mediastinal_structures(args):
 
 
 def convert_mediastinal_structures():
-    converted_path = os.path.join('datasets', 'CT', 'MEDIASTINAL_STRUCTURES', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'MEDIASTINAL_STRUCTURES', 'converted')
     label_classes = ['esophagus', 'azygos_vein', 'subclavian_arteries', 'brachiocephalic_veins', 'lymph_node']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'MEDIASTINAL_STRUCTURES', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'MEDIASTINAL_STRUCTURES', 'extracted')
     image_paths = []
     image_paths += [os.path.join(extracted_base, 'Benchmark', f, f'{f.lower()}_data.nii.gz') for f in os.listdir(os.path.join(extracted_base, 'Benchmark')) if '.csv' not in f]
 

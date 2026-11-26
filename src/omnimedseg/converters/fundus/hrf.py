@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,10 +6,10 @@ from omnimedseg.utils.dataset_utils import *
 
 def convert_hrf():
     # Define paths
-    converted_path = os.path.join('datasets', 'Fundus', 'HRF', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'HRF', 'converted')
     ensure_directories(converted_path, ['vessels'])
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'HRF', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'HRF', 'extracted')
     convention_map = {'image': 'images', 'vessels': 'manual1'}
 
     idx = 0

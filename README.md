@@ -162,6 +162,17 @@ The golden tests need the raw data on disk once:
 
 ### Basic Commands
 
+#### Choosing Where Data Is Stored
+
+By default everything goes to `./datasets` (relative to where you run the command). To use another
+location, e.g. scratch space on a cluster, pass `--data-root` or set an environment variable:
+
+```bash
+omnimedseg --data-root /scratch/$USER/omnimedseg --dataset PAPILA --download --convert
+# or, for all commands in this shell:
+export OMNIMEDSEG_DATA_ROOT=/scratch/$USER/omnimedseg
+```
+
 #### Download and Convert a Single Dataset
 
 ```bash

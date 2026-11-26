@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -7,10 +8,10 @@ from omnimedseg.utils.dataset_utils import *
 import threading
 
 def convert_oimhs():
-    converted_path = os.path.join('datasets', 'OCT', 'OIMHS', 'converted')
+    converted_path = os.path.join(data_root(), 'OCT', 'OIMHS', 'converted')
     ensure_directories(converted_path, ['macular_hole', 'intraretinal_fluid', 'retina', 'choroid'])
 
-    extracted_base = os.path.join('datasets', 'OCT', 'OIMHS', 'extracted', 'Images')
+    extracted_base = os.path.join(data_root(), 'OCT', 'OIMHS', 'extracted', 'Images')
 
     image_files = []
     for i in np.arange(1, 126):

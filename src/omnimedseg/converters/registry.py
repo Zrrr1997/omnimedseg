@@ -6,6 +6,7 @@ Helper functions such as ``convert_rtstruct`` are never picked up because lookup
 dataset name, and a dataset defined in two modules raises instead of resolving by chance.
 """
 
+from omnimedseg.core.paths import data_root
 import importlib
 import inspect
 import logging
@@ -71,4 +72,4 @@ def convert_dataset(modality: str, dataset: str) -> None:
     if modality in _ALIGN_MODALITIES and name not in _SKIP_ALIGN:
         from omnimedseg.converters.utils_ct import align_all_pairs
 
-        align_all_pairs(os.path.join("datasets", modality, name, "converted"))
+        align_all_pairs(os.path.join(data_root(), modality, name, "converted"))

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,10 +6,10 @@ from omnimedseg.utils.dataset_utils import *
 
 def convert_csc():
     # Define paths
-    converted_path = os.path.join('datasets', 'Fundus', 'CSC', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'CSC', 'converted')
     ensure_directories(converted_path, ['subretinal_fluid'])
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'CSC', 'extracted', '4k64fwnp4k-5')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'CSC', 'extracted', '4k64fwnp4k-5')
     extract_archives(extracted_base, pattern='All_graders_train_test')
 
     idx = 0

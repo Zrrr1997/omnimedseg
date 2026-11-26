@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -15,11 +16,11 @@ def process_image(file, converted_path, filename_map, idx):
     return filename_map
 
 def convert_covid19_lung_lesion():
-    converted_path = os.path.join('datasets', 'CT', 'COVID19_LUNG_LESION', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'COVID19_LUNG_LESION', 'converted')
     label_classes = ['lung_lesion']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'COVID19_LUNG_LESION', 'extracted', 'COVID-19-20_v2')
+    extracted_base = os.path.join(data_root(), 'CT', 'COVID19_LUNG_LESION', 'extracted', 'COVID-19-20_v2')
     image_paths = [os.path.join(extracted_base, 'Train', f) for f in os.listdir(os.path.join(extracted_base, 'Train')) if '_ct' in f]
 
     filename_map = {}

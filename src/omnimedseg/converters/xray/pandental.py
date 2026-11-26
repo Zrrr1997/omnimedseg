@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -40,10 +41,10 @@ def segment_object_robust(image_path, patch_size=5, color_thresh=30, morph_kerne
 
 
 def convert_pandental():
-    converted_path = os.path.join('datasets', 'XRay', 'PANDENTAL', 'converted')
+    converted_path = os.path.join(data_root(), 'XRay', 'PANDENTAL', 'converted')
     ensure_directories(converted_path, ['mandible', 'mandible_annotator_1', 'mandible_annotator_2'])
 
-    extracted_base = os.path.join('datasets', 'XRay', 'PANDENTAL', 'extracted', 'Images')
+    extracted_base = os.path.join(data_root(), 'XRay', 'PANDENTAL', 'extracted', 'Images')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 
     filename_map = {}

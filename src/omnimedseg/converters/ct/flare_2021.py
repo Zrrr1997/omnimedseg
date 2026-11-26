@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from omnimedseg.utils.dataset_utils import *
@@ -30,11 +31,11 @@ def process_file_flare_2021(idx_file_pair, extracted_base, converted_path, label
     }
 
 def convert_flare_2021():
-    converted_path = os.path.join('datasets', 'CT', 'FLARE_2021', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'FLARE_2021', 'converted')
     label_classes = ['liver', 'kidneys', 'spleen', 'pancreas']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'FLARE_2021', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'FLARE_2021', 'extracted')
     image_paths = sorted([
         os.path.join(extracted_base, f)
         for f in os.listdir(extracted_base)

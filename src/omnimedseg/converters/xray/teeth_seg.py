@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -18,13 +19,13 @@ def process_image(file, idx, converted_path, class_mapping):
     return filename, {'image': file, 'tooth': label_file}
 
 def convert_teeth_seg():
-    converted_path = os.path.join('datasets', 'XRay', 'TEETH_SEG', 'converted')
+    converted_path = os.path.join(data_root(), 'XRay', 'TEETH_SEG', 'converted')
     ensure_directories(converted_path, ['tooth'])
 
-    extracted_base = os.path.join('datasets', 'XRay', 'TEETH_SEG', 'extracted', 'ds', 'img')
+    extracted_base = os.path.join(data_root(), 'XRay', 'TEETH_SEG', 'extracted', 'ds', 'img')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 
-    class_mapping = load_class_mapping(os.path.join('datasets', 'XRay', 'TEETH_SEG', 'extracted', 'meta.json'))
+    class_mapping = load_class_mapping(os.path.join(data_root(), 'XRay', 'TEETH_SEG', 'extracted', 'meta.json'))
 
     filename_map = {}
     with ThreadPoolExecutor() as executor:

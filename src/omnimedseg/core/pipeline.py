@@ -4,6 +4,7 @@ This module orchestrates the entire dataset processing workflow:
 download, extraction, conversion, and validation.
 """
 
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 import logging
@@ -39,7 +40,7 @@ def _has_raw_files(dataset_dir: str) -> bool:
 
 
 def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> None:
-    dataset_dir = os.path.join('datasets', modality, dataset)
+    dataset_dir = os.path.join(data_root(), modality, dataset)
     card = get_card(dataset)
 
     if card.download.method == "manual":
@@ -47,7 +48,10 @@ def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> 
             logger.info(f"📁 {dataset} requires manual download; using the files found in {dataset_dir}")
             extract_all_zips(dataset_dir, dataset, filter_pattern=filter_pattern, new_folder=new_folder)
             return
-        raise ManualDownloadRequired(f"{dataset} cannot be downloaded automatically. {card.download.instructions}")
+        raise ManualDownloadRequired(
+            f"{dataset} cannot be downloaded automatically. {card.download.instructions} "
+            f"(with the current data root, the folder is: {os.path.abspath(dataset_dir)})"
+        )
 
     logger.info(f"📥 Downloading {dataset}...")
     download_dataset(
@@ -69,7 +73,7 @@ def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> 
 
 def _convert(dataset: str, modality: str, filter_pattern, new_folder: bool,
              force_convert: bool, keep_raw_data: bool) -> None:
-    dataset_dir = os.path.join('datasets', modality, dataset)
+    dataset_dir = os.path.join(data_root(), modality, dataset)
     converted_path = os.path.join(dataset_dir, 'converted')
     failed_path = os.path.join(dataset_dir, 'converted.failed')
 
@@ -137,7 +141,7 @@ def process_datasets(
     failures: Dict[str, BaseException] = {}
 
     for dataset in dataset_names:
-        dataset_dir = os.path.join('datasets', modality, dataset)
+        dataset_dir = os.path.join(data_root(), modality, dataset)
         logger.info(f"Processing dataset: {dataset} (modality: {modality})")
         try:
             card = get_card(dataset)

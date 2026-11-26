@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import json
@@ -26,13 +27,13 @@ def process_image(file, idx, converted_path, class_mapping):
     return filename, file, label_file
 
 def convert_intraretinal_cystoid_fluid():
-    converted_path = os.path.join('datasets', 'OCT', 'INTRARETINAL_CYSTOID_FLUID', 'converted')
+    converted_path = os.path.join(data_root(), 'OCT', 'INTRARETINAL_CYSTOID_FLUID', 'converted')
     ensure_directories(converted_path, ['intraretinal_fluid'])
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'OCT', 'INTRARETINAL_CYSTOID_FLUID', 'extracted', 'ds', 'img')
+    extracted_base = os.path.join(data_root(), 'OCT', 'INTRARETINAL_CYSTOID_FLUID', 'extracted', 'ds', 'img')
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
-    class_mapping = load_class_mapping(os.path.join('datasets', 'OCT', 'INTRARETINAL_CYSTOID_FLUID', 'extracted', 'meta.json'))
+    class_mapping = load_class_mapping(os.path.join(data_root(), 'OCT', 'INTRARETINAL_CYSTOID_FLUID', 'extracted', 'meta.json'))
 
     with ThreadPoolExecutor() as executor:
         futures = {

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -6,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from omnimedseg.utils.dataset_utils import *
 import pandas as pd
 def convert_covid19_cxr():
-    converted_path = os.path.join('datasets', 'XRay', 'COVID19_CXR', 'converted')
+    converted_path = os.path.join(data_root(), 'XRay', 'COVID19_CXR', 'converted')
     labels = [
     "left_lung",
     "right_lung",
@@ -25,7 +26,7 @@ def convert_covid19_cxr():
 ]
     ensure_directories(converted_path, labels)
 
-    extracted_base = os.path.join('datasets', 'XRay', 'COVID19_CXR', 'extracted', 'covid-19-chest-xray-segmentations-dataset-master')
+    extracted_base = os.path.join(data_root(), 'XRay', 'COVID19_CXR', 'extracted', 'covid-19-chest-xray-segmentations-dataset-master')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 
     idx = 0

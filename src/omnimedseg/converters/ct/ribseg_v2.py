@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -36,7 +37,7 @@ def _process_ribseg_v2(args):
     
     
 
-    rib_label_file = os.path.join('datasets/CT/RIBSEG_V2/extracted/ribseg_v2/seg', os.path.basename(file.replace('-image.nii.gz', '-rib-seg.nii.gz')))
+    rib_label_file = os.path.join(os.path.join(data_root(), 'CT/RIBSEG_V2/extracted/ribseg_v2/seg'), os.path.basename(file.replace('-image.nii.gz', '-rib-seg.nii.gz')))
     dst_label = os.path.join(converted_path, 'labels', 'ribs', filename)
     label_img = sitk.ReadImage(rib_label_file)
     label_i = sitk.BinaryThreshold(label_img, lowerThreshold=1, upperThreshold=35, insideValue=1, outsideValue=0)
@@ -47,11 +48,11 @@ def _process_ribseg_v2(args):
 
 
 def convert_ribseg_v2(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'RIBSEG_V2', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'RIBSEG_V2', 'converted')
     label_classes = ['ribs', 'rib_fracture', 'displaced_rib_fracture', 'non_displaced_rib_fracture', 'buckle_rib_fracture', 'segmental_rib_fracture']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'RIBSEG_V2', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'RIBSEG_V2', 'extracted')
 
     image_paths = []
     for base in ['Part1', 'Part2', 'ribfrac-test-images', 'ribfrac-val-images']:

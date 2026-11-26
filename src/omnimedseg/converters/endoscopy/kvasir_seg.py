@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -19,9 +20,9 @@ def process_file(args):
     return filename, {'image': file, 'polyp': label_file}
 
 def convert_kvasir_seg():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'KVASIR_SEG', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'KVASIR_SEG', 'converted')
     ensure_directories(converted_path, ['polyp'])
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'KVASIR_SEG', 'extracted', 'Kvasir-SEG', 'images')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'KVASIR_SEG', 'extracted', 'Kvasir-SEG', 'images')
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
 
     filename_map = {}

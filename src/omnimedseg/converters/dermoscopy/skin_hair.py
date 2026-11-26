@@ -1,14 +1,15 @@
 
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
 from omnimedseg.utils.dataset_utils import *
 
 def convert_skin_hair():
-    converted_path = os.path.join('datasets', 'Dermoscopy', 'SKIN_HAIR', 'converted')
+    converted_path = os.path.join(data_root(), 'Dermoscopy', 'SKIN_HAIR', 'converted')
     ensure_directories(converted_path, ['skin_hair'])
 
-    extracted_base = os.path.join('datasets', 'Dermoscopy', 'SKIN_HAIR', 'extracted', 'A skin lesion hair mask dataset with fine-grained annotations', 'dermoscopic_image')
+    extracted_base = os.path.join(data_root(), 'Dermoscopy', 'SKIN_HAIR', 'extracted', 'A skin lesion hair mask dataset with fine-grained annotations', 'dermoscopic_image')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
     idx = 0
 

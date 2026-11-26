@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from omnimedseg.utils.dataset_utils import *
@@ -8,11 +9,11 @@ import threading
 from concurrent.futures import ThreadPoolExecutor
 
 def convert_aero_path():
-    converted_path = os.path.join('datasets', 'CT', 'AERO_PATH', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'AERO_PATH', 'converted')
     label_classes = ['airways', 'lungs']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'AERO_PATH', 'extracted', 'AeroPath')
+    extracted_base = os.path.join(data_root(), 'CT', 'AERO_PATH', 'extracted', 'AeroPath')
     image_paths = [os.path.join(extracted_base, f'{i}', f'{i}_CT_HR.nii.gz') for i in np.arange(1, 28)]
 
     filename_map = {}

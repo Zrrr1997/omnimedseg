@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -30,11 +31,11 @@ def process_image(idx, file, image_files_2, extracted_base, converted_path):
     }
 
 def convert_bbbc010():
-    converted_path = os.path.join('datasets', 'Microscopy', 'BBBC010', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'BBBC010', 'converted')
     ensure_directories(converted_path, ['c_elegans'])
     os.makedirs(os.path.join(converted_path, 'images_2'), exist_ok=True)
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'BBBC010', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'BBBC010', 'extracted')
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if '_w1_' in f]
     image_files_2 = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if '_w2_' in f]
 

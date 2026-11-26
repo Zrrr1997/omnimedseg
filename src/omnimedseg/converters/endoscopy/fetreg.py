@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -23,12 +24,12 @@ def process_image(args):
     return filename, file, label_file
 
 def convert_fetreg():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'FETREG', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'FETREG', 'converted')
     ensure_directories(converted_path, ['placental_vessels', 'fetus', 'surgical_tool'])
     idx = 0
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'FETREG', 'extracted', 'FetReg2021_dataset')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'FETREG', 'extracted', 'FetReg2021_dataset')
 
     tasks = []
     for split in ['Train', 'Test']:

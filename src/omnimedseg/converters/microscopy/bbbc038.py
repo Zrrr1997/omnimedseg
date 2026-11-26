@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -27,10 +28,10 @@ def process_image(idx_image_path):
     }
 
 def convert_bbbc038():
-    converted_path = os.path.join('datasets', 'Microscopy', 'BBBC038', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'BBBC038', 'converted')
     ensure_directories(converted_path, ['nucleus'])
 
-    extracted_base = os.path.join('datasets', 'Microscopy', 'BBBC038', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Microscopy', 'BBBC038', 'extracted')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
     filename_map = {}
 

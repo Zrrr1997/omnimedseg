@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -20,11 +21,11 @@ def process_image(file, idx, converted_path):
     }
 
 def convert_fetoscopy_placenta():
-    converted_path = os.path.join('datasets', 'Endoscopy', 'FETOSCOPY_PLACENTA', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'FETOSCOPY_PLACENTA', 'converted')
     ensure_directories(converted_path, ['placental_vessels'])
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'FETOSCOPY_PLACENTA', 'extracted', 'Vessel_segmentation_annotations')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'FETOSCOPY_PLACENTA', 'extracted', 'Vessel_segmentation_annotations')
 
     image_files = []
     for image_path in os.listdir(extracted_base):

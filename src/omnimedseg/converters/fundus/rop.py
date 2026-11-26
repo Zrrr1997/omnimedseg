@@ -1,14 +1,15 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
 from omnimedseg.utils.dataset_utils import *
 
 def convert_rop():
-    converted_path = os.path.join('datasets', 'Fundus', 'ROP', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'ROP', 'converted')
     ensure_directories(converted_path, ['optic_disc'])
     idx = 0
     filename_map = {}
-    extracted_base = os.path.join('datasets', 'Fundus', 'ROP', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'ROP', 'extracted')
     image_files = [os.path.join(extracted_base, 'Optic disc segmentation(ROP)', f) for f in os.listdir(os.path.join(extracted_base, 'Optic disc segmentation(ROP)')) if '.jpg' in f]
 
     for file in tqdm(sorted(image_files), desc="🖼️  Processing ROP images"):

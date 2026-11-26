@@ -1,15 +1,16 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
 from omnimedseg.utils.dataset_utils import *
 
 def convert_chasedb():
-    converted_path = os.path.join('datasets', 'Fundus', 'CHASEDB', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'CHASEDB', 'converted')
     ensure_directories(converted_path, ['vessels'])
     idx = 0
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'CHASEDB', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'CHASEDB', 'extracted')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if 'HO' not in f]
     os.makedirs(os.path.join(converted_path, 'labels', 'vessels_annotator_1'), exist_ok=True)

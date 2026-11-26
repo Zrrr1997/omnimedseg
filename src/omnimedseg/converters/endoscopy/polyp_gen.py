@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -5,7 +6,7 @@ from multiprocessing import Pool
 from omnimedseg.utils.dataset_utils import *
 
 def process_file_polyp_gen(args):
-    converted_path = os.path.join('datasets', 'Endoscopy', 'POLYP_GEN', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'POLYP_GEN', 'converted')
     idx, file, label_file, is_negative = args
     filename = f"{idx:06d}.png"
 
@@ -24,11 +25,11 @@ def process_file_polyp_gen(args):
     }
 
 def convert_polyp_gen():
-    extracted_base = os.path.join('datasets', 'Endoscopy', 'POLYP_GEN', 'extracted', 'PolypGen2021_MultiCenterData_v3')
+    extracted_base = os.path.join(data_root(), 'Endoscopy', 'POLYP_GEN', 'extracted', 'PolypGen2021_MultiCenterData_v3')
     tasks = []
     idx = 0
 
-    converted_path = os.path.join('datasets', 'Endoscopy', 'POLYP_GEN', 'converted')
+    converted_path = os.path.join(data_root(), 'Endoscopy', 'POLYP_GEN', 'converted')
     ensure_directories(converted_path, ['polyp'])
 
 

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -21,9 +22,9 @@ def process_file(file, converted_path, idx):
     return filename, {k: file for k in ['image', 'aorta', 'umbilical_vein', 'liver', 'stomach']}
 
 def convert_fass():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'FASS', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'FASS', 'converted')
     ensure_directories(converted_path, ['aorta', 'liver', 'stomach', 'umbilical_vein'])
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'FASS', 'extracted', 'ARRAY_FORMAT')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'FASS', 'extracted', 'ARRAY_FORMAT')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
     filename_map = {}

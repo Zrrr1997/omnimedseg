@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -13,12 +14,12 @@ def convert_spinemets():
         label_names.append(f'T{i}')
     for i in range(13, 18):
         label_names.append(f'L{i - 12}')
-    converted_path = os.path.join('datasets', 'CT', 'SPINEMETS', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'SPINEMETS', 'converted')
     label_classes = label_names
     ensure_directories(converted_path, label_classes)
 
-    compressed_base = os.path.join('datasets', 'CT', 'SPINEMETS', 'compressed')
-    extracted_base = os.path.join('datasets', 'CT', 'SPINEMETS', 'extracted')
+    compressed_base = os.path.join(data_root(), 'CT', 'SPINEMETS', 'compressed')
+    extracted_base = os.path.join(data_root(), 'CT', 'SPINEMETS', 'extracted')
     unzip_tcia(extracted_base, compressed_base)
 
     convert_extracted_dicoms('SPINEMETS', extracted_base, converted_path)

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -12,7 +13,7 @@ def process_image_task(args):
     filename = f"{idx:06d}.png"
     image = cv2.imread(file)
 
-    label_file = os.path.join('datasets', 'XRay', 'ARCADE', 'extracted', 'arcade', f'{class_label}', f'{split}', 'annotations', f'{split}.json')
+    label_file = os.path.join(data_root(), 'XRay', 'ARCADE', 'extracted', 'arcade', f'{class_label}', f'{split}', 'annotations', f'{split}.json')
     with open(label_file, encoding="utf-8") as f:
         gt = json.load(f)
 
@@ -46,7 +47,7 @@ def process_image_task(args):
 
 
 def convert_arcade():
-    base_path = os.path.join('datasets', 'XRay', 'ARCADE')
+    base_path = os.path.join(data_root(), 'XRay', 'ARCADE')
     converted_path = os.path.join(base_path, 'converted')
     ensure_directories(converted_path, ['coronary_artery', 'stenosis'])
 

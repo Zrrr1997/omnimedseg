@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -42,13 +43,13 @@ def _process_liver_segments(args):
 
 
 def convert_liver_segments(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'LIVER_SEGMENTS', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'LIVER_SEGMENTS', 'converted')
     label_classes = ['liver']
     for i in range(1, 9):
         label_classes.append(f'couinaud_segment_{i}')
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'LIVER_SEGMENTS', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'LIVER_SEGMENTS', 'extracted')
     
     image_paths = [os.path.join(extracted_base, el) for el in os.listdir(extracted_base) if el.endswith('.nii.gz') and 'img' in el]
     

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -27,11 +28,11 @@ def _process_stacom_slawt_ct(args):
 
 
 def convert_stacom_slawt_ct(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'STACOM_SLAWT_CT', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'STACOM_SLAWT_CT', 'converted')
     label_classes = ['left_atrium']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'STACOM_SLAWT_CT', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'STACOM_SLAWT_CT', 'extracted')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(os.path.join(extracted_base)) if '.nii' in f and 'la' not in f]
 
     filename_map = {}

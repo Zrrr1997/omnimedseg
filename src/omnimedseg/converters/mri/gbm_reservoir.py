@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -15,13 +16,13 @@ def filter_processed(image_path):
     return os.path.exists(label_file)
 
 def convert_gbm_reservoir():
-    converted_path = os.path.join('datasets', 'MRI', 'GBM_RESERVOIR', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'GBM_RESERVOIR', 'converted')
 
     # Create label mapping
     label_classes = ['edema', 'enhancing_tumor', 'necrosis']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'GBM_RESERVOIR', 'extracted')
+    extracted_base = os.path.join(data_root(), 'MRI', 'GBM_RESERVOIR', 'extracted')
     image_paths = []
     image_paths += [os.path.join(extracted_base, f, f'{f}_flair.nii.gz') for f in os.listdir(extracted_base) if 'BraTS2021_' in f]
     image_paths += [os.path.join(extracted_base, f, f'{f}_t1.nii.gz') for f in os.listdir(extracted_base) if 'BraTS2021_' in f]

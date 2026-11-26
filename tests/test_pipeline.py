@@ -152,3 +152,12 @@ def test_download_file_removes_truncated_file(tmp_path, monkeypatch):
     dest = tmp_path / "file.zip"
     assert dd.download_file("http://example.invalid/file.zip", str(dest), "X") is False
     assert not dest.exists()
+
+
+def test_template_converter_fails_cleanly_and_keeps_raw_data(workdir):
+    """OASBUD has a card but only a template converter: conversion must fail without deleting raw data."""
+    raw = _make_raw(workdir, modality="Ultrasound", name="OASBUD")
+    with pytest.raises(PipelineError) as exc:
+        pipeline.process_datasets(["OASBUD"], "Ultrasound", convert=True)
+    assert isinstance(exc.value.failures["OASBUD"], NotImplementedError)
+    assert raw.is_dir()

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -25,11 +26,11 @@ def _process_atm(args):
 
 
 def convert_atm(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'ATM', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'ATM', 'converted')
     label_classes = ['airways']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'ATM', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'ATM', 'extracted')
     image_paths = []
     image_paths += [os.path.join(extracted_base, 'TrainBatch1', 'imagesTr', f)
                     for f in os.listdir(os.path.join(extracted_base, 'TrainBatch1', 'imagesTr'))]

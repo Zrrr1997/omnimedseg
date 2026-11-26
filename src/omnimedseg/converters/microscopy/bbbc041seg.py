@@ -1,4 +1,5 @@
 
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 from tqdm import tqdm
@@ -30,11 +31,11 @@ def convert_bbbc041seg():
             'blood_cell': file.replace('Original', 'Mask').replace('.jpg', '.png')
         }
 
-    converted_path = os.path.join('datasets', 'Microscopy', 'BBBC041SEG', 'converted')
+    converted_path = os.path.join(data_root(), 'Microscopy', 'BBBC041SEG', 'converted')
     ensure_directories(converted_path, ['blood_cell'])
 
     extracted_base = os.path.join(
-        'datasets', 'Microscopy', 'BBBC041SEG', 'extracted',
+        data_root(), 'Microscopy', 'BBBC041SEG', 'extracted',
         'Final data', 'Final data', 'New folder', 'Original'
     )
 

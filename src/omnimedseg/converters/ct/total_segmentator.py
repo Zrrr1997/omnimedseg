@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from omnimedseg.utils.dataset_utils import *
@@ -99,7 +100,7 @@ def convert_total_segmentator():
         "   (make sure you have enough disk space!)\n" +
         "=" * 80 + "\n"
     )
-    converted_path = os.path.join('datasets', 'CT', 'TOTAL_SEGMENTATOR', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'TOTAL_SEGMENTATOR', 'converted')
     label_classes = [
         'brain', 'heart', 'liver', 'spleen', 'stomach', 'pancreas', 'gallbladder', 'bladder', 'kidney_cyst', 'left_kidney', 'right_kidney', 'spinal_cord',
 
@@ -138,7 +139,7 @@ def convert_total_segmentator():
     label_classes.append('S1')
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'TOTAL_SEGMENTATOR', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'TOTAL_SEGMENTATOR', 'extracted')
     image_paths = []
     image_paths += sorted([
         os.path.join(extracted_base, f, 'ct.nii.gz')

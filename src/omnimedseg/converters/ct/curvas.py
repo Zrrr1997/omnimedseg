@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -66,7 +67,7 @@ def _process_curvas(args):
 
 
 def convert_curvas(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'CURVAS', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'CURVAS', 'converted')
     label_classes = ['pancreas', 'kidneys', 'liver']
     ensure_directories(converted_path, label_classes)
 
@@ -74,7 +75,7 @@ def convert_curvas(num_workers=8):
         for i in range(1, 4):
             os.makedirs(os.path.join(converted_path, 'labels', f'{label}_annotator_{i}'), exist_ok=True)
 
-    extracted_base = os.path.join('datasets', 'CT', 'CURVAS', 'extracted', 'training_set')
+    extracted_base = os.path.join(data_root(), 'CT', 'CURVAS', 'extracted', 'training_set')
     image_paths = [os.path.join(extracted_base, f, 'image.nii.gz') for f in os.listdir(os.path.join(extracted_base))]
 
     filename_map = {}

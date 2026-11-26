@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import numpy as np
 from tqdm import tqdm
@@ -7,13 +8,13 @@ from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
 
 def convert_promise12():
-    converted_path = os.path.join('datasets', 'MRI', 'PROMISE12', 'converted')
+    converted_path = os.path.join(data_root(), 'MRI', 'PROMISE12', 'converted')
 
     # Create label mapping
     label_classes = ['prostate']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'MRI', 'PROMISE12', 'extracted')
+    extracted_base = os.path.join(data_root(), 'MRI', 'PROMISE12', 'extracted')
 
     image_paths = []
     image_paths += [os.path.join(extracted_base, 'livechallenge_test_data', el) for el in os.listdir(os.path.join(extracted_base, 'livechallenge_test_data')) if '.mhd' in el and 'segmentation.mhd' not in el]

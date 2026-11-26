@@ -1,4 +1,5 @@
 
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 from tqdm import tqdm
@@ -7,12 +8,12 @@ from omnimedseg.converters.utils_dermoscopy import *
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 def convert_nevus():
-    converted_path = os.path.join('datasets', 'Dermoscopy', 'NEVUS', 'converted')
+    converted_path = os.path.join(data_root(), 'Dermoscopy', 'NEVUS', 'converted')
     ensure_directories(converted_path, ['nevus'])
 
-    extracted_base = os.path.join('datasets', 'Dermoscopy', 'NEVUS', 'extracted', 'ds', 'img')
+    extracted_base = os.path.join(data_root(), 'Dermoscopy', 'NEVUS', 'extracted', 'ds', 'img')
     image_paths = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base)]
-    class_mapping = load_class_mapping(os.path.join('datasets', 'Dermoscopy', 'NEVUS', 'extracted', 'meta.json'))
+    class_mapping = load_class_mapping(os.path.join(data_root(), 'Dermoscopy', 'NEVUS', 'extracted', 'meta.json'))
 
     filename_map = {}
 

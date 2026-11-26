@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -58,11 +59,11 @@ def _process_waw_tace(args):
     return filename, data_dict
 
 def convert_waw_tace(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'WAW_TACE', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'WAW_TACE', 'converted')
     label_classes = ['liver_tumor']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'WAW_TACE', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'WAW_TACE', 'extracted')
     image_paths = []
     for i in range(0, 5):
         image_paths += [os.path.join(extracted_base, f, f'{f}_{i}_scan.nii.gz') for f in os.listdir(os.path.join(extracted_base)) if os.path.exists(os.path.join(extracted_base, 'tumor_masks_wawtace_v1_08_05_2024', f, f'{f}_{i}_0_tumor_seg.nrrd'))]

@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -46,11 +47,11 @@ def _process_fumpe(args):
 
 
 def convert_fumpe(num_workers=8):
-    converted_path = os.path.join('datasets', 'CT', 'FUMPE', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'FUMPE', 'converted')
     label_classes = ['pulmonary_embolism']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'FUMPE', 'extracted')
+    extracted_base = os.path.join(data_root(), 'CT', 'FUMPE', 'extracted')
 
     image_paths = [os.path.join(extracted_base, f)
                     for f in os.listdir(os.path.join(extracted_base)) if 'label-edited' not in f and 'nii_' not in f]

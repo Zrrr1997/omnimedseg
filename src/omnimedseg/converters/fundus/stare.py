@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os 
 import cv2
 import gzip
@@ -15,12 +16,12 @@ def load_ppm_gz(filepath):
     return img
 
 def convert_stare():
-    converted_path = os.path.join('datasets', 'Fundus', 'STARE', 'converted')
+    converted_path = os.path.join(data_root(), 'Fundus', 'STARE', 'converted')
     ensure_directories(converted_path, ['vessels'])
     idx = 0
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'Fundus', 'STARE', 'extracted')
+    extracted_base = os.path.join(data_root(), 'Fundus', 'STARE', 'extracted')
 
     image_files = [os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if 'ah' not in f and 'vk' not in f]
     os.makedirs(os.path.join(converted_path, 'labels', 'vessels_annotator_1'), exist_ok=True)

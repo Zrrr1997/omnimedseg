@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 import cv2
 import numpy as np
@@ -33,11 +34,11 @@ def process_file(file, converted_path):
         return None
 
 def convert_psfhs():
-    converted_path = os.path.join('datasets', 'Ultrasound', 'PSFHS', 'converted')
+    converted_path = os.path.join(data_root(), 'Ultrasound', 'PSFHS', 'converted')
     ensure_directories(converted_path, ['pubic_symphysis', 'fetal_head'])
     filename_map = {}
 
-    extracted_base = os.path.join('datasets', 'Ultrasound', 'PSFHS', 'extracted', 'Pubic Symphysis-Fetal Head Segmentation and Angle of Progression')
+    extracted_base = os.path.join(data_root(), 'Ultrasound', 'PSFHS', 'extracted', 'Pubic Symphysis-Fetal Head Segmentation and Angle of Progression')
     image_files = [os.path.join(extracted_base, 'image_mha', f) for f in os.listdir(os.path.join(extracted_base, 'image_mha')) if '.mha' in f]
 
     with ThreadPoolExecutor() as executor:

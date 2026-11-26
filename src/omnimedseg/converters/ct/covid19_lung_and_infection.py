@@ -1,3 +1,4 @@
+from omnimedseg.core.paths import data_root
 import os
 from omnimedseg.utils.dataset_utils import *
 from omnimedseg.converters.utils_ct import *
@@ -44,11 +45,11 @@ def process_file_covid19_lung_and_infection(idx_file, converted_path, label_clas
 
 
 def convert_covid19_lung_and_infection():
-    converted_path = os.path.join('datasets', 'CT', 'COVID19_LUNG_AND_INFECTION', 'converted')
+    converted_path = os.path.join(data_root(), 'CT', 'COVID19_LUNG_AND_INFECTION', 'converted')
     label_classes = ['left_lung', 'right_lung', 'lung_lesion', 'lungs']
     ensure_directories(converted_path, label_classes)
 
-    extracted_base = os.path.join('datasets', 'CT', 'COVID19_LUNG_AND_INFECTION', 'extracted', 'COVID-19-CT-Seg_20cases')
+    extracted_base = os.path.join(data_root(), 'CT', 'COVID19_LUNG_AND_INFECTION', 'extracted', 'COVID-19-CT-Seg_20cases')
     image_paths = sorted([os.path.join(extracted_base, f) for f in os.listdir(extracted_base) if f.endswith('.nii.gz')])
 
     # Pair each file with a sequential index
