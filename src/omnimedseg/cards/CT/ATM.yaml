@@ -1,0 +1,20 @@
+name: ATM
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/7949582/files/TrainBatch1.rar?download=1
+  - https://zenodo.org/records/6590774/files/TrainBatch2.rar?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: CC-BY-NC
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

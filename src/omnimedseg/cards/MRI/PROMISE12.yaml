@@ -1,0 +1,32 @@
+name: PROMISE12
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/8026660/files/training_data.zip?download=1
+  - https://zenodo.org/records/8026660/files/test_data.zip?download=1
+  - https://zenodo.org/records/8026660/files/livechallenge_test_data.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: true
+license:
+  spdx: null
+  text: '"You can use this data for your research. If you do that it is mandatory to cite https://doi.org/10.1016/j.media.2013.12.002."'
+  non_commercial: null
+source:
+  homepage: https://zenodo.org/records/8026660
+  citation: |-
+    @misc{https://doi.org/10.5281/zenodo.8026660,
+     doi = {10.5281/ZENODO.8026660},
+     url = {https://zenodo.org/record/8026660},
+     author = {Litjens, Geert and Van Ginneken, Bram and {Henkjan Huisman} and Van De Ven, Wendy and Hoeks, Caroline and Barratt, Dean and {Anant Madabhushi}},
+     keywords = {MRI, prostate, segmentation, medical image analysis},
+     language = {en},
+     title = {PROMISE12: Data from the MICCAI Grand Challenge: Prostate MR Image Segmentation 2012},
+     publisher = {Zenodo},
+     year = {2023},
+     copyright = {Open Access}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

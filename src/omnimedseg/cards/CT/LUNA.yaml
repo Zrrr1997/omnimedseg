@@ -1,0 +1,27 @@
+name: LUNA
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/3723295/files/seg-lungs-LUNA16.zip?download=1
+  - https://zenodo.org/records/3723295/files/subset0.zip?download=1
+  - https://zenodo.org/records/3723295/files/subset2.zip?download=1
+  - https://zenodo.org/records/3723295/files/subset3.zip?download=1
+  - https://zenodo.org/records/3723295/files/subset4.zip?download=1
+  - https://zenodo.org/records/3723295/files/subset5.zip?download=1
+  - https://zenodo.org/records/3723295/files/subset6.zip?download=1https://zenodo.org/records/4121926/files/subset7.zip?download=1
+  - https://zenodo.org/records/4121926/files/subset8.zip?download=1
+  - https://zenodo.org/records/4121926/files/subset9.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: true
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

@@ -1,0 +1,40 @@
+name: ISIC_2018
+modality: Dermoscopy
+download:
+  method: auto
+  urls:
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task1-2_Training_Input.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task1_Training_GroundTruth.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task2_Training_GroundTruth_v3.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task1-2_Validation_Input.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task1_Validation_GroundTruth.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task2_Validation_GroundTruth.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task1-2_Test_Input.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task1_Test_GroundTruth.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2018/ISIC2018_Task2_Test_GroundTruth.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: https://challenge.isic-archive.com/data/#2018
+  citation: |-
+    @article{Tschandl2018,
+    title = {The HAM10000 dataset, a large collection of multi-source dermatoscopic images of common pigmented skin lesions},
+    volume = {5},
+    ISSN = {2052-4463},
+    url = {http://dx.doi.org/10.1038/sdata.2018.161},
+    DOI = {10.1038/sdata.2018.161},
+    number = {1},
+    journal = {Scientific Data},
+    publisher = {Springer Science and Business Media LLC},
+    author = {Tschandl, Philipp and Rosendahl, Cliff and Kittler, Harald},
+    year = {2018},
+    month = Aug
+    }
+radar_doi: 10.35097/j3ntzrcmepaygjxv
+depends_on: []
+notes: null

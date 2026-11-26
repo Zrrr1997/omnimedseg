@@ -1,0 +1,19 @@
+name: LIVER_SEGMENTS
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/MedSeg_Liver_segments_dataset/13643252
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC0-1.0
+  text: CC0 1.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

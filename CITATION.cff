@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use OmniMedSeg, please cite the paper and the dataset below."
+title: "OmniMedSeg: A Large-Scale Standardized Benchmark for Interactive Medical Image Segmentation"
+type: software
+license: MIT
+authors:
+  - family-names: Marinov
+    given-names: Zdravko
+  - family-names: Jaus
+    given-names: Alexander
+  - family-names: Reiß
+    given-names: Simon
+  - family-names: Schlumberger
+    given-names: Tobias
+  - family-names: Wei
+    given-names: Jiale
+  - family-names: Wen
+    given-names: Di
+  - family-names: Zheng
+    given-names: Junwei
+  - family-names: Kleesiek
+    given-names: Jens
+  - family-names: Stiefelhagen
+    given-names: Rainer
+identifiers:
+  - type: doi
+    value: 10.5445/IR/1000194202
+    description: "Pre-print (KIT Library)"
+  - type: doi
+    value: 10.35097/qkc5m4kzran3g1yc
+    description: "Converted dataset (RADAR4KIT)"
+preferred-citation:
+  type: article
+  title: "OmniMedSeg: A Large-Scale Standardized Benchmark for Interactive Medical Image Segmentation"
+  authors:
+    - family-names: Marinov
+      given-names: Zdravko
+    - family-names: Jaus
+      given-names: Alexander
+    - family-names: Reiß
+      given-names: Simon
+    - family-names: Schlumberger
+      given-names: Tobias
+    - family-names: Wei
+      given-names: Jiale
+    - family-names: Wen
+      given-names: Di
+    - family-names: Zheng
+      given-names: Junwei
+    - family-names: Kleesiek
+      given-names: Jens
+    - family-names: Stiefelhagen
+      given-names: Rainer
+  year: 2026
+  doi: 10.5445/IR/1000194202
+  publisher:
+    name: "KIT Library"

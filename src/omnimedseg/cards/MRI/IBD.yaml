@@ -1,0 +1,19 @@
+name: IBD
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/13839321/files/A%20comprehensive%20dataset.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/13839321
+  citation: "@article{Zhong2025,\n title = {A comprehensive dataset of magnetic resonance enterography images with intestinal segment annotations},\n volume = {12},\n ISSN = {2052-4463},\n url = {http://dx.doi.org/10.1038/s41597-025-04760-z},\n DOI = {10.1038/s41597-025-04760-z},\n number = {1},\n journal = {Scientific Data},\n publisher = {Springer Science and Business Media LLC},\n author = {Zhong, Zhangnan and Huang, Li and Feng, Shi-Ting and Lin, Haiwei and Wang, Xinyue and Lu, Baolan and Cao, Kangyang and Li, Xuehua and Huang, Bingsheng},\n year = {2025},\n month = Mar \n}"
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

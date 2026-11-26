@@ -1,0 +1,29 @@
+name: HC18
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/api/records/1327317/files-archive
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/1327317
+  citation: |-
+    @article{van2018automated,
+    title={Automated measurement of fetal head circumference using 2D ultrasound images},
+    author={van den Heuvel, Thomas LA and de Bruijn, Dagmar and de Korte, Chris L and Ginneken, Bram van},
+    journal={PloS one},
+    volume={13},
+    number={8},
+    pages={e0200412},
+    year={2018},
+    publisher={Public Library of Science San Francisco, CA USA}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

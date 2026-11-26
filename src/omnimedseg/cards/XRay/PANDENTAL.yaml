@@ -1,0 +1,29 @@
+name: PANDENTAL
+modality: XRay
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/hxt48yk462/download/1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/hxt48yk462/1
+  citation: |-
+    @article{abdi2015automatic,
+    title={Automatic segmentation of mandible in panoramic x-ray},
+    author={Abdi, Amir Hossein and Kasaei, Shohreh and Mehdizadeh, Mojdeh},
+    journal={Journal of Medical Imaging},
+    volume={2},
+    number={4},
+    pages={044003--044003},
+    year={2015},
+    publisher={Society of Photo-Optical Instrumentation Engineers}
+    }
+radar_doi: 10.35097/rhkq65718b27nc96
+depends_on: []
+notes: null

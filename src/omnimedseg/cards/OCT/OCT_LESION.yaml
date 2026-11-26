@@ -1,0 +1,30 @@
+name: OCT_LESION
+modality: OCT
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-files/datasets/btv6yrdbmv/files/72f260d2-ab9f-40bc-bac2-076699a964ba/file_downloaded
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://www.kaggle.com/datasets/zeeshanahmed13/intraretinal-cystoid-fluid
+  citation: |-
+    @data{Yoo2020OCT,
+    author = {Yoo, TaeKeun},
+    title = {Data for: Improved accuracy in OCT diagnosis of
+    rare retinal disease using few-shot learning
+    with generative adversarial networks},
+    year = 2020,
+    version = {V2},
+    publisher = {Mendeley Data},
+    doi = {10.17632/btv6yrdbmv.2},
+    url = {https://doi.org/10.17632/btv6yrdbmv.2}
+    }
+radar_doi: 10.35097/7qp3vq1qc5bp18uj
+depends_on: []
+notes: null

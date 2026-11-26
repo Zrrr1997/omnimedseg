@@ -1,0 +1,21 @@
+name: PLETHORA
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://www.cancerimagingarchive.net/wp-content/uploads/NSCLC-Radiomics-OriginalCTs.tcia
+  - https://www.cancerimagingarchive.net/wp-content/uploads/PleThora-Thoracic_Cavities-June-2020.zip
+  - https://www.cancerimagingarchive.net/wp-content/uploads/PleThora-Effusions-June-2020.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-3.0
+  text: CC-BY 3.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

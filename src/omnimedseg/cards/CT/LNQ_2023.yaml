@@ -1,0 +1,19 @@
+name: LNQ_2023
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://www.cancerimagingarchive.net/wp-content/uploads/Mediastinal-Lymph-Node-SEG-DA-RAD.tcia
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

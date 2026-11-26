@@ -1,0 +1,27 @@
+name: CDEMRIS
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/CDEMRIS_fibrosis_scar_challenge_data_2012/4214532
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/CDEMRIS_fibrosis_scar_challenge_data_2012/4214532
+  citation: |-
+    @article{Karim2016,
+    author = "Rashed Karim",
+    title = "{CDEMRIS fibrosis scar challenge dataset}",
+    year = "2016",
+    month = "11",
+    url = "https://figshare.com/articles/dataset/CDEMRIS_fibrosis_scar_challenge_data_2012/4214532",
+    doi = "10.6084/m9.figshare.4214532.v5"
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

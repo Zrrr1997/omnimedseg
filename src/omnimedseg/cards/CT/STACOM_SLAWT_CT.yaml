@@ -1,0 +1,20 @@
+name: STACOM_SLAWT_CT
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://figshare.com/ndownloader/files/5011837?private_link=2a5de3a2b89a3fb87932
+  - https://figshare.com/ndownloader/files/5028424?private_link=0ffc9facc15436a41ff9
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

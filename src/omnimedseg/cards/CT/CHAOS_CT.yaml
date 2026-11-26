@@ -1,0 +1,19 @@
+name: CHAOS_CT
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/3431873/files/CHAOS_Train_Sets.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

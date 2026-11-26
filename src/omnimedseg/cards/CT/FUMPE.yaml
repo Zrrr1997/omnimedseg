@@ -1,0 +1,53 @@
+name: FUMPE
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/Ground_Truth/6265721
+  - https://figshare.com/articles/dataset/Patient35/6265685
+  - https://figshare.com/articles/dataset/Patient34/6265679
+  - https://figshare.com/articles/dataset/Patient33/6265670
+  - https://figshare.com/articles/dataset/Patient32/6265658
+  - https://figshare.com/articles/dataset/Patient31/6265655
+  - https://figshare.com/articles/dataset/Patient30/6265646
+  - https://figshare.com/articles/dataset/Patient29/6265643
+  - https://figshare.com/articles/dataset/Untitled_Item/6265640
+  - https://figshare.com/articles/dataset/Patient27/6265613
+  - https://figshare.com/articles/dataset/Patient26/6265604
+  - https://figshare.com/articles/dataset/Patient25/6265592
+  - https://figshare.com/articles/dataset/Patient24/6265589
+  - https://figshare.com/articles/dataset/Patient23/6265586
+  - https://figshare.com/articles/dataset/Patient22/6265583
+  - https://figshare.com/articles/dataset/Patient21/6265574
+  - https://figshare.com/articles/dataset/Patient20/6265562
+  - https://figshare.com/articles/dataset/Patient19/6265556
+  - https://figshare.com/articles/dataset/Patient18/6265544
+  - https://figshare.com/articles/dataset/Patient17/6265532
+  - https://figshare.com/articles/dataset/Patient16/6265526
+  - https://figshare.com/articles/dataset/Patient15/6265520
+  - https://figshare.com/articles/dataset/Patient14/6265511
+  - https://figshare.com/articles/dataset/Patient13/6265505
+  - https://figshare.com/articles/dataset/Patient12/6265502
+  - https://figshare.com/articles/dataset/Patient11/6265493
+  - https://figshare.com/articles/dataset/Patient09/6265466
+  - https://figshare.com/articles/dataset/Patient08/6265451
+  - https://figshare.com/articles/dataset/Patient07/6265433
+  - https://figshare.com/articles/dataset/Patient06/6265427
+  - https://figshare.com/articles/dataset/Patient05/6265379
+  - https://figshare.com/articles/dataset/Patient04/6265367
+  - https://figshare.com/articles/dataset/Patient03/6265364
+  - https://figshare.com/articles/dataset/Patient02/6265358
+  - https://figshare.com/articles/dataset/Patient01/6265292
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

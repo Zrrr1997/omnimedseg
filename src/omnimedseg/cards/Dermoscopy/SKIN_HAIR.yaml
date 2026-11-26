@@ -1,0 +1,27 @@
+name: SKIN_HAIR
+modality: Dermoscopy
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/j5ywpd2p27/download/2
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/j5ywpd2p27/2
+  citation: |-
+    @dataset{hossain2023hairmask,
+    author = {Hossain, Sk Imran and Roy, Sudipta Singha and De Go{\"e}r De Herve, Jocelyn and Mercer, Robert E. and Mephu Nguifo, Engelbert},
+    title = {A skin lesion hair mask dataset with fine-grained annotations},
+    year = {2023},
+    publisher = {Mendeley Data},
+    version = {V2},
+    doi = {10.17632/j5ywpd2p27.2}
+    }
+radar_doi: 10.35097/j3ntzrcmepaygjxv
+depends_on: []
+notes: null

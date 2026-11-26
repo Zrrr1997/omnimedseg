@@ -1,0 +1,19 @@
+name: CROSSMODA
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://www.cancerimagingarchive.net/wp-content/uploads/Vestibular-Schwannoma-SEG-Feb-2021-manifest.tcia
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://www.cancerimagingarchive.net/collection/vestibular-schwannoma-seg/
+  citation: "@article{Shapey2021,\n title = {Segmentation of vestibular schwannoma from MRI — An open annotated dataset and baseline algorithm},\n url = {http://dx.doi.org/10.1101/2021.08.04.21261588},\n DOI = {10.1101/2021.08.04.21261588},\n publisher = {openRxiv},\n author = {Shapey, Jonathan and Kujawa, Aaron and Dorent, Reuben and Wang, Guotai and Dimitriadis, Alexis and Grishchuk, Diana and Paddick, Ian and Kitchen, Neil and Bradford, Robert and Saeed, Shakeel R and Bisdas, Sotirios and Ourselin, Sébastien and Vercauteren, Tom},\n year = {2021},\n month = Aug \n}"
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

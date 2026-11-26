@@ -1,0 +1,19 @@
+name: BBBC041SEG
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/file/d/1nG-ra6BPAZSTsdYCvedzCo-JLD7jdH71/view
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: MIT
+  text: MIT License
+  non_commercial: false
+source:
+  homepage: https://github.com/Deponker/Blood-cell-segmentation
+  citation: null
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

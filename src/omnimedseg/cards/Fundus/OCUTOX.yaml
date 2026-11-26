@@ -1,0 +1,39 @@
+name: OCUTOX
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/api/records/13883485/files-archive
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/13883485
+  citation: |-
+    @dataset{parra_2021_13883485,
+    author = {Parra, Rodrigo and
+    Ojeda, Verena and
+    Mello-Román, Julio César and
+    Vázquez Noguera, José Luis and
+    García-Torres, Miguel and
+    Villalba, Cynthia and
+    Facon, Jacques and
+    Divina, Federico and
+    Cardozo, Olivia and
+    Castillo, Verónica and
+    Castro, Ingrid},
+    title = {Ocular Toxoplasmosis Fundus Images Dataset},
+    month = aug,
+    year = 2021,
+    publisher = {Zenodo},
+    version = {3.0.0},
+    doi = {10.5281/zenodo.13883485},
+    url = {https://doi.org/10.5281/zenodo.13883485}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

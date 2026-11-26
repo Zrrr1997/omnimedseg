@@ -1,0 +1,19 @@
+name: POLYP_GEN
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/drive/folders/16uL9n84SrMt7IiQFzTUQNaJ9TbHJ8DhW
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: null
+  non_commercial: null
+source:
+  homepage: null
+  citation: null
+radar_doi: null
+depends_on: []
+notes: Not part of the RADAR4KIT release; license and citation still to be added.

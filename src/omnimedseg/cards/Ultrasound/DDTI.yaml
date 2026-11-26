@@ -1,0 +1,28 @@
+name: DDTI
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - http://cimalab.unal.edu.co/applications/thyroid/thyroid.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '"available for immediate download for research"'
+  non_commercial: null
+source:
+  homepage: https://cimalab.unal.edu.co/projects/detail/20/
+  citation: |-
+    @inproceedings{pedraza2015open,
+    title={An open access thyroid ultrasound image database},
+    author={Pedraza, Lina and Vargas, Carlos and Narv{\'a}ez, Fabi{\'a}n and Dur{\'a}n, Oscar and Mu{\~n}oz, Emma and Romero, Eduardo},
+    booktitle={10th International symposium on medical information processing and analysis},
+    volume={9287},
+    pages={188--193},
+    year={2015},
+    organization={SPIE}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

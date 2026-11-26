@@ -1,0 +1,28 @@
+name: ROP
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/tv3b2bt6dy/download/2
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/tv3b2bt6dy/2
+  citation: |-
+    @article{wang2021automated,
+    title={Automated explainable multidimensional deep learning platform of retinal images for retinopathy of prematurity screening},
+    author={Wang, Ji and Ji, Jie and Zhang, Mingzhi and Lin, Jian-Wei and Zhang, Guihua and Gong, Weifen and Cen, Ling-Ping and Lu, Yamei and Huang, Xuelin and Huang, Dingguo and others},
+    journal={JAMA network open},
+    volume={4},
+    number={5},
+    pages={e218758},
+    year={2021}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

@@ -1,0 +1,20 @@
+name: FLARE_2021
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/5903672/files/TrainingImg.zip?download=1
+  - https://zenodo.org/records/5903672/files/TrainingMask.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: CC-BY-NC-SA
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

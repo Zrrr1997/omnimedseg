@@ -1,0 +1,29 @@
+name: OASBUD
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/545928/files/OASBUD.mat?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: https://zenodo.org/records/545928
+  citation: |-
+    @article{piotrzkowska2017open,
+    title={Open access database of raw ultrasonic signals acquired from malignant and benign breast lesions},
+    author={Piotrzkowska-Wr{\'o}blewska, Hanna and Dobruch-Sobczak, Katarzyna and Byra, Micha{\l} and Nowicki, Andrzej},
+    journal={Medical physics},
+    volume={44},
+    number={11},
+    pages={6105--6109},
+    year={2017},
+    publisher={Wiley Online Library}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: Converter not implemented yet (template in converters/ultrasound/oasbud.py). A converted version is available in the RADAR4KIT Ultrasound package.

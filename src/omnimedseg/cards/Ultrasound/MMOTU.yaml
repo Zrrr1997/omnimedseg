@@ -1,0 +1,27 @@
+name: MMOTU
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/_zip/25058690
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/_zip/25058690?file=44222642
+  citation: |-
+    @article{Li2024,
+    author = "Lang Li",
+    title = "{MMOTU dataset}",
+    year = "2024",
+    month = "1",
+    url = "https://figshare.com/articles/dataset/_zip/25058690",
+    doi = "10.6084/m9.figshare.25058690.v2"
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

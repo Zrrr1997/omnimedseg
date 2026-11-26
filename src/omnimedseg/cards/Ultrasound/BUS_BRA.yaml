@@ -1,0 +1,29 @@
+name: BUS_BRA
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/api/records/8231412/files-archive
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/8231412
+  citation: |-
+    @article{gomez2024bus,
+    title={BUS-BRA: A breast ultrasound dataset for assessing computer-aided diagnosis systems},
+    author={G{\'o}mez-Flores, Wilfrido and Gregorio-Calas, Maria Julia and Coelho de Albuquerque Pereira, Wagner},
+    journal={Medical physics},
+    volume={51},
+    number={4},
+    pages={3110--3123},
+    year={2024},
+    publisher={Wiley Online Library}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

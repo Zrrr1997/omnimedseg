@@ -1,0 +1,30 @@
+name: BBBC010
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://data.broadinstitute.org/bbbc/BBBC010/BBBC010_v2_images.zip
+  - https://data.broadinstitute.org/bbbc/BBBC010/BBBC010_v1_foreground.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC0-1.0
+  text: CC0 1.0
+  non_commercial: false
+source:
+  homepage: https://bbbc.broadinstitute.org/BBBC010
+  citation: |-
+    @article{moy2009high,
+    title={High-throughput screen for novel antimicrobials using a whole animal infection model},
+    author={Moy, Terence I and Conery, Annie L and Larkins-Ford, Jonah and Wu, Gang and Mazitschek, Ralph and Casadei, Gabriele and Lewis, Kim and Carpenter, Anne E and Ausubel, Frederick M},
+    journal={ACS chemical biology},
+    volume={4},
+    number={7},
+    pages={527--533},
+    year={2009},
+    publisher={ACS Publications}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
 [![Datasets](https://img.shields.io/badge/datasets-155-brightgreen.svg?style=flat-square&logo=databricks&logoColor=white)](https://zrrr1997.github.io/omnimedseg-datasets/)
 [![Modalities](https://img.shields.io/badge/modalities-9-orange.svg?style=flat-square&logo=academia&logoColor=white)](https://zrrr1997.github.io/omnimedseg-datasets/)
@@ -116,7 +116,7 @@ Medical image segmentation datasets are the foundation of modern deep learning i
 
 | Requirement | Version |
 |-------------|---------|
-| Python | 3.8+ |
+| Python | 3.10+ |
 | System | Linux |
 
 ### Quick Install
@@ -127,71 +127,104 @@ conda create -n omnimedseg python=3.10 -y
 conda activate omnimedseg
 
 # Clone the repository
-git clone https://github.com/omnimedseg.git
+git clone https://github.com/Zrrr1997/omnimedseg.git
 cd omnimedseg
 
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Install the package 
+# Install the package (all dependencies are declared in pyproject.toml)
 pip install -e .
 
-# Install system dependencies
+# Install system dependencies (7zip, unrar, dcm2niix, plastimatch)
 sh scripts/install_tools.sh
 source setup_path.sh
 ```
 
+> **Older Linux (glibc < 2.28, e.g. Ubuntu 18.04):** use `pip install --prefer-binary -e .`
+> so pip picks prebuilt wheels instead of trying to compile `pyarrow` from source.
+
+Optional extras:
+
+```bash
+pip install -e ".[datasetninja]"   # needed only for INTRARETINAL_CYSTOID_FLUID (datasetninja.com)
+pip install -e ".[dev]"            # pytest, for running the test suite
+```
+
+### Running the tests
+
+```bash
+pytest -m "not golden"   # fast: imports, CLI, dataset registry (no data needed)
+pytest -m golden         # re-converts HRF, KVASIR_SEG, MSD_SPLEEN and compares to stored checksums
+```
+
+The golden tests need the raw data on disk once:
+`omnimedseg prepare HRF KVASIR_SEG MSD_SPLEEN --keep-raw`.
+
 ## 🎯 Usage
 
-### Basic Commands
+```bash
+omnimedseg <command> [DATASET ...] [--modality M] [--all] [options]
+omnimedseg <command> --help
+```
 
-#### Download and Convert a Single Dataset
+| Command | What it does |
+|---------|--------------|
+| `list` | All datasets with license, commercial-use terms and local status |
+| `info DATASET` | The full dataset card (source, license, citation, RADAR4KIT DOI) |
+| `prepare DATASET` | Download **and** convert — the usual way to get a dataset |
+| `download` / `extract` / `convert` | The individual pipeline steps |
+| `verify DATASET` | Check that converted files and their sources exist |
+| `clean DATASET --raw` | Delete extracted raw data (`--empty-labels`: drop empty samples) |
+| `cite DATASET ...` | BibTeX for exactly the datasets you used (+ OmniMedSeg) |
+| `browse` | Web-based dataset browser |
+
+### Find datasets
 
 ```bash
-# Using the CLI
-omnimedseg --dataset PAPILA --download --convert
-
-# Or using the Python script
-python main_script.py --dataset PAPILA --download --convert
+omnimedseg list                                   # everything
+omnimedseg list --modality Fundus                 # one modality (repeat -m for several)
+omnimedseg list --license commercial-ok           # licenses allowing commercial use
+omnimedseg list --format csv > datasets.csv       # or --format json
+omnimedseg info KVASIR_SEG
 ```
 
-
-#### Process All Datasets in a Modality
+### Get datasets
 
 ```bash
-omnimedseg --modality Fundus --download --convert
+omnimedseg prepare PAPILA                         # download + convert one dataset
+omnimedseg prepare HRF KVASIR_SEG --keep-raw      # several; keep raw data after conversion
+omnimedseg prepare --modality Fundus              # a whole modality
+omnimedseg convert PAPILA --force                 # convert again without re-downloading
+omnimedseg verify PAPILA
 ```
 
-#### Extract Only (Skip Download)
+If some datasets fail, the others still run; failures are summarized at the end and the exit code is 1.
+
+### Choosing where data is stored
+
+By default everything goes to `./datasets` (relative to where you run the command). To use another
+location, e.g. scratch space on a cluster, pass `--data-root` or set an environment variable:
 
 ```bash
-omnimedseg --dataset PAPILA --extract
+omnimedseg prepare PAPILA --data-root /scratch/$USER/omnimedseg
+# or, for all commands in this shell:
+export OMNIMEDSEG_DATA_ROOT=/scratch/$USER/omnimedseg
 ```
 
-#### Convert Without Re-downloading
-```
-omnimedseg --dataset PAPILA --convert --force_convert
+### Cite what you used
+
+```bash
+omnimedseg cite HRF KVASIR_SEG PAPILA -o references.bib
 ```
 
-#### Check Dataset Integrity
-```
-omnimedseg --dataset PAPILA --check_integrity
+### Browse dataset images
+
+```bash
+omnimedseg browse                                 # serves the data root on http://localhost:5000
+omnimedseg browse --port 8080 --max-images 20
 ```
 
-#### Keep Raw Data After Conversion
-```
-omnimedseg --dataset PAPILA --download --convert --keep_raw_data
-```
+> The previous flag syntax (`omnimedseg --dataset PAPILA --download --convert`) still works,
+> but prints a deprecation note with the equivalent command.
 
-
-### Visualize and Browse through Dataset Images
-```
-# Launch interactive dataset browser
-omnimedseg --visualization
-
-# With custom options
-omnimedseg --visualization --port 8080 --max_images 20 # set max images per dataset to view
-```
 <p align="center">
   <img src="assets/dataset_browser.png" alt="Dataset browser" width="100%">
   <br>
@@ -276,10 +309,49 @@ graph LR
 
 ## 📝 Adding a New Dataset
 
-1. Add dataset download URL to `src/core/constants.py`
-2. Create converter in `src/converters/[modality]/[dataset].py`
-3. Make a PR
-3. That's it!
+Every dataset is described by a **dataset card**, a small YAML file in
+`src/omnimedseg/cards/<Modality>/<NAME>.yaml`. It is the single source of truth for where the data comes
+from, how it is extracted, and under which license it may be used:
+
+```yaml
+name: HRF
+modality: Fundus
+download:
+  method: auto            # or: manual (+ instructions) when there is no working direct download
+  urls:
+  - https://www5.cs.fau.de/fileadmin/research/datasets/fundus-images/all.zip
+extract:
+  filter_patterns: []     # only extract archive members under these paths
+  new_folder: false       # extract each archive into its own folder
+license:
+  spdx: CC-BY-4.0         # SPDX id, or null for non-standard licenses
+  text: CC-BY 4.0         # license statement as published
+  non_commercial: false   # true / false / null (unknown)
+source:
+  homepage: https://www5.cs.fau.de/research/data/fundus-images/
+  citation: |-
+    @article{budai2013robust, ...}
+radar_doi: 10.35097/mkxqraa69emyrzre   # converted data on RADAR4KIT
+depends_on: []            # datasets that must be downloaded first
+notes: null
+```
+
+To add a dataset:
+
+1. Add a card `src/omnimedseg/cards/<Modality>/<NAME>.yaml` (copy an existing one)
+2. Add a converter `src/omnimedseg/converters/<modality>/<name>.py` that defines
+   `convert_<name_in_lowercase>()` (no required arguments). It is found automatically by name;
+   helper functions may use any other name.
+3. Run `pytest -m "not golden"`; it validates all cards and checks that every card has exactly one converter
+4. Make a PR
+
+### Datasets that need a manual download
+
+Some sources can no longer be downloaded automatically (currently: **BUSI**). For these,
+`omnimedseg download BUSI` stops with instructions on where to place the original archive
+(e.g. `datasets/Ultrasound/BUSI/Dataset_BUSI.zip`); once it is there, the same command extracts it and
+`omnimedseg convert BUSI` works as usual. Failed or partial conversions are moved to `converted.failed/` and raw data is
+kept, so nothing has to be downloaded twice.
 
 
 

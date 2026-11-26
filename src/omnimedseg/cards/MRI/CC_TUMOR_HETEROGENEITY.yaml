@@ -1,0 +1,28 @@
+name: CC_TUMOR_HETEROGENEITY
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://www.cancerimagingarchive.net/wp-content/uploads/CC-Tumor-Heterogeneity-manifest.tcia
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://www.cancerimagingarchive.net/collection/cc-tumor-heterogeneity/
+  citation: |-
+    @misc{https://doi.org/10.7937/erz5-qz59,
+     doi = {10.7937/ERZ5-QZ59},
+     url = {https://www.cancerimagingarchive.net/collection/cc-tumor-heterogeneity/},
+     author = {Mayr, Nina and Yuh, William T.C. and Bowen, Stephen and Harkenrider, Matthew and Knopp, Michael V. and Lee, Elaine Yuen-Phin and Leung, Eric and Lo, Simon S. and Small Jr., William and Wolfson, Aaron H.},
+     title = {Cervical Cancer - Tumor Heterogeneity: Serial Functional and Molecular Imaging Across the Radiation Therapy Course in Advanced Cervical Cancer (CC-Tumor-Heterogeneity)},
+     publisher = {The Cancer Imaging Archive},
+     year = {2023},
+     copyright = {Creative Commons Attribution 4.0 International}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

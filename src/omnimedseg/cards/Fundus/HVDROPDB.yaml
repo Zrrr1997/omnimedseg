@@ -1,0 +1,28 @@
+name: HVDROPDB
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-files/datasets/xw5xc7xrmp/files/dfa3ec48-c763-439f-905a-bb0904ea840a/file_downloaded
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/xw5xc7xrmp/3
+  citation: |-
+    @article{agrawal2024hvdropdb,
+    title={HVDROPDB datasets for research in retinopathy of prematurity},
+    author={Agrawal, Ranjana and Walambe, Rahee and Kotecha, Ketan and Gaikwad, Anita and Deshpande, Col Madan and Kulkarni, Sucheta},
+    journal={Data in Brief},
+    volume={52},
+    pages={109839},
+    year={2024},
+    publisher={Elsevier}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

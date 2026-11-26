@@ -1,0 +1,26 @@
+name: SSTEM
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://github.com/unidesigner/groundtruth-drosophila-vnc/archive/refs/heads/master.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-3.0
+  text: CC BY-NC-SA 3.0
+  non_commercial: true
+source:
+  homepage: http://github.com/unidesigner/groundtruth-drosophila-vnc
+  citation: |-
+    @article{gerhard2013segmented,
+    title={Segmented anisotropic ssTEM dataset of neural tissue},
+    author={Gerhard, Stephan and Funke, Jan and Martel, Julien and Cardona, Albert and Fetter, Richard},
+    journal={(No Title)},
+    year={2013},
+    publisher={figshare}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

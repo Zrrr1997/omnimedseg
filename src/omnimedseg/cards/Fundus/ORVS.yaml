@@ -1,0 +1,27 @@
+name: ORVS
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://github.com/AbdullahSarhan/ICPRVessels/tree/main/Vessels-Datasets/ORVS
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '"We also created a new dataset that can help researchers working in this field."'
+  non_commercial: null
+source:
+  homepage: https://github.com/AbdullahSarhan/ICPRVessels
+  citation: |-
+    @inproceedings{sarhan2021transfer,
+    title={Transfer learning through weighted loss function and group normalization for vessel segmentation from retinal images},
+    author={Sarhan, Abdullah and Rokne, Jon and Alhajj, Reda and Crichton, Andrew},
+    booktitle={2020 25th International Conference on Pattern Recognition (ICPR)},
+    pages={9211--9218},
+    year={2021},
+    organization={IEEE}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

@@ -1,0 +1,19 @@
+name: MEDSEG_INFERIOR_VENA_CAVA
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://figshare.com/ndownloader/articles/15180192
+extract:
+  filter_patterns: []
+  new_folder: true
+license:
+  spdx: CC0-1.0
+  text: CC0 1.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

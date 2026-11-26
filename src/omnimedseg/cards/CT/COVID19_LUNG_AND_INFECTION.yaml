@@ -1,0 +1,20 @@
+name: COVID19_LUNG_AND_INFECTION
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/3757476/files/COVID-19-CT-Seg_20cases.zip?download=1
+  - https://zenodo.org/records/3757476/files/Lung_and_Infection_Mask.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: true
+license:
+  spdx: null
+  text: CC BY-NC-SA
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

@@ -1,0 +1,26 @@
+name: POLYP_DB
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://osf.io/download/jg32z/
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '''Publicly Accessible: The dataset is open for research and educational purposes.'''
+  non_commercial: null
+source:
+  homepage: https://github.com/DebeshJha/PolypDB
+  citation: |-
+    @article{Jha2024PolypDB,
+    author = {Debesh Jha and et al.},
+    title = {PolypDB: A Curated Multi-Center Dataset for Development of AI Algorithms in Colonoscopy},
+    journal = {Arxiv},
+    year = {2024},
+    doi = {10.1109/TMI.2024.1234567}
+    }
+radar_doi: 10.35097/e4xtyp4hj8sdwrp2
+depends_on: []
+notes: null

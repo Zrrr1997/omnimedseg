@@ -1,0 +1,33 @@
+name: FETOSCOPY_PLACENTA
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://rdr.ucl.ac.uk/articles/dataset/Fetoscopy_Placenta_Dataset/30536171
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://rdr.ucl.ac.uk/articles/dataset/Fetoscopy_Placenta_Dataset/30536171
+  citation: |-
+    @article{Bano2020,
+    title = {FetNet: a recurrent convolutional network for occlusion identification in fetoscopic videos},
+    volume = {15},
+    ISSN = {1861-6429},
+    url = {http://dx.doi.org/10.1007/s11548-020-02169-0},
+    DOI = {10.1007/s11548-020-02169-0},
+    number = {5},
+    journal = {International Journal of Computer Assisted Radiology and Surgery},
+    publisher = {Springer Science and Business Media LLC},
+    author = {Bano, Sophia and Vasconcelos, Francisco and Vander Poorten, Emmanuel and Vercauteren, Tom and Ourselin, Sebastien and Deprest, Jan and Stoyanov, Danail},
+    year = {2020},
+    month = Apr,
+    pages = {791–801}
+    }
+radar_doi: 10.35097/e4xtyp4hj8sdwrp2
+depends_on: []
+notes: null

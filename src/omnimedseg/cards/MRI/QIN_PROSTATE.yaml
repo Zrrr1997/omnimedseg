@@ -1,0 +1,33 @@
+name: QIN_PROSTATE
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://www.cancerimagingarchive.net/wp-content/uploads/QIN-PROSTATE-Repeatability_v2_20180510.tcia
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://www.cancerimagingarchive.net/collection/qin-prostate-repeatability/
+  citation: |-
+    @article{Fedorov2017,
+     title = {Multiparametric Magnetic Resonance Imaging of the Prostate: Repeatability of Volume and Apparent Diffusion Coefficient Quantification},
+     volume = {52},
+     ISSN = {0020-9996},
+     url = {http://dx.doi.org/10.1097/RLI.0000000000000382},
+     DOI = {10.1097/rli.0000000000000382},
+     number = {9},
+     journal = {Investigative Radiology},
+     publisher = {Ovid Technologies (Wolters Kluwer Health)},
+     author = {Fedorov, Andriy and Vangel, Mark G. and Tempany, Clare M. and Fennessy, Fiona M.},
+     year = {2017},
+     month = Sept,
+     pages = {538–546}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

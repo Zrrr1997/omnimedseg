@@ -1,0 +1,26 @@
+name: COVID19_CXR
+modality: XRay
+download:
+  method: auto
+  urls:
+  - https://github.com/GeneralBlockchain/covid-19-chest-xray-segmentations-dataset/archive/refs/heads/master.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: 'Each image has license specified here: https://github.com/GeneralBlockchain/covid-19-chest-xray-segmentations-dataset'
+  non_commercial: null
+source:
+  homepage: https://github.com/GeneralBlockchain/covid-19-chest-xray-segmentations-dataset
+  citation: |-
+    @article{cohen2020covidProspective,
+    title={COVID-19 Image Data Collection: Prospective Predictions Are the Future},
+    author={Joseph Paul Cohen and Paul Morrison and Lan Dao and Karsten Roth and Tim Q Duong and Marzyeh Ghassemi},
+    journal={arXiv 2006.11988},
+    url={https://github.com/ieee8023/covid-chestxray-dataset},
+    year={2020}
+    }
+radar_doi: 10.35097/rhkq65718b27nc96
+depends_on: []
+notes: null

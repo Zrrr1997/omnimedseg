@@ -1,0 +1,30 @@
+name: CHAOS_MRI
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/3431873/files/CHAOS_Train_Sets.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://zenodo.org/records/3431873
+  citation: |-
+    @article{kavur2019,
+     title = {Comparison of semi-automatic and deep learning based automatic methods for liver segmentation in living liver transplant donors},
+     author = {Kavur, A. Emre and Gezer, Naciye Sinem and Barış, Mustafa and Şahin, Yusuf and Özkan, Savaş and Baydar,Bora and Yüksel, Ulaş and Kılıkçıer, Çağlar and Olut, Şahin and Bozdağı Akar, Gözde and Ünal, Gözde and Dicle, Oğuz and Selver, M. Alper},
+     journal = {Diagnostic and Interventional Radiology},
+     volume = {26},
+     pages = {11-21},
+     year = {2020},
+     month = Jan,
+     doi = {10.5152/dir.2019.19},
+     url = {https://doi.org/10.5152/dir.2019.19025}
+     }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

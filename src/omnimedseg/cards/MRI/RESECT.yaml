@@ -1,0 +1,34 @@
+name: RESECT
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://files.de-1.osf.io/v1/resources/jv8bk/providers/osfstorage/?zip=
+  - https://ns9999k.webs.sigma2.no/10.11582_2017.00004/RESECT/
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://osf.io/jv8bk/
+  citation: |-
+    @article{Xiao2017,
+     title = {REtroSpective Evaluation of Cerebral Tumors (RESECT): A clinical database of pre-operative MRI and intra-operative ultrasound in low-grade glioma surgeries},
+     volume = {44},
+     ISSN = {0094-2405},
+     url = {http://dx.doi.org/10.1002/mp.12268},
+     DOI = {10.1002/mp.12268},
+     number = {7},
+     journal = {Medical Physics},
+     publisher = {Wiley},
+     author = {Xiao, Yiming and Fortin, Maryse and Unsgård, Geirmund and Rivaz, Hassan and Reinertsen, Ingerid},
+     year = {2017},
+     month = May,
+     pages = {3875–3882}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

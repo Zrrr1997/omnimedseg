@@ -1,0 +1,19 @@
+name: MSD_PANCREAS
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://msd-for-monai.s3-us-west-2.amazonaws.com/Task07_Pancreas.tar
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-SA-4.0
+  text: CC BY-SA 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

@@ -1,0 +1,29 @@
+name: RETA
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/The_RETA_Benchmark_for_Retinal_Vascular_Tree_Analysis/16960855
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://reta-benchmark.org/dataset/
+  citation: |-
+    @article{lyu2022reta,
+    title={The reta benchmark for retinal vascular tree analysis},
+    author={Lyu, Xingzheng and Cheng, Li and Zhang, Sanyuan},
+    journal={Scientific Data},
+    volume={9},
+    number={1},
+    pages={397},
+    year={2022},
+    publisher={Nature Publishing Group UK London}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

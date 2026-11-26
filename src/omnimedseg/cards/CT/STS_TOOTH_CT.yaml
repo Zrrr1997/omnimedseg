@@ -1,0 +1,33 @@
+name: STS_TOOTH_CT
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.001?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.002?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.003?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.004?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.005?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.006?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.007?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.008?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.009?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.010?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.011?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.012?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.013?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.014?download=1
+  - https://zenodo.org/records/10597292/files/SD-Tooth.zip.015?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

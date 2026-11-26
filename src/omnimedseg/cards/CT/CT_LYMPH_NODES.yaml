@@ -1,0 +1,20 @@
+name: CT_LYMPH_NODES
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://www.cancerimagingarchive.net/wp-content/uploads/MED_ABD_LYMPH_MASKS.zip
+  - https://www.cancerimagingarchive.net/wp-content/uploads/TCIA_CT_Lymph_Nodes_03-31-2023.tcia
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-3.0
+  text: CC-BY 3.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

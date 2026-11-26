@@ -1,0 +1,25 @@
+name: NEVUS
+modality: Dermoscopy
+download:
+  method: auto
+  urls:
+  - https://assets.supervisely.com/remote/eyJsaW5rIjogImZzOi8vYXNzZXRzLzEzMjFfQWNjdXJhdGUgTmV2dXMgU2hhcGVzL2FjY3VyYXRlLW5ldnVzLXNoYXBlcy1EYXRhc2V0TmluamEudGFyIiwgInNpZyI6ICJwb1RpL1QwaFhTbEVyMFdjSVVwUW5aWlpFVXVtaGF3RlZ4d2ZjWWxCUlJrPSJ9
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://www.kaggle.com/datasets/metavision/accurate-nevus-shapessegmentation
+  citation: |-
+    @dataset{Accurate Nevus Shapes,
+    author={metavision},
+    title={Accurate Nevus Shapes/Segmentation},
+    year={2022},
+    url={https://www.kaggle.com/datasets/metavision/accurate-nevus-shapessegmentation}
+    }
+radar_doi: 10.35097/j3ntzrcmepaygjxv
+depends_on: []
+notes: null

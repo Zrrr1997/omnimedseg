@@ -1,0 +1,31 @@
+name: STARE
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://cecas.clemson.edu/~ahoover/stare/probing/stare-images.tar
+  - https://cecas.clemson.edu/~ahoover/stare/probing/labels-ah.tar
+  - https://cecas.clemson.edu/~ahoover/stare/probing/labels-vk.tar
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '"All our images and data are freely available for other researchers"'
+  non_commercial: null
+source:
+  homepage: https://cecas.clemson.edu/~ahoover/stare/
+  citation: |-
+    @article{hoover2000locating,
+    title={Locating blood vessels in retinal images by piecewise threshold probing of a matched filter response},
+    author={Hoover, AD and Kouznetsova, Valentina and Goldbaum, Michael},
+    journal={IEEE Transactions on Medical imaging},
+    volume={19},
+    number={3},
+    pages={203--210},
+    year={2000},
+    publisher={IEEE}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

@@ -1,0 +1,29 @@
+name: HRF
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://www5.cs.fau.de/fileadmin/research/datasets/fundus-images/all.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://www5.cs.fau.de/research/data/fundus-images/
+  citation: |-
+    @article{budai2013robust,
+    title={Robust vessel segmentation in fundus images},
+    author={Budai, Attila and Bock, R{\"u}diger and Maier, Andreas and Hornegger, Joachim and Michelson, Georg},
+    journal={International journal of biomedical imaging},
+    volume={2013},
+    number={1},
+    pages={154860},
+    year={2013},
+    publisher={Wiley Online Library}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

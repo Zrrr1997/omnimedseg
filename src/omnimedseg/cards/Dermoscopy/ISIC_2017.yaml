@@ -1,0 +1,32 @@
+name: ISIC_2017
+modality: Dermoscopy
+download:
+  method: auto
+  urls:
+  - https://isic-challenge-data.s3.amazonaws.com/2017/ISIC-2017_Training_Data.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2017/ISIC-2017_Training_Part1_GroundTruth.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2017/ISIC-2017_Validation_Data.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2017/ISIC-2017_Validation_Part1_GroundTruth.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2017/ISIC-2017_Test_v2_Data.zip
+  - https://isic-challenge-data.s3.amazonaws.com/2017/ISIC-2017_Test_v2_Part1_GroundTruth.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC0-1.0
+  text: CC0 1.0
+  non_commercial: false
+source:
+  homepage: https://challenge.isic-archive.com/data/#2017
+  citation: |-
+    @inproceedings{codella2018skin,
+    title={Skin lesion analysis toward melanoma detection: A challenge at the 2017 international symposium on biomedical imaging (isbi), hosted by the international skin imaging collaboration (isic)},
+    author={Codella, Noel CF and Gutman, David and Celebi, M Emre and Helba, Brian and Marchetti, Michael A and Dusza, Stephen W and Kalloo, Aadi and Liopyris, Konstantinos and Mishra, Nabin and Kittler, Harald and others},
+    booktitle={2018 IEEE 15th international symposium on biomedical imaging (ISBI 2018)},
+    pages={168--172},
+    year={2018},
+    organization={IEEE}
+    }
+radar_doi: 10.35097/j3ntzrcmepaygjxv
+depends_on: []
+notes: null

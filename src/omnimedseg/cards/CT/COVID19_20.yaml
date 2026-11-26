@@ -1,0 +1,19 @@
+name: COVID19_20
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/file/d/1WYyy67rXuT3jimOnD2PeFKwIT7efGp6n/view?usp=drive_link
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

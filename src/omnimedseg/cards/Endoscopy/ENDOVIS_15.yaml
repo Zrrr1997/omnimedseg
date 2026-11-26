@@ -1,0 +1,31 @@
+name: ENDOVIS_15
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://archive.iar.kit.edu/opencas/data/endovis15_ins/Segmentation_Rigid_Training.zip
+  - https://archive.iar.kit.edu/opencas/data/endovis15_ins/Segmentation_Rigid_Testing_Revision.zip
+  - https://archive.iar.kit.edu/opencas/data/endovis15_ins/Segmentation_Rigid_Testing_GT.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-3.0
+  text: CC-BY-NC 3.0
+  non_commercial: true
+source:
+  homepage: https://archive.iar.kit.edu/opencas/index.html%3Fq=node%252F30.html
+  citation: |-
+    @article{bernal2017comparative,
+    title={Comparative validation of polyp detection methods in video colonoscopy: results from the MICCAI 2015 endoscopic vision challenge},
+    author={Bernal, Jorge and Tajkbaksh, Nima and Sanchez, Francisco Javier and Matuszewski, Bogdan J and Chen, Hao and Yu, Lequan and Angermann, Quentin and Romain, Olivier and Rustad, Bj{\o}rn and Balasingham, Ilangko and others},
+    journal={IEEE transactions on medical imaging},
+    volume={36},
+    number={6},
+    pages={1231--1249},
+    year={2017},
+    publisher={IEEE}
+    }
+radar_doi: 10.35097/e4xtyp4hj8sdwrp2
+depends_on: []
+notes: null

@@ -1,0 +1,21 @@
+name: PENGWIN
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/10927452/files/PENGWIN_CT_train_images_part1.zip?download=1
+  - https://zenodo.org/records/10927452/files/PENGWIN_CT_train_images_part2.zip?download=1
+  - https://zenodo.org/records/10927452/files/PENGWIN_CT_train_labels.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: true
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null
