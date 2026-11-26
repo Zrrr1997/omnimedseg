@@ -1,0 +1,27 @@
+name: HYPO_SUBFIELDS
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://plus.figshare.com/articles/dataset/A_paired_dataset_of_multi-modal_MRI_at_3_Tesla_and_7_Tesla_with_manual_hippocampal_subfield_segmentations_on_7T_T2-weighted_images/26075713
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://plus.figshare.com/articles/dataset/A_paired_dataset_of_multi-modal_MRI_at_3_Tesla_and_7_Tesla_with_manual_hippocampal_subfield_segmentations_on_7T_T2-weighted_images/26075713/1
+  citation: |-
+    @article{Li2024,
+    author = "Shuyu Li and Lei Chu and Baoqiang Ma and Xiaoxi Dong and Yirong He and Debin Zeng and Tongtong Che",
+    title = "{A paired dataset of multi-modal MRI at 3 Tesla and 7 Tesla with manual hippocampal subfield segmentations on 7T T2-weighted images}",
+    year = "2024",
+    month = "10",
+    url = "https://plus.figshare.com/articles/dataset/A_paired_dataset_of_multi-modal_MRI_at_3_Tesla_and_7_Tesla_with_manual_hippocampal_subfield_segmentations_on_7T_T2-weighted_images/26075713",
+    doi = "10.25452/figshare.plus.26075713.v1"
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

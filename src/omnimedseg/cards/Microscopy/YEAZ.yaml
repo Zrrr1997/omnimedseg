@@ -1,0 +1,30 @@
+name: YEAZ
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/uc?id=1Sot3bau0F0dsBjRxoQzdGOeUy_wMezal
+  - https://drive.google.com/uc?id=14MUIN26ou0L12UC9UV_AC2S3isj1qBMY
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://www.epfl.ch/labs/lpbs/data-and-software/#:~:text=Nature%20Methods%20(2024)-,YeaZ,-%E2%80%93%20A%20convolutional%20neural
+  citation: |-
+    @article{dietler2020convolutional,
+    title={A convolutional neural network segments yeast microscopy images with high accuracy},
+    author={Dietler, Nicola and Minder, Matthias and Gligorovski, Vojislav and Economou, Augoustina Maria and Joly, Denis Alain Henri Lucien and Sadeghi, Ahmad and Chan, Chun Hei Michael and Kozi{\'n}ski, Mateusz and Weigert, Martin and Bitbol, Anne-Florence and others},
+    journal={Nature communications},
+    volume={11},
+    number={1},
+    pages={5723},
+    year={2020},
+    publisher={Nature Publishing Group UK London}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

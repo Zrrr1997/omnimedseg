@@ -1,0 +1,20 @@
+name: COUINAUD
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://github.com/GLCUnet/dataset/archive/refs/heads/master.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-SA-4.0 AND MIT
+  text: '"Images are from MSD Liver and follow the CC-BY-SA 4.0 license. Labels follow the MIT license"'
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on:
+- MSD_HEPATIC_VESSEL
+notes: null

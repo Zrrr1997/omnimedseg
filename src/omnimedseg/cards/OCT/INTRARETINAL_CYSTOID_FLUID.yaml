@@ -1,0 +1,29 @@
+name: INTRARETINAL_CYSTOID_FLUID
+modality: OCT
+download:
+  method: auto
+  urls:
+  - https://datasetninja.com/intraretinal-cystoid-fluid
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC-BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://www.kaggle.com/datasets/zeeshanahmed13/intraretinal-cystoid-fluid
+  citation: |-
+    @article{ahmed2022deep,
+    title={Deep learning based automated detection of intraretinal cystoid fluid},
+    author={Ahmed, Zeeshan and Panhwar, Shahbaz Qamar and Baqai, Attiya and Umrani, Fahim Aziz and Ahmed, Munawar and Khan, Arbaaz},
+    journal={International Journal of Imaging Systems and Technology},
+    volume={32},
+    number={3},
+    pages={902--917},
+    year={2022},
+    publisher={Wiley Online Library}
+    }
+radar_doi: 10.35097/7qp3vq1qc5bp18uj
+depends_on: []
+notes: null

@@ -1,0 +1,32 @@
+name: ATRIASEG_2018
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://www.dropbox.com/scl/fi/nero2nlaocdcdfhzwu5h0/2018_UTAH_MICCAI.zip?rlkey=vkkfrkc2l6x1e61jqyutb35qn&dl=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '''You may download the training and testing data'''
+  non_commercial: null
+source:
+  homepage: https://www.cardiacatlas.org/atriaseg2018-challenge/atria-seg-data/
+  citation: |-
+    @article{Xiong2021,
+     title = {A global benchmark of algorithms for segmenting the left atrium from late gadolinium-enhanced cardiac magnetic resonance imaging},
+     volume = {67},
+     ISSN = {1361-8415},
+     url = {http://dx.doi.org/10.1016/j.media.2020.101832},
+     DOI = {10.1016/j.media.2020.101832},
+     journal = {Medical Image Analysis},
+     publisher = {Elsevier BV},
+     author = {Xiong, Zhaohan and Xia, Qing and Hu, Zhiqiang and Huang, Ning and Bian, Cheng and Zheng, Yefeng and Vesal, Sulaiman and Ravikumar, Nishant and Maier, Andreas and Yang, Xin and Heng, Pheng-Ann and Ni, Dong and Li, Caizi and Tong, Qianqian and Si, Weixin and Puybareau, Elodie and Khoudli, Younes and Géraud, Thierry and Chen, Chen and Bai, Wenjia and Rueckert, Daniel and Xu, Lingchao and Zhuang, Xiahai and Luo, Xinzhe and Jia, Shuman and Sermesant, Maxime and Liu, Yashu and Wang, Kuanquan and Borra, Davide and Masci, Alessandro and Corsi, Cristiana and de Vente, Coen and Veta, Mitko and Karim, Rashed and Preetha, Chandrakanth Jayachandran and Engelhardt, Sandy and Qiao, Menyun and Wang, Yuanyuan and Tao, Qian and Nuñez-Garcia, Marta and Camara, Oscar and Savioli, Nicolo and Lamata, Pablo and Zhao, Jichao},
+     year = {2021},
+     month = Jan,
+     pages = {101832}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

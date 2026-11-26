@@ -1,0 +1,28 @@
+name: AKRAM
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/3csr652p9y/download/2
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/3csr652p9y/2
+  citation: |-
+    @article{akram2020data,
+    title={Data on fundus images for vessels segmentation, detection of hypertensive retinopathy, diabetic retinopathy and papilledema},
+    author={Akram, Muhammad Usman and Akbar, Shahzad and Hassan, Taimur and Khawaja, Sajid Gul and Yasin, Ubaidullah and Basit, Imran},
+    journal={Data in brief},
+    volume={29},
+    pages={105282},
+    year={2020},
+    publisher={Elsevier}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

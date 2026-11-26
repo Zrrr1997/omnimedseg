@@ -1,0 +1,26 @@
+name: BRIFISEG
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/7195636/files/1channel.tar?download=1
+  - https://zenodo.org/records/7195636/files/3channel.tar?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/7195636
+  citation: |-
+    @article{mathieu2022brifiseg,
+    title={Brifiseg: a deep learning-based method for semantic and instance segmentation of nuclei in brightfield images},
+    author={Mathieu, Gendarme and Bachir, El Debs and others},
+    journal={arXiv preprint arXiv:2211.03072},
+    year={2022}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

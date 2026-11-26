@@ -1,0 +1,27 @@
+name: GBM_RESERVOIR
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://figshare.com/ndownloader/articles/28001450/versions/20
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/GBM-Reservoir_Dataset_and_Segmentations/28001450
+  citation: |-
+    @article{Solak2024,
+    author = "Naida Solak and André Ferreira and Gijs Luijten and Behrus Puladi and Victor Alves and Jan Egger",
+    title = "{GBM-Reservoir: Dataset and Segmentations}",
+    year = "2024",
+    month = "12",
+    url = "https://figshare.com/articles/dataset/GBM-Reservoir_Dataset_and_Segmentations/28001450",
+    doi = "10.6084/m9.figshare.28001450.v20"
+    }
+radar_doi: 10.35097/yt3xmtnn12hgu1hk
+depends_on: []
+notes: null

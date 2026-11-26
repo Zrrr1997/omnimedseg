@@ -1,0 +1,28 @@
+name: MUSCLE_US
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-files/datasets/3jykz7wz8d/files/b1601a22-98a5-41ce-9fbb-54dd21834b55/file_downloaded
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/3jykz7wz8d/1
+  citation: |-
+    @article{marzola2021deep,
+    title={Deep learning segmentation of transverse musculoskeletal ultrasound images for neuromuscular disease assessment},
+    author={Marzola, Francesco and Van Alfen, Nens and Doorduin, Jonne and Meiburger, Kristen M},
+    journal={Computers in biology and medicine},
+    volume={135},
+    pages={104623},
+    year={2021},
+    publisher={Elsevier}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

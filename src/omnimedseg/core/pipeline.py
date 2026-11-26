@@ -9,10 +9,7 @@ import shutil
 import logging
 from typing import Dict, List, Optional, Tuple
 
-from omnimedseg.core.constants import (
-    MODALITY_MAP, DOWNLOAD_URLS, MANUAL_DOWNLOADS,
-    FILTER_PATTERNS, NEW_FOLDERS
-)
+from omnimedseg.core.cards import MODALITIES, datasets_for_modality, get_card
 from omnimedseg.core.errors import DownloadError, ManualDownloadRequired, PipelineError
 from omnimedseg.converters.registry import convert_dataset
 from omnimedseg.downloaders.download_datasets import download_dataset, extract_all_zips
@@ -43,18 +40,19 @@ def _has_raw_files(dataset_dir: str) -> bool:
 
 def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> None:
     dataset_dir = os.path.join('datasets', modality, dataset)
+    card = get_card(dataset)
 
-    if dataset in MANUAL_DOWNLOADS:
+    if card.download.method == "manual":
         if _has_raw_files(dataset_dir):
             logger.info(f"📁 {dataset} requires manual download; using the files found in {dataset_dir}")
             extract_all_zips(dataset_dir, dataset, filter_pattern=filter_pattern, new_folder=new_folder)
             return
-        raise ManualDownloadRequired(f"{dataset} cannot be downloaded automatically. {MANUAL_DOWNLOADS[dataset]}")
+        raise ManualDownloadRequired(f"{dataset} cannot be downloaded automatically. {card.download.instructions}")
 
     logger.info(f"📥 Downloading {dataset}...")
     download_dataset(
         dataset,
-        DOWNLOAD_URLS[modality][dataset],
+        card.download.url_arg,
         modality,
         filter_pattern=filter_pattern,
         new_folder=new_folder
@@ -65,7 +63,7 @@ def _download(dataset: str, modality: str, filter_pattern, new_folder: bool) -> 
             return
         raise DownloadError(
             f"Download of {dataset} produced no files in {dataset_dir}. "
-            f"Check the log above; the source URL may have changed: {DOWNLOAD_URLS[modality][dataset]}"
+            f"Check the log above; the source URL may have changed: {', '.join(card.download.urls)}"
         )
 
 
@@ -139,12 +137,13 @@ def process_datasets(
     failures: Dict[str, BaseException] = {}
 
     for dataset in dataset_names:
-        filter_pattern = FILTER_PATTERNS.get(dataset)
-        new_folder = dataset in NEW_FOLDERS
         dataset_dir = os.path.join('datasets', modality, dataset)
-
         logger.info(f"Processing dataset: {dataset} (modality: {modality})")
         try:
+            card = get_card(dataset)
+            filter_pattern = list(card.extract.filter_patterns) or None
+            new_folder = card.extract.new_folder
+
             # 1. Download
             if download:
                 _download(dataset, modality, filter_pattern, new_folder)
@@ -212,12 +211,13 @@ def resolve_datasets(
         ValueError: If dataset or modality is not found
     """
     if dataset_name is not None:
-        if dataset_name not in MODALITY_MAP:
-            raise ValueError(f"Dataset '{dataset_name}' not found in MODALITY_MAP")
-        return [dataset_name], MODALITY_MAP[dataset_name]
+        try:
+            card = get_card(dataset_name)
+        except LookupError as e:
+            raise ValueError(str(e)) from None
+        return [dataset_name], card.modality
 
-    if modality not in DOWNLOAD_URLS:
+    if modality not in MODALITIES:
         raise ValueError(f"Modality '{modality}' not found")
 
-    datasets = list(DOWNLOAD_URLS[modality].keys())
-    return datasets, modality
+    return datasets_for_modality(modality), modality

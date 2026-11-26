@@ -1,0 +1,29 @@
+name: OCCISC
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://cs.adelaide.edu.au/~carneiro/isbi14_challenge/Dataset.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '"the database used in this challenge is currently publicly available"'
+  non_commercial: null
+source:
+  homepage: https://cs.adelaide.edu.au/~carneiro/isbi14_challenge/dataset.html
+  citation: |-
+    @article{lu2016evaluation,
+    title={Evaluation of three algorithms for the segmentation of overlapping cervical cells},
+    author={Lu, Zhi and Carneiro, Gustavo and Bradley, Andrew P and Ushizima, Daniela and Nosrati, Masoud S and Bianchi, Andrea GC and Carneiro, Claudia M and Hamarneh, Ghassan},
+    journal={IEEE journal of biomedical and health informatics},
+    volume={21},
+    number={2},
+    pages={441--450},
+    year={2016},
+    publisher={IEEE}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

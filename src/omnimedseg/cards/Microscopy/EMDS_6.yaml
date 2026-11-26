@@ -1,0 +1,27 @@
+name: EMDS_6
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/EMDS-6/17125025
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/EMDS-6/17125025/1?file=31660352
+  citation: |-
+    @article{Group2021,
+    author = "MIaMIA Group",
+    title = "{EMDS-6}",
+    year = "2021",
+    month = "12",
+    url = "https://figshare.com/articles/dataset/EMDS-6/17125025",
+    doi = "10.6084/m9.figshare.17125025.v1"
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

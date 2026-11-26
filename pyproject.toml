@@ -49,6 +49,9 @@ dependencies = [
     "rarfile>=4.2",
     "xmltodict>=0.13",
     "tqdm>=4.66",
+    # dataset cards
+    "pyyaml>=6.0",
+    "pydantic>=2.5",
     # dataset browser
     "flask>=3.0",
 ]
@@ -73,6 +76,7 @@ include = ["omnimedseg*"]
 [tool.setuptools.package-data]
 "omnimedseg.converters" = ["*.csv"]
 "omnimedseg.downloaders" = ["*.py"]
+"omnimedseg.cards" = ["*/*.yaml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

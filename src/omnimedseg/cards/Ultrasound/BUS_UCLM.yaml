@@ -1,0 +1,32 @@
+name: BUS_UCLM
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/7fvgj4jsp7/download/2
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: https://data.mendeley.com/datasets/7fvgj4jsp7/2
+  citation: |-
+    @data{Vallez2024BUSUCLM,
+    author = {Vallez, Noelia and
+    Bueno, Gloria and
+    Deniz, Oscar and
+    Rienda, Miguel Angel and
+    Pastor, Carlos},
+    title = {{BUS-UCLM: Breast ultrasound lesion segmentation dataset}},
+    year = 2024,
+    version = {V2},
+    publisher = {Mendeley Data},
+    doi = {10.17632/7fvgj4jsp7.2},
+    url = {https://doi.org/10.17632/7fvgj4jsp7.2}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

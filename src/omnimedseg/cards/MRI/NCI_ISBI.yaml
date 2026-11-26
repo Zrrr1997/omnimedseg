@@ -1,0 +1,33 @@
+name: NCI_ISBI
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://www.cancerimagingarchive.net/wp-content/uploads/NCI-ISBI-2013-Prostate-Challenge-Training.zip
+  - https://www.cancerimagingarchive.net/wp-content/uploads/NCI-ISBI-2013-Prostate-Challenge-Leaderboard.zip
+  - https://www.cancerimagingarchive.net/wp-content/uploads/NCI-ISBI-2013-Prostate-Challenge-Test.zip
+  - https://www.cancerimagingarchive.net/wp-content/uploads/ISBI-Prostate-Challenge-Training.tcia
+  - https://www.cancerimagingarchive.net/wp-content/uploads/ISBI-Prostate-Challenge-LeaderBoard.tcia
+  - https://www.cancerimagingarchive.net/wp-content/uploads/ISBI-Prostate-Challenge-Testing.tcia
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-3.0
+  text: CC-BY 3.0
+  non_commercial: false
+source:
+  homepage: https://www.cancerimagingarchive.net/analysis-result/isbi-mr-prostate-2013/
+  citation: |-
+    @misc{https://doi.org/10.7937/k9/tcia.2015.zf0vlopv,
+     doi = {10.7937/K9/TCIA.2015.ZF0VLOPV},
+     url = {https://www.cancerimagingarchive.net/analysis-result/isbi-mr-prostate-2013/},
+     author = {Bloch, B. Nicholas and Madabhushi, Anant and Huisman, Henkjan and Freymann, John and Kirby, Justin and Grauer, Michael and Enquobahrie, Andinet and Jaffe, Carl and Clarke, Larry and Farahani, Keyvan},
+     title = {NCI-ISBI 2013 Challenge: Automated Segmentation of Prostate Structures (ISBI-MR-Prostate-2013)},
+     publisher = {The Cancer Imaging Archive},
+     year = {2015},
+     copyright = {Creative Commons Attribution 3.0 Unported}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

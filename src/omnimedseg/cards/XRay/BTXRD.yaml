@@ -1,0 +1,27 @@
+name: BTXRD
+modality: XRay
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/A_Radiograph_Dataset_for_the_Classification_Localization_and_Segmentation_of_Primary_Bone_Tumors/27865398
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/A_Radiograph_Dataset_for_the_Classification_Localization_and_Segmentation_of_Primary_Bone_Tumors/27865398?file=50653575
+  citation: |-
+    @article{Yao2024,
+    author = "Shunhan Yao and Yuanxiang Huang and Xiaoyu Wang and Yiwen Zhang and Ian Costa Paixao and Zhikang Wang and Charla Lu Chai and Hongtao Wang and Dinggui Lu and Geoffrey I Webb and ShanShan Li and Yuming Guo and Qingfeng Chen and Jiangning Song",
+    title = "{A Radiograph Dataset for the Classification, Localization, and Segmentation of Primary Bone Tumors}",
+    year = "2024",
+    month = "11",
+    url = "https://figshare.com/articles/dataset/A_Radiograph_Dataset_for_the_Classification_Localization_and_Segmentation_of_Primary_Bone_Tumors/27865398",
+    doi = "10.6084/m9.figshare.27865398.v1"
+    }
+radar_doi: 10.35097/rhkq65718b27nc96
+depends_on: []
+notes: null

@@ -1,0 +1,35 @@
+name: PICAI
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/6624726/files/picai_public_images_fold0.zip?download=1
+  - https://zenodo.org/records/6624726/files/picai_public_images_fold1.zip?download=1
+  - https://zenodo.org/records/6624726/files/picai_public_images_fold2.zip?download=1
+  - https://zenodo.org/records/6624726/files/picai_public_images_fold3.zip?download=1
+  - https://zenodo.org/records/6624726/files/picai_public_images_fold4.zip?download=1
+  - https://github.com/DIAGNijmegen/picai_labels/archive/refs/heads/main.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: https://zenodo.org/records/6624726
+  citation: |-
+    @misc{https://doi.org/10.5281/zenodo.6624726,
+     doi = {10.5281/ZENODO.6624726},
+     url = {https://zenodo.org/record/6624726},
+     author = {Saha, Anindo and Twilt, Jasper Jonathan and Bosma, Joeran Sander and van Ginneken, Bram and Yakar, Derya and Elschot, Mattijs and Veltman, Jeroen and F\"{u}tterer, Jurgen and de Rooij, Maarten and Huisman, Henkjan},
+     keywords = {prostate cancer, artificial intelligence, magnetic resonance imaging, radiologists, computer-aided detection and diagnosis},
+     language = {en},
+     title = {The PI-CAI Challenge: Public Training and Development Dataset},
+     publisher = {Zenodo},
+     year = {2022},
+     copyright = {Creative Commons Attribution Non Commercial 4.0 International}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

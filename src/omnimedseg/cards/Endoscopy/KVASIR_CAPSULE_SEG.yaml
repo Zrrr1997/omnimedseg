@@ -1,0 +1,32 @@
+name: KVASIR_CAPSULE_SEG
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://datasets.simula.no/downloads/kvasir-capsule-seg.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '''The use of the KvasirCapsule-SEG dataset is restricted for research and educational purposes. The use of the KvasirCapsule-SEG dataset for commercial purposes is forbidden without prior written permission.'''
+  non_commercial: true
+source:
+  homepage: https://datasets.simula.no/kvasir-capsule-seg/
+  citation: |-
+    @inproceedings{jha2021nanonet,
+    title = {Nanonet: Real-time polyp segmentation in
+    video capsule endoscopy and colonoscopy},
+    author = {
+    Jha, Debesh and Tomar, Nikhil Kumar and Ali, Sharib and
+    Riegler, Michael A and Johansen, H{\aa}vard D and Johansen, Dag and
+    de Lange, Thomas and Halvorsen, P{\aa}l
+    },
+    booktitle = {Proceedings of the 2021 IEEE 34th International
+    Symposium on Computer-Based Medical Systems (CBMS)},
+    pages = {37--43},
+    year = {2021}
+    }
+radar_doi: 10.35097/e4xtyp4hj8sdwrp2
+depends_on: []
+notes: null

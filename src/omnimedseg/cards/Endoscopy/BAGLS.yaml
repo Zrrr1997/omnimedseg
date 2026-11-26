@@ -1,0 +1,30 @@
+name: BAGLS
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/3762320/files/test.zip?download=1
+  - https://zenodo.org/records/3762320/files/training.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://zenodo.org/records/3762320
+  citation: |-
+    @article{gomez2020bagls,
+    title={BAGLS, a multihospital benchmark for automatic glottis segmentation},
+    author={G{\'o}mez, Pablo and Kist, Andreas M and Schlegel, Patrick and Berry, David A and Chhetri, Dinesh K and D{\"u}rr, Stephan and Echternach, Matthias and Johnson, Aaron M and Kniesburges, Stefan and Kunduk, Melda and others},
+    journal={Scientific data},
+    volume={7},
+    number={1},
+    pages={186},
+    year={2020},
+    publisher={Nature Publishing Group UK London}
+    }
+radar_doi: 10.35097/e4xtyp4hj8sdwrp2
+depends_on: []
+notes: null

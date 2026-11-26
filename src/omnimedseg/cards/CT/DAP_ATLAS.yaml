@@ -1,0 +1,20 @@
+name: DAP_ATLAS
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/file/d/1ex0a9eQULLvKPDwijmijX2h49A-ockNy/view
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on:
+- AUTOPET_2024_CT
+notes: null

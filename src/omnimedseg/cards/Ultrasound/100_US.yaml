@@ -1,0 +1,20 @@
+name: 100_US
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://www.researchgate.net/profile/Jan-Egger-2/publication/329586355_100_2D_US_Images_and_Tumor_Segmentation_Masks/data/5c10ddd4a6fdcc494fede23a/105-US-Images.zip?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIiwicG9zaXRpb24iOiJwYWdlQ29udGVudCJ9fQ
+  - https://www.researchgate.net/profile/Jan-Egger-2/publication/329586355_100_2D_US_Images_and_Tumor_Segmentation_Masks/data/5c10df354585157ac1bbfa72/105-US-Masks.zip?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIiwicG9zaXRpb24iOiJwYWdlQ29udGVudCJ9fQ
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: Please see https://www.researchgate.net/publication/307907688_Ultrasound_Liver_Tumor_Datasets_Segmentations for licensing details
+  non_commercial: null
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

@@ -10,7 +10,9 @@ from pathlib import Path
 import pytest
 
 import omnimedseg
-from omnimedseg.core.constants import DOWNLOAD_URLS, MODALITY_MAP
+from omnimedseg.core.cards import MODALITIES, load_cards
+
+MODALITY_MAP = {name: card.modality for name, card in load_cards().items()}
 
 from omnimedseg.converters.registry import MODALITY_PACKAGES, _defined_converters, get_converter
 
@@ -32,7 +34,7 @@ def test_cli_help():
 
 
 def test_modalities_match_converter_packages():
-    assert set(DOWNLOAD_URLS) == set(MODALITY_PACKAGES)
+    assert set(MODALITIES) == set(MODALITY_PACKAGES)
 
 
 @pytest.mark.parametrize("dataset", sorted(MODALITY_MAP))
@@ -58,8 +60,3 @@ def test_helpers_are_not_mistaken_for_datasets():
         get_converter("CT", "RTSTRUCTS")
     with pytest.raises(LookupError):
         get_converter("CT", "DICOM_SEGS")
-
-
-def test_dataset_names_unique_across_modalities():
-    total = sum(len(urls) for urls in DOWNLOAD_URLS.values())
-    assert total == len(MODALITY_MAP), "a dataset name appears in more than one modality"

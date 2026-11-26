@@ -1,0 +1,23 @@
+name: RIBSEG_V2
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/file/d/1ZZGGrhd0y1fLyOZGo_Y-wlVUP4lkHVgm/view
+  - https://zenodo.org/api/records/3893508/files-archive
+  - https://zenodo.org/api/records/3893498/files-archive
+  - https://zenodo.org/api/records/3893496/files-archive
+  - https://zenodo.org/api/records/3993380/files-archive
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

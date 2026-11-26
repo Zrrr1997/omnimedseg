@@ -1,0 +1,32 @@
+name: TREND
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/4521044/files/1_HEALTHY%20YOUNG_RAW_GOOD_QUALITY.zip?download=1
+  - https://zenodo.org/records/4521044/files/2_HEALTHY%20YOUNG%20SEGMENTED.zip?download=1
+  - https://zenodo.org/records/4521044/files/4_HEALTHY%20OLD%20RAW_GOOD%20QUALITY.zip?download=1
+  - https://zenodo.org/records/4521044/files/5_HEALTHY%20OLD%20SEGMENTED.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/4521044
+  citation: |-
+    @article{popovic2021trend,
+    title={TREND database: Retinal images of healthy young subjects visualized by a portable digital non-mydriatic fundus camera},
+    author={Popovic, Natasa and Vujosevic, Stela and Radunovi{\'c}, Miroslav and Radunovi{\'c}, Miodrag and Popovic, Tomo},
+    journal={Plos one},
+    volume={16},
+    number={7},
+    pages={e0254918},
+    year={2021},
+    publisher={Public Library of Science San Francisco, CA USA}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

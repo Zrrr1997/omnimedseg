@@ -1,0 +1,29 @@
+name: ARCADE
+modality: XRay
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/10390295/files/arcade.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC0-1.0
+  text: Creative Commons Zero v1.0 Universal
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/10390295
+  citation: |-
+    @article{popov2024dataset,
+    title={Dataset for automatic region-based coronary artery disease diagnostics using X-ray angiography images},
+    author={Popov, Maxim and Amanturdieva, Akmaral and Zhaksylyk, Nuren and Alkanov, Alsabir and Saniyazbekov, Adilbek and Aimyshev, Temirgali and Ismailov, Eldar and Bulegenov, Ablay and Kuzhukeyev, Arystan and Kulanbayeva, Aizhan and others},
+    journal={Scientific data},
+    volume={11},
+    number={1},
+    pages={20},
+    year={2024},
+    publisher={Nature Publishing Group UK London}
+    }
+radar_doi: 10.35097/rhkq65718b27nc96
+depends_on: []
+notes: null

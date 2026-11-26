@@ -1,0 +1,27 @@
+name: PAPILA
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/PAPILA/14798004
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: GPL-3.0
+  text: GPL-3.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/PAPILA/14798004?file=35013982
+  citation: |-
+    @article{Kovalyk2022,
+    author = "Oleksandr Kovalyk and Juan Morales-Sánchez and Rafael Verdú-Monedero and Inmaculada Sellés-Navarro and Ana Palazón-Cabanes and José-Luis Sancho-Gómez",
+    title = "{PAPILA}",
+    year = "2022",
+    month = "4",
+    url = "https://figshare.com/articles/dataset/PAPILA/14798004",
+    doi = "10.6084/m9.figshare.14798004.v2"
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

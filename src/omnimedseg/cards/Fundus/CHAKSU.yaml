@@ -1,0 +1,43 @@
+name: CHAKSU
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/Ch_k_u_A_glaucoma_specific_fundus_image_database/20123135
+extract:
+  filter_patterns:
+  - Test/1.0_Original
+  - Train/1.0_Original
+  - Test/3.0_Doctors
+  - Train/3.0_Doctors
+  - Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Cup/Mean/
+  - Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Cup/Mean/
+  - Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Cup/Mean/
+  - Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Disc/Mean/
+  - Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Disc/Mean/
+  - Test/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Disc/Mean/
+  - Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Cup/Mean/
+  - Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Cup/Mean/
+  - Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Cup/Mean/
+  - Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Bosch/Disc/Mean/
+  - Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Forus/Disc/Mean/
+  - Train/5.0_OD_OC_Mean_Median_Majority_STAPLE/Remidio/Disc/Mean/
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/Ch_k_u_A_glaucoma_specific_fundus_image_database/20123135?file=38944805
+  citation: |-
+    @article{J R2023,
+    author = "Harish Kumar J R and Chandra Sekhar Seelamantula",
+    title = "{Chákṣu IMAGE: A glaucoma-specific fundus image database}",
+    year = "2023",
+    month = "1",
+    url = "https://figshare.com/articles/dataset/Ch_k_u_A_glaucoma_specific_fundus_image_database/20123135",
+    doi = "10.6084/m9.figshare.20123135.v2"
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

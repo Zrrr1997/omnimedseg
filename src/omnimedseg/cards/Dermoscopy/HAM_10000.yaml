@@ -1,0 +1,33 @@
+name: HAM_10000
+modality: Dermoscopy
+download:
+  method: auto
+  urls:
+  - https://dataverse.harvard.edu/api/access/dataset/:persistentId/?persistentId=doi:10.7910/DVN/DBW86T&format=original
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T
+  citation: |-
+    @article{Tschandl2020,
+    title = {Human–computer collaboration for skin cancer recognition},
+    volume = {26},
+    ISSN = {1546-170X},
+    url = {http://dx.doi.org/10.1038/s41591-020-0942-0},
+    DOI = {10.1038/s41591-020-0942-0},
+    number = {8},
+    journal = {Nature Medicine},
+    publisher = {Springer Science and Business Media LLC},
+    author = {Tschandl, Philipp and Rinner, Christoph and Apalla, Zoe and Argenziano, Giuseppe and Codella, Noel and Halpern, Allan and Janda, Monika and Lallas, Aimilios and Longo, Caterina and Malvehy, Josep and Paoli, John and Puig, Susana and Rosendahl, Cliff and Soyer, H. Peter and Zalaudek, Iris and Kittler, Harald},
+    year = {2020},
+    month = June,
+    pages = {1229–1234}
+    }
+radar_doi: 10.35097/j3ntzrcmepaygjxv
+depends_on: []
+notes: null

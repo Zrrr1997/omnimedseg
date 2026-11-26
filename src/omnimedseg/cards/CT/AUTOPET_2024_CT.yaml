@@ -1,0 +1,19 @@
+name: AUTOPET_2024_CT
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://fdat.uni-tuebingen.de/records/6gjsg-zcg93/files/psma-fdg-pet-ct-lesions.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

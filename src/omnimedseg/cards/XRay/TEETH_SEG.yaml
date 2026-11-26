@@ -1,0 +1,27 @@
+name: TEETH_SEG
+modality: XRay
+download:
+  method: auto
+  urls:
+  - https://assets.supervisely.com/remote/eyJsaW5rIjogImZzOi8vYXNzZXRzLzE1OThfVGVldGggU2VnbWVudGF0aW9uIG9uIERlbnRhbCBYLXJheSBJbWFnZXMvdGVldGgtc2VnbWVudGF0aW9uLW9uLWRlbnRhbC14LXJheS1pbWFnZXMtRGF0YXNldE5pbmphLnRhciIsICJzaWciOiAiRzlCdW93eXkvbnNLbGRkLzI2QVBEbC9DNnNSRklQMUFTN3hucFNUYTJ0OD0ifQ==
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC0-1.0
+  text: CC0 1.0
+  non_commercial: false
+source:
+  homepage: https://www.kaggle.com/datasets/humansintheloop/teeth-segmentation-on-dental-x-ray-images
+  citation: |-
+    @misc{humans_in_the_loop_2023,
+    title={Teeth Segmentation on dental X-ray images},
+    url={https://www.kaggle.com/dsv/5884500},
+    DOI={10.34740/KAGGLE/DSV/5884500},
+    publisher={Kaggle},
+    author={Humans In The Loop},
+    year={2023}
+    }
+radar_doi: 10.35097/rhkq65718b27nc96
+depends_on: []
+notes: null

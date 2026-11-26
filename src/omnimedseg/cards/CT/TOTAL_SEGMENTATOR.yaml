@@ -1,0 +1,19 @@
+name: TOTAL_SEGMENTATOR
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/10047292/files/Totalsegmentator_dataset_v201.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

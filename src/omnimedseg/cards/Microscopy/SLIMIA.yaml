@@ -1,0 +1,37 @@
+name: SLIMIA
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/OperaPhenix_zip/27390402
+  - https://figshare.com/articles/dataset/OlympusIX05_zip/27390411
+  - https://figshare.com/articles/dataset/Axiovert200M_zip/27393225
+  - https://figshare.com/articles/dataset/Cytation5_zip/27393219
+  - https://figshare.com/articles/dataset/LeicaDMi1_zip/27434550
+  - https://figshare.com/articles/dataset/IncucyteS3_zip/27433092
+  - https://figshare.com/articles/dataset/Axiovert200_zip/27433035
+  - https://figshare.com/articles/dataset/LeicaDMi3000B_zip/27394764
+  - https://figshare.com/articles/dataset/IncucyteZOOM_zip/27438526
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/collections/The_Spheroid_Light_Microscopy_Image_Atlas_SLiMIA_for_morphometrical_analysis_of_three_dimensional_cell_cultures/7486311
+  citation: |-
+    @article{blondeel2025spheroid,
+    title={The Spheroid Light Microscopy Image Atlas for morphometrical analysis of three-dimensional cell cultures},
+    author={Blondeel, Eva and Peirsman, Arne and Vermeulen, Stephanie and Piccinini, Filippo and De Vuyst, Felix and Est{\^e}v{\~a}o, Diogo and Al-Jamei, Sayida and Bedeschi, Martina and Castellani, Gastone and Cruz, T{\^a}nia and others},
+    journal={Scientific Data},
+    volume={12},
+    number={1},
+    pages={283},
+    year={2025},
+    publisher={Nature Publishing Group UK London}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

@@ -1,0 +1,30 @@
+name: PSFHS
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/7851339/files/Pubic%20Symphysis-Fetal%20Head%20Segmentation%20and%20Angle%20of%20Progression.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/7851339#.ZEH6eHZBztU
+  citation: |-
+    @dataset{Jieyun2023PubicSymphysis,
+    author = {Jieyun, B. and
+    ZhanHong, O.},
+    title = {Pubic Symphysis-Fetal Head Segmentation and
+    Angle of Progression},
+    year = 2023,
+    version = {v1},
+    publisher = {Zenodo},
+    doi = {10.5281/zenodo.7851339},
+    url = {https://doi.org/10.5281/zenodo.7851339}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

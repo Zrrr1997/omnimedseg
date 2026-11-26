@@ -1,0 +1,29 @@
+name: MSD_PROSTATE
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-SA-4.0
+  text: CC BY-SA 4.0
+  non_commercial: false
+source:
+  homepage: http://medicaldecathlon.com/#tasks
+  citation: |-
+    @misc{https://doi.org/10.48550/arxiv.1902.09063,
+     doi = {10.48550/ARXIV.1902.09063},
+     url = {https://arxiv.org/abs/1902.09063},
+     author = {Simpson, Amber L. and Antonelli, Michela and Bakas, Spyridon and Bilello, Michel and Farahani, Keyvan and van Ginneken, Bram and Kopp-Schneider, Annette and Landman, Bennett A. and Litjens, Geert and Menze, Bjoern and Ronneberger, Olaf and Summers, Ronald M. and Bilic, Patrick and Christ, Patrick F. and Do, Richard K. G. and Gollub, Marc and Golia-Pernicka, Jennifer and Heckers, Stephan H. and Jarnagin, William R. and McHugo, Maureen K. and Napel, Sandy and Vorontsov, Eugene and Maier-Hein, Lena and Cardoso, M. Jorge},
+     keywords = {Computer Vision and Pattern Recognition (cs.CV), Image and Video Processing (eess.IV), FOS: Computer and information sciences, FOS: Computer and information sciences, FOS: Electrical engineering, electronic engineering, information engineering, FOS: Electrical engineering, electronic engineering, information engineering},
+     title = {A large annotated medical image dataset for the development and evaluation of segmentation algorithms},
+     publisher = {arXiv},
+     year = {2019},
+     copyright = {arXiv.org perpetual, non-exclusive license}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

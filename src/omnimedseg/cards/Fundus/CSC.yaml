@@ -1,0 +1,29 @@
+name: CSC
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/4k64fwnp4k/download/5
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/4k64fwnp4k/5
+  citation: |-
+    @article{yoo2022simple,
+    title={Simple code implementation for deep learning--based segmentation to evaluate central serous chorioretinopathy in fundus photography},
+    author={Yoo, Tae Keun and Kim, Bo Yi and Jeong, Hyun Kyo and Kim, Hong Kyu and Yang, Donghyun and Ryu, Ik Hee},
+    journal={Translational vision science \&amp; technology},
+    volume={11},
+    number={2},
+    pages={22--22},
+    year={2022},
+    publisher={The Association for Research in Vision and Ophthalmology}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

@@ -7,7 +7,7 @@ import logging
 import os
 
 from omnimedseg.core.pipeline import process_datasets, resolve_datasets
-from omnimedseg.core.constants import DOWNLOAD_URLS
+from omnimedseg.core.cards import MODALITIES
 from omnimedseg.core.errors import PipelineError
 from omnimedseg.utils.logger import setup_logging, get_logger
 from omnimedseg.utils.banner import print_banner
@@ -71,7 +71,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         '--modality', type=str, default='Fundus',
-        choices=sorted(DOWNLOAD_URLS) + sorted(MODALITY_ALIASES),
+        choices=sorted(MODALITIES) + sorted(MODALITY_ALIASES),
         help='Modality name (default: Fundus)'
     )
     

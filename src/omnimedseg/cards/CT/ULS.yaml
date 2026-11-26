@@ -1,0 +1,45 @@
+name: ULS
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/10035161/files/ULS23_Part1.z01?download=1
+  - https://github.com/DIAGNijmegen/ULS23/archive/refs/heads/main.zip
+  - https://zenodo.org/records/10035161/files/ULS23_Part1.z02?download=1
+  - https://zenodo.org/records/10035161/files/ULS23_Part1.z03?download=1
+  - https://zenodo.org/records/10035161/files/ULS23_Part1.zip?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z01?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z01?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z03?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z03?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z04?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z05?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z06?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z07?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z08?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z09?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.z10?download=1
+  - https://zenodo.org/records/10050960/files/ULS23_Part2.zip?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z01?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z02?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z03?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z04?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z05?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z06?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z07?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z08?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.z09?download=1
+  - https://zenodo.org/records/10054306/files/ULS23_Part3.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

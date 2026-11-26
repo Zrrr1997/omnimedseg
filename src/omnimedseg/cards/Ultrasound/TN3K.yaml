@@ -1,0 +1,28 @@
+name: TN3K
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/file/d/1reHyY5eTZ5uePXMVMzFOq5j3eFOSp50F/view
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-3.0
+  text: CC-BY-NC 3.0
+  non_commercial: true
+source:
+  homepage: https://github.com/haifangong/TRFE-Net-for-thyroid-nodule-segmentation
+  citation: |-
+    @article{gong2023thyroid,
+    title={Thyroid region prior guided attention for ultrasound segmentation of thyroid nodules},
+    author={Gong, Haifan and Chen, Jiaxin and Chen, Guanqi and Li, Haofeng and Li, Guanbin and Chen, Fei},
+    journal={Computers in biology and medicine},
+    volume={155},
+    pages={106389},
+    year={2023},
+    publisher={Elsevier}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

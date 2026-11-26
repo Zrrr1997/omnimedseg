@@ -1,0 +1,32 @@
+name: FUSC_2021
+modality: Dermoscopy
+download:
+  method: auto
+  urls:
+  - https://github.com/uwm-bigdata/wound-segmentation/archive/refs/heads/master.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: CC BY-NC
+  non_commercial: true
+source:
+  homepage: https://github.com/uwm-bigdata/wound-segmentation/tree/master/data/Foot%20Ulcer%20Segmentation%20Challenge
+  citation: |-
+    @article{Wang2020,
+    title = {Fully automatic wound segmentation with deep convolutional neural networks},
+    volume = {10},
+    ISSN = {2045-2322},
+    url = {http://dx.doi.org/10.1038/s41598-020-78799-w},
+    DOI = {10.1038/s41598-020-78799-w},
+    number = {1},
+    journal = {Scientific Reports},
+    publisher = {Springer Science and Business Media LLC},
+    author = {Wang, Chuanbo and Anisuzzaman, D. M. and Williamson, Victor and Dhar, Mrinal Kanti and Rostami, Behrouz and Niezgoda, Jeffrey and Gopalakrishnan, Sandeep and Yu, Zeyun},
+    year = {2020},
+    month = Dec
+    }
+radar_doi: 10.35097/j3ntzrcmepaygjxv
+depends_on: []
+notes: null

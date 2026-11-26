@@ -1,0 +1,28 @@
+name: HIPBONE
+modality: XRay
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/zm6bxzhmfz/download/1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/zm6bxzhmfz/1
+  citation: |-
+    @misc{Gut_2021,
+    author = {Daniel Gut},
+    title = {X-ray images of the hip joints},
+    year = {2021},
+    publisher = {Mendeley Data},
+    version = {V1},
+    doi = {10.17632/zm6bxzhmfz.1},
+    url = {https://data.mendeley.com/datasets/zm6bxzhmfz/1}
+    }
+radar_doi: 10.35097/rhkq65718b27nc96
+depends_on: []
+notes: null

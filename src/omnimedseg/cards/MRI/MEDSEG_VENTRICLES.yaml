@@ -1,0 +1,27 @@
+name: MEDSEG_VENTRICLES
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://figshare.com/ndownloader/articles/19644636/1
+extract:
+  filter_patterns: []
+  new_folder: true
+license:
+  spdx: CC0-1.0
+  text: CC0 1.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/MedSeg_Ventricles_MRI_Dataset/19644636/1
+  citation: |-
+    @article{MedSeg2022,
+    author = "MedSeg and Tomas Sakinis and Håvard Bjørke Jenssen",
+    title = "{MedSeg Ventricles MRI Dataset}",
+    year = "2022",
+    month = "4",
+    url = "https://figshare.com/articles/dataset/MedSeg_Ventricles_MRI_Dataset/19644636",
+    doi = "10.6084/m9.figshare.19644636.v1"
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

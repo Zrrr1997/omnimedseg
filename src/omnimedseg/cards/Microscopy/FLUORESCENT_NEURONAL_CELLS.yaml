@@ -1,0 +1,42 @@
+name: FLUORESCENT_NEURONAL_CELLS
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://amsacta.unibo.it/id/eprint/7347/28/green.zip
+  - https://amsacta.unibo.it/id/eprint/7347/29/red.zip
+  - https://amsacta.unibo.it/id/eprint/7347/27/yellow.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://amsacta.unibo.it/id/eprint/7347/
+  citation: |-
+    @misc{amsacta7347,
+    publisher = {University of Bologna},
+    year = {2024},
+    title = {Fluorescent Neuronal Cells v2},
+    url = {https://amsacta.unibo.it/id/eprint/7347/},
+    abstract = {Fluorescent Neuronal Cells v2 is a collection of fluorescence microscopy images and the corresponding ground-truth annotations, designed to foster innovative research in the domains of Life Science and Deep Learning.
+
+    This dataset encompasses three image collections wherein rodent neuronal cell nuclei and cytoplasm are stained with diverse markers to highlight their anatomical or functional characteristics.
+    Specifically, we release 1874 high-resolution images alongside 750 corresponding ground-truth annotations for several learning tasks, including semantic segmentation, object detection and counting.
+
+    The contribution is two-fold.
+    First, thanks to the variety of annotations and their accessible formats, we envision our work would facilitate methodological advancements in computer vision approaches for segmentation, detection, feature learning, unsupervised and self-supervised learning, transfer learning, and related areas.
+    Second, by enabling extensive exploration and benchmarking, we hope Fluorescent Neuronal Cells v2 would catalyze breakthroughs in fluorescence microscopy analysis and promote cutting-edge discoveries in life sciences.
+
+    For more information, please refer to Clissa, L. et al., 2024. Fluorescent Neuronal Cells v2: Multi-Task, Multi-Format Annotations for Deep Learning in Microscopy. Scientific data. https://doi.org/10.1038/s41597-024-03005-9.
+
+    This research was partly funded by PNRR - M4C2 - Investimento 1.3, Partenariato Esteso PE00000013 - "FAIR - Future Artificial Intelligence Research" - Spoke 8 "Pervasive AI" and the European Commission under the NextGeneration EU programme.
+    The collection of original images was supported by funding from the University of Bologna and the European Space Agency (Research agreement collaboration 4000123556).},
+    keywords = {semantic segmentation; object detection; object counting; neuronal cells; fluorescent microscopy},
+    author = {Clissa, Luca and Occhinegro, Alessandra and Piscitiello, Emiliana and Taddei, Ludovico and Macaluso, Antonio and Morelli, Roberto and Squarcio, Fabio and Hitrec, Timna and Di Cristoforo, Alessia and Luppi, Marco and Amici, Roberto and Cerri, Matteo and Bastianini, Stefano and Berteotti, Chiara and Lo Martire, Viviana and Martelli, Davide and Tupone, Domenico and Zoccoli, Giovanna}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

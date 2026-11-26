@@ -1,0 +1,19 @@
+name: KITS19
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://github.com/neheller/kits19/archive/refs/heads/master.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: CC BY-NC-SA
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

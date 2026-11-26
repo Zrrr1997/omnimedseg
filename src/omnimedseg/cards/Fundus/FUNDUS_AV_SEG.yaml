@@ -1,0 +1,27 @@
+name: FUNDUS_AV_SEG
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/Fundus-AVSeg/27938034
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/Fundus-AVSeg/27938034?file=50905809
+  citation: |-
+    @article{Deng2024,
+    author = "Zhuo Deng",
+    title = "{Fundus-AVSeg：用于基于 AI 的动脉静脉分割的眼底图像数据集}",
+    year = "2024",
+    month = "12",
+    url = "https://figshare.com/articles/dataset/Fundus-AVSeg/27938034",
+    doi = "10.6084/m9.figshare.27938034.v2"
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

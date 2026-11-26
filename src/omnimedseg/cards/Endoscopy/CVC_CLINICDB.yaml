@@ -1,0 +1,28 @@
+name: CVC_CLINICDB
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://www.dropbox.com/scl/fi/ky766dwcxt9meq3aklkip/CVC-ClinicDB.rar?rlkey=61xclnrraadf1niqdvldlds93&e=1&dl=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '''The use of this database is completely restricted for research and educational purposes. The use of this database is forbidden for commercial purposes.'''
+  non_commercial: true
+source:
+  homepage: https://polyp.grand-challenge.org/CVCClinicDB/
+  citation: |-
+    @article{bernal2015wm,
+    title={WM-DOVA maps for accurate polyp highlighting in colonoscopy: Validation vs. saliency maps from physicians},
+    author={Bernal, Jorge and S{\'a}nchez, F Javier and Fern{\'a}ndez-Esparrach, Gloria and Gil, Debora and Rodr{\'\i}guez, Cristina and Vilari{\~n}o, Fernando},
+    journal={Computerized medical imaging and graphics},
+    volume={43},
+    pages={99--111},
+    year={2015},
+    publisher={Elsevier}
+    }
+radar_doi: 10.35097/e4xtyp4hj8sdwrp2
+depends_on: []
+notes: null

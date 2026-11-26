@@ -1,0 +1,28 @@
+name: CCAGT
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/wg4bpm33hj/download/2
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-3.0
+  text: CC-BY-NC 3.0
+  non_commercial: true
+source:
+  homepage: https://data.mendeley.com/datasets/wg4bpm33hj/2
+  citation: |-
+    @data{Amorim_CCAgT_Images_of_2022,
+    author = {Atkinson Amorim and João Gustavo and André Matias and Tainee Bottamedi and Vinícius Sanches and Ane Francyne Costa and Fabiana Onofre and Alexandre Onofre and Aldo Wangenheim},
+    title = {CCAgT: Images of Cervical Cells with AgNOR Stain Technique},
+    publisher = {Mendeley Data},
+    year = {2022},
+    version = {V2},
+    doi = {10.17632/wg4bpm33hj.2},
+    url = {https://doi.org/10.17632/wg4bpm33hj.2}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

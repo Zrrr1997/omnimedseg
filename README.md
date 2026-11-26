@@ -289,11 +289,40 @@ graph LR
 
 ## 📝 Adding a New Dataset
 
-1. Add the dataset download URL to `src/omnimedseg/core/constants.py`
-2. Create a converter in `src/omnimedseg/converters/[modality]/[dataset].py` that defines
-   `convert_<dataset_name_in_lowercase>()` (no required arguments). It is found automatically by name;
+Every dataset is described by a **dataset card**, a small YAML file in
+`src/omnimedseg/cards/<Modality>/<NAME>.yaml`. It is the single source of truth for where the data comes
+from, how it is extracted, and under which license it may be used:
+
+```yaml
+name: HRF
+modality: Fundus
+download:
+  method: auto            # or: manual (+ instructions) when there is no working direct download
+  urls:
+  - https://www5.cs.fau.de/fileadmin/research/datasets/fundus-images/all.zip
+extract:
+  filter_patterns: []     # only extract archive members under these paths
+  new_folder: false       # extract each archive into its own folder
+license:
+  spdx: CC-BY-4.0         # SPDX id, or null for non-standard licenses
+  text: CC-BY 4.0         # license statement as published
+  non_commercial: false   # true / false / null (unknown)
+source:
+  homepage: https://www5.cs.fau.de/research/data/fundus-images/
+  citation: |-
+    @article{budai2013robust, ...}
+radar_doi: 10.35097/mkxqraa69emyrzre   # converted data on RADAR4KIT
+depends_on: []            # datasets that must be downloaded first
+notes: null
+```
+
+To add a dataset:
+
+1. Add a card `src/omnimedseg/cards/<Modality>/<NAME>.yaml` (copy an existing one)
+2. Add a converter `src/omnimedseg/converters/<modality>/<name>.py` that defines
+   `convert_<name_in_lowercase>()` (no required arguments). It is found automatically by name;
    helper functions may use any other name.
-3. Run `pytest -m "not golden"` — it checks that every dataset resolves to exactly one converter
+3. Run `pytest -m "not golden"`; it validates all cards and checks that every card has exactly one converter
 4. Make a PR
 
 ### Datasets that need a manual download

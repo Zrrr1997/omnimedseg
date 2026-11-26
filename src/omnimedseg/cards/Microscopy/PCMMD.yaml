@@ -1,0 +1,28 @@
+name: PCMMD
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-api/zip/3v2nrxpr9s/download/1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/3v2nrxpr9s/1
+  citation: |-
+    @data{Andrade_PCMMD_Plasma_Cells_2024,
+    author = {Caio Andrade and Marcos Ferreira and Brenno Alencar and Jorge Batista Filho and Matheus Guimarães and Iarley Moraes and Tiago Lopes and Allan dos Santos and Mariane dos Santos and Maria da Silva e Silva and Izabela Rosa and Gilson de Carvalho and Herbert Santos and Marcia Santos and Roberto Meyer and Luciana Knop and Songeli Freire and Ricardo Rios and Tatiane Nogueira},
+    title = {PCMMD: Plasma Cells for Multiple Myeloma Diagnosis},
+    year = {2024},
+    publisher = {Mendeley Data},
+    version = {V1},
+    doi = {10.17632/3v2nrxpr9s.1},
+    url = {https://doi.org/10.17632/3v2nrxpr9s.1}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

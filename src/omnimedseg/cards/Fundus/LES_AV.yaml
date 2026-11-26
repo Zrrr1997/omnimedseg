@@ -1,0 +1,27 @@
+name: LES_AV
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/LES-AV_dataset/11857698
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: GPL-3.0
+  text: GPL-3.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/LES-AV_dataset/11857698?file=21732282
+  citation: |-
+    @article{Orlando2020,
+    author = "José Ignacio Orlando and João Barbosa–Breda and Karel Van Keer and Matthew B. Blaschko and Pablo Javier Blanco and Carlos Alberto Bulant",
+    title = "{LES-AV dataset}",
+    year = "2020",
+    month = "2",
+    url = "https://figshare.com/articles/dataset/LES-AV_dataset/11857698",
+    doi = "10.6084/m9.figshare.11857698.v1"
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

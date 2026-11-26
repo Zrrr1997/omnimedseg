@@ -1,0 +1,34 @@
+name: FASS
+modality: Ultrasound
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-files/datasets/4gcpm9dsc3/files/89e74076-ff57-4e81-9634-4fc29c6128ff/file_downloaded
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://data.mendeley.com/datasets/4gcpm9dsc3/1
+  citation: |-
+    @data{DaCorreggio2023Fetal,
+    author = {Da Correggio, Karine Souza and
+    Noya Galluzzo, Roberto and
+    Santos, Luís Otávio and
+    Soares Muylaert Barroso, Felipe and
+    Zimmermann Loureiro Chaves, Thiago and
+    Sherlley Casimiro Onofre, Alexandre and
+    von Wangenheim, Aldo},
+    title = {Fetal Abdominal Structures Segmentation Dataset Using Ultrasonic Images},
+    year = 2023,
+    version = {V1},
+    publisher = {Mendeley Data},
+    doi = {10.17632/4gcpm9dsc3.1},
+    url = {https://doi.org/10.17632/4gcpm9dsc3.1}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

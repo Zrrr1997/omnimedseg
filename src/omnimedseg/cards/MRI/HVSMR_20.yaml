@@ -1,0 +1,27 @@
+name: HVSMR_20
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://figshare.com/ndownloader/articles/25226360
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/HVSMR-2_0_orig_/25226360?backTo=/collections/HVSMR-2_0_A_3D_cardiovascular_MR_dataset_for_whole-heart_segmentation_in_congenital_heart_disease/7074755
+  citation: |-
+    @article{Pace2024,
+    author = "Danielle Pace and Hannah Contreras and Jennifer Romanowicz and Shruti Ghelani and Imon Rahaman and Yue Zhang and Patricia Gao and mohammad imrul jubair and Tom Yeh and Polina Golland and Tal Geva and Sunil Ghelani and Andrew Powell and mehdi hedjazi moghari",
+    title = "{HVSMR-2.0 (orig)}",
+    year = "2024",
+    month = "2",
+    url = "https://figshare.com/articles/dataset/HVSMR-2_0_orig_/25226360",
+    doi = "10.6084/m9.figshare.25226360.v2"
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

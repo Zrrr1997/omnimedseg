@@ -1,0 +1,27 @@
+name: NETRA
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/dataset/NETRA_Dataset/22817144
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/dataset/NETRA_Dataset/22817144?file=40564889
+  citation: |-
+    @article{Goperma2023,
+    author = "Rimsa Goperma",
+    title = "{NETRA Dataset}",
+    year = "2023",
+    month = "5",
+    url = "https://figshare.com/articles/dataset/NETRA_Dataset/22817144",
+    doi = "10.6084/m9.figshare.22817144.v1"
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

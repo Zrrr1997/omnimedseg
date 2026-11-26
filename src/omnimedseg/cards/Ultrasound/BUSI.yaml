@@ -1,0 +1,29 @@
+name: BUSI
+modality: Ultrasound
+download:
+  method: manual
+  urls:
+  - https://scholar.cu.edu.eg/Dataset_BUSI.zip
+  instructions: The original BUSI download (https://scholar.cu.edu.eg/Dataset_BUSI.zip) is offline. Obtain Dataset_BUSI.zip (Al-Dhabyani et al., Data in Brief 28, 2020, doi:10.1016/j.dib.2019.104863) and place it at datasets/Ultrasound/BUSI/Dataset_BUSI.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '"Breast Ultrasound dataset can be used to train machine learning models which can classify, detect and segment early signs of masses or micro-calcification in breast cancer. Researchers with interest in classification, detection, and segmentation of breast cancer can utilize this data of breast ultrasound images, combine it with others'' datasets, and analyze them for further insights."'
+  non_commercial: null
+source:
+  homepage: https://scholar.cu.edu.eg/?q=afahmy/pages/dataset
+  citation: |-
+    @article{al2020dataset,
+    title={Dataset of breast ultrasound images},
+    author={Al-Dhabyani, Walid and Gomaa, Mohammed and Khaled, Hussien and Fahmy, Aly},
+    journal={Data in brief},
+    volume={28},
+    pages={104863},
+    year={2020},
+    publisher={Elsevier}
+    }
+radar_doi: 10.35097/qccrp1pkbk1j0dq0
+depends_on: []
+notes: null

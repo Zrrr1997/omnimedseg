@@ -18,7 +18,7 @@ from omnimedseg.core.errors import ConverterNotFoundError
 
 logger = logging.getLogger(__name__)
 
-# Modality key (as used in core.constants) -> converter subpackage
+# Modality (as used in dataset cards) -> converter subpackage
 MODALITY_PACKAGES = {
     "Fundus": "fundus",
     "Ultrasound": "ultrasound",

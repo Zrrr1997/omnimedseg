@@ -1,0 +1,27 @@
+name: FIVES
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://figshare.com/articles/figure/FIVES_A_Fundus_Image_Dataset_for_AI-based_Vessel_Segmentation/19688169
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://figshare.com/articles/figure/FIVES_A_Fundus_Image_Dataset_for_AI-based_Vessel_Segmentation/19688169/1
+  citation: |-
+    @article{Jin2022,
+    author = "Kai Jin and Xingru Huang and Jingxin Zhou and Yunxiang Li and Yan Yan and Yibao Sun and Qianni Zhang and Yaqi Wang and Juan Ye",
+    title = "{FIVES: A Fundus Image Dataset for AI-based Vessel Segmentation}",
+    year = "2022",
+    month = "5",
+    url = "https://figshare.com/articles/figure/FIVES_A_Fundus_Image_Dataset_for_AI-based_Vessel_Segmentation/19688169",
+    doi = "10.6084/m9.figshare.19688169.v1"
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

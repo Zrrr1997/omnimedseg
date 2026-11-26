@@ -1,0 +1,29 @@
+name: CHASEDB
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://researchinnovation.kingston.ac.uk/files/40659508/CHASEDB1.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://researchinnovation.kingston.ac.uk/en/datasets/chasedb1-retinal-vessel-reference-dataset-4/
+  citation: |-
+    @article{fraz2012ensemble,
+    title={An ensemble classification-based approach applied to retinal blood vessel segmentation},
+    author={Fraz, Muhammad Moazam and Remagnino, Paolo and Hoppe, Andreas and Uyyanonvara, Bunyarit and Rudnicka, Alicja R and Owen, Christopher G and Barman, Sarah A},
+    journal={IEEE transactions on biomedical engineering},
+    volume={59},
+    number={9},
+    pages={2538--2548},
+    year={2012},
+    publisher={IEEE}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: 'Alternative URL (previously used): https://researchdata.kingston.ac.uk/96/1/CHASEDB1.zip'

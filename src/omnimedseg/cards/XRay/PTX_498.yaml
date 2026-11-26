@@ -1,0 +1,28 @@
+name: PTX_498
+modality: XRay
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/8266529/files/PTX-498-v2-fix.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/8266529
+  citation: |-
+    @article{wang2021deepsdm,
+    title={DeepSDM: Boundary-aware pneumothorax segmentation in chest X-ray images},
+    author={Wang, Yunpeng and Wang, Kang and Peng, Xueqing and Shi, Lili and Sun, Jing and Zheng, Shibao and Shan, Fei and Shi, Weiya and Liu, Lei},
+    journal={Neurocomputing},
+    volume={454},
+    pages={201--211},
+    year={2021},
+    publisher={Elsevier}
+    }
+radar_doi: 10.35097/rhkq65718b27nc96
+depends_on: []
+notes: null

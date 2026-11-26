@@ -1,0 +1,22 @@
+name: ABDOMEN_1K
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/5903099/files/AbdomenCT-1K-ImagePart1.zip?download=1
+  - https://zenodo.org/records/5903846/files/AbdomenCT-1K-ImagePart2.zip?download=1
+  - https://zenodo.org/records/5903769/files/AbdomenCT-1K-ImagePart3.zip?download=1
+  - https://zenodo.org/records/5903769/files/Mask.7z?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

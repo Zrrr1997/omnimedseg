@@ -1,0 +1,19 @@
+name: MEDIASTINAL_STRUCTURES
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/uc?id=1ZsFq7PslqQ5ow_dXB01kDkaKPqYDXD5d
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-3.0
+  text: CC-BY 3.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

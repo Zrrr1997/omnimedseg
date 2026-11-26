@@ -1,0 +1,19 @@
+name: CURVAS
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/12687192/files/training_set.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

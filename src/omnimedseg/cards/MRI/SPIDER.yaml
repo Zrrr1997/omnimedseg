@@ -1,0 +1,20 @@
+name: SPIDER
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/10159290/files/images.zip?download=1
+  - https://zenodo.org/records/10159290/files/masks.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/10159290
+  citation: "@article{vanderGraaf2024,\n title = {Lumbar spine segmentation in MR images: a dataset and a public benchmark},\n volume = {11},\n ISSN = {2052-4463},\n url = {http://dx.doi.org/10.1038/s41597-024-03090-w},\n DOI = {10.1038/s41597-024-03090-w},\n number = {1},\n journal = {Scientific Data},\n publisher = {Springer Science and Business Media LLC},\n author = {van der Graaf, Jasper W. and van Hooff, Miranda L. and Buckens, Constantinus F. M. and Rutten, Matthieu and van Susante, Job L. C. and Kroeze, Robert Jan and de Kleuver, Marinus and van Ginneken, Bram and Lessmann, Nikolas},\n year = {2024},\n month = Mar \n}"
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

@@ -1,0 +1,34 @@
+name: SEGTHY
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://www.campar.in.tum.de/public_datasets/2022_plosone_eilers/MRI_data.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: https://www.cs.cit.tum.de/camp/publications/segthy-dataset/
+  citation: |-
+    @article{Krnke2022,
+     title = {Tracked 3D ultrasound and deep neural network-based thyroid segmentation reduce interobserver variability in thyroid volumetry},
+     volume = {17},
+     ISSN = {1932-6203},
+     url = {http://dx.doi.org/10.1371/journal.pone.0268550},
+     DOI = {10.1371/journal.pone.0268550},
+     number = {7},
+     journal = {PLOS ONE},
+     publisher = {Public Library of Science (PLoS)},
+     author = {Kr\"{o}nke, Markus and Eilers, Christine and Dimova, Desislava and K\"{o}hler, Melanie and Buschner, Gabriel and Schweiger, Lilit and Konstantinidou, Lemonia and Makowski, Marcus and Nagarajah, James and Navab, Nassir and Weber, Wolfgang and Wendler, Thomas},
+     editor = {V E, Sathishkumar},
+     year = {2022},
+     month = July,
+     pages = {e0268550}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

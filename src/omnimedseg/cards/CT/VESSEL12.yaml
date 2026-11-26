@@ -1,0 +1,23 @@
+name: VESSEL12
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/8055066/files/VESSEL12_01-05.tar.bz2?download=1
+  - https://zenodo.org/records/8055066/files/VESSEL12_01-20_Lungmasks.tar.bz2?download=1
+  - https://zenodo.org/records/8055066/files/VESSEL12_06-10.tar.bz2?download=1
+  - https://zenodo.org/records/8055066/files/VESSEL12_11_15.tar.bz2?download=1
+  - https://zenodo.org/records/8055066/files/VESSEL12_16-20.tar.bz2?download=1
+extract:
+  filter_patterns: []
+  new_folder: true
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

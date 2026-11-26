@@ -1,0 +1,31 @@
+name: BBBC038
+modality: Microscopy
+download:
+  method: auto
+  urls:
+  - https://data.broadinstitute.org/bbbc/BBBC038/stage1_train.zip
+  - https://data.broadinstitute.org/bbbc/BBBC038/stage1_test.zip
+  - https://data.broadinstitute.org/bbbc/BBBC038/stage2_test_final.zip
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC0-1.0
+  text: CC0 1.0
+  non_commercial: false
+source:
+  homepage: https://bbbc.broadinstitute.org/BBBC038
+  citation: |-
+    @article{caicedo2019nucleus,
+    title={Nucleus segmentation across imaging experiments: the 2018 Data Science Bowl},
+    author={Caicedo, Juan C and Goodman, Allen and Karhohs, Kyle W and Cimini, Beth A and Ackerman, Jeanelle and Haghighi, Marzieh and Heng, CherKeng and Becker, Tim and Doan, Minh and McQuin, Claire and others},
+    journal={Nature methods},
+    volume={16},
+    number={12},
+    pages={1247--1253},
+    year={2019},
+    publisher={Nature Publishing Group US New York}
+    }
+radar_doi: 10.35097/rz38r5geakmb4t8m
+depends_on: []
+notes: null

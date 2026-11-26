@@ -1,0 +1,27 @@
+name: PITUITORY_TUMOR
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://springernature.figshare.com/ndownloader/articles/27894084
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: |-
+    @article{Pandit2025,
+    author = "Anand Pandit and Andrew Keenlyside and Danyal Khan and Gerda Reischer and Muhammad Kamal and Nina Yoh and Zane Jaunmuktane and Anouk Borg and Neil Dorward and Stefanie Baldeweg and Indran Davagnanam and Harpreet Hyare and Parashkev Nachev and Hani Marcus",
+    title = "{Mapping pituitary neuroendocrine tumors: an annotated MRI dataset profiling tumor and carotid characteristics}",
+    year = "2025",
+    month = "1",
+    url = "https://springernature.figshare.com/articles/dataset/Mapping_pituitary_neuroendocrine_tumors_an_annotated_MRI_dataset_profiling_tumor_and_carotid_characteristics/27894084",
+    doi = "10.6084/m9.figshare.27894084.v1"
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

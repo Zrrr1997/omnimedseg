@@ -1,0 +1,28 @@
+name: ISLES_2022
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/7960856/files/ISLES-2022.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: Creative Commons Attribution 4.0 International
+  non_commercial: false
+source:
+  homepage: https://zenodo.org/records/7960856
+  citation: |-
+    @MISC{Hernandez_Petzsche2022-iv,
+     title = "{ISLES} 2022: A multi-center magnetic resonance imaging stroke
+     lesion segmentation dataset",
+     author = "Hernandez Petzsche, Moritz Roman and de la Rosa, Ezequiel and
+     Wiest, Roland and Hanning, Uta and Wiestler, Benedikt and
+     Kirschke, Jan S",
+     publisher = "Zenodo",
+     year = 2022
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

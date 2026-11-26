@@ -1,0 +1,35 @@
+name: SPINE
+modality: MRI
+download:
+  method: auto
+  urls:
+  - http://www.cg.informatik.uni-siegen.de/data/Downloads/SpineDatasets.7z
+  - http://www.cg.informatik.uni-siegen.de/data/Downloads/SpineSegmented.7z
+  - http://www.cg.informatik.uni-siegen.de/data/Downloads/SpineSource.7z
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '''Together with this submission, we make our program code publicly available under an open-source license, including 17 anonymized datasets with corresponding segmentations.'''
+  non_commercial: null
+source:
+  homepage: https://www.cg.informatik.uni-siegen.de/en/spine-segmentation-and-analysis
+  citation: |-
+    @article{Zuki2014,
+     title = {Robust Detection and Segmentation for Diagnosis of Vertebral Diseases Using Routine MR Images},
+     volume = {33},
+     ISSN = {1467-8659},
+     url = {http://dx.doi.org/10.1111/cgf.12343},
+     DOI = {10.1111/cgf.12343},
+     number = {6},
+     journal = {Computer Graphics Forum},
+     publisher = {Wiley},
+     author = {Zukić, Dženan and Vlasák, Aleš and Egger, Jan and Hořínek, Daniel and Nimsky, Christopher and Kolb, Andreas},
+     year = {2014},
+     month = Mar,
+     pages = {190–204}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

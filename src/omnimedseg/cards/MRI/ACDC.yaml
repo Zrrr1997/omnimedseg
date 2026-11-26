@@ -1,0 +1,33 @@
+name: ACDC
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://humanheart-project.creatis.insa-lyon.fr/database/api/v1/collection/637218c173e9f0047faa00fb/download
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://humanheart-project.creatis.insa-lyon.fr/database/#collection/637218c173e9f0047faa00fb/folder/637218e573e9f0047faa00fc
+  citation: |-
+    @article{Bernard2018,
+     title = {Deep Learning Techniques for Automatic MRI Cardiac Multi-Structures Segmentation and Diagnosis: Is the Problem Solved?},
+     volume = {37},
+     ISSN = {1558-254X},
+     url = {http://dx.doi.org/10.1109/TMI.2018.2837502},
+     DOI = {10.1109/tmi.2018.2837502},
+     number = {11},
+     journal = {IEEE Transactions on Medical Imaging},
+     publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
+     author = {Bernard, Olivier and Lalande, Alain and Zotti, Clement and Cervenansky, Frederick and Yang, Xin and Heng, Pheng-Ann and Cetin, Irem and Lekadir, Karim and Camara, Oscar and Gonzalez Ballester, Miguel Angel and Sanroma, Gerard and Napel, Sandy and Petersen, Steffen and Tziritas, Georgios and Grinias, Elias and Khened, Mahendra and Kollerathu, Varghese Alex and Krishnamurthi, Ganapathy and Rohé, Marc-Michel and Pennec, Xavier and Sermesant, Maxime and Isensee, Fabian and J\"{a}ger, Paul and Maier-Hein, Klaus H. and Full, Peter M. and Wolf, Ivo and Engelhardt, Sandy and Baumgartner, Christian F. and Koch, Lisa M. and Wolterink, Jelmer M. and Išgum, Ivana and Jang, Yeonggul and Hong, Yoonmi and Patravali, Jay and Jain, Shubham and Humbert, Olivier and Jodoin, Pierre-Marc},
+     year = {2018},
+     month = Nov,
+     pages = {2514–2525}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null

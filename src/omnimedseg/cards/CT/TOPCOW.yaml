@@ -1,0 +1,19 @@
+name: TOPCOW
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://drive.switch.ch/index.php/s/rkqOO3adjmJVlMz/download
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: null
+  text: '"Open use. Must provide the source. Use for commercial purposes requires permission of the data owner. You may use this dataset for non-commercial purposes. You may use this dataset for commercial purposes, but you must seek prior permission from the data owner. You must provide the source (author, title and link to the dataset)."'
+  non_commercial: true
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

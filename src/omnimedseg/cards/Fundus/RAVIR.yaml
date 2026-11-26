@@ -1,0 +1,29 @@
+name: RAVIR
+modality: Fundus
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/file/d/1ZlZoSStvE9VCRq3bJiGhQH931EF0h3hh/view
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-SA-4.0
+  text: CC BY-NC-SA 4.0
+  non_commercial: true
+source:
+  homepage: https://ravir.grand-challenge.org/data/
+  citation: |-
+    @article{hatamizadeh2022ravir,
+    title={RAVIR: A dataset and methodology for the semantic segmentation and quantitative analysis of retinal arteries and veins in infrared reflectance imaging},
+    author={Hatamizadeh, Ali and Hosseini, Hamid and Patel, Niraj and Choi, Jinseo and Pole, Cameron C and Hoeferlin, Cory M and Schwartz, Steven D and Terzopoulos, Demetri},
+    journal={IEEE Journal of Biomedical and Health Informatics},
+    volume={26},
+    number={7},
+    pages={3272--3283},
+    year={2022},
+    publisher={IEEE}
+    }
+radar_doi: 10.35097/mkxqraa69emyrzre
+depends_on: []
+notes: null

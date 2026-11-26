@@ -1,0 +1,24 @@
+name: WAW_TACE
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/12741586/files/ct_scans_1_4_wawtace_09_05_24.zip?download=1
+  - https://zenodo.org/records/12741586/files/ct_scans_2_4_wawtace_09_05_24.zip?download=1
+  - https://zenodo.org/records/12741586/files/ct_scans_3_4_wawtace_09_05_24.zip?download=1
+  - https://zenodo.org/records/12741586/files/ct_scans_4_4_wawtace_09_05_24.zip?download=1
+  - https://zenodo.org/records/12741586/files/organ_masks_wawtace_09_05_2024.zip?download=1
+  - https://zenodo.org/records/12741586/files/tumor_masks_wawtace_v1_08_05_2024.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-4.0
+  text: CC-BY 4.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

@@ -1,0 +1,19 @@
+name: WORD
+modality: CT
+download:
+  method: auto
+  urls:
+  - https://drive.google.com/file/d/19OWCXZGrimafREhXm8O8w2HBHZTfxEgU/view
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: GPL-3.0
+  text: GPL-3.0
+  non_commercial: false
+source:
+  homepage: null
+  citation: null
+radar_doi: 10.35097/y0g9yzy5n9vu8h46
+depends_on: []
+notes: null

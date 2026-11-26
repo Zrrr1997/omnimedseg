@@ -1,0 +1,25 @@
+name: EAD
+modality: Endoscopy
+download:
+  method: auto
+  urls:
+  - https://data.mendeley.com/public-files/datasets/c7fjbxcgj9/files/f07bd9ec-1416-4343-8314-8dee4b5efa71/file_downloaded
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-3.0
+  text: CC-BY-NC 3.0
+  non_commercial: true
+source:
+  homepage: https://data.mendeley.com/datasets/c7fjbxcgj9/3
+  citation: |-
+    @article{ali2019endoscopy,
+    title={Endoscopy artifact detection (EAD 2019) challenge dataset},
+    author={Ali, Sharib and Zhou, Felix and Daul, Christian and Braden, Barbara and Bailey, Adam and Realdon, Stefano and East, James and Wagnieres, Georges and Loschenov, Victor and Grisan, Enrico and others},
+    journal={arXiv preprint arXiv:1905.03209},
+    year={2019}
+    }
+radar_doi: 10.35097/e4xtyp4hj8sdwrp2
+depends_on: []
+notes: null

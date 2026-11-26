@@ -1,0 +1,30 @@
+name: HNTSMRG
+modality: MRI
+download:
+  method: auto
+  urls:
+  - https://zenodo.org/records/11199559/files/HNTSMRG24_train.zip?download=1
+extract:
+  filter_patterns: []
+  new_folder: false
+license:
+  spdx: CC-BY-NC-4.0
+  text: CC-BY-NC 4.0
+  non_commercial: true
+source:
+  homepage: https://zenodo.org/records/11199559
+  citation: |-
+    @misc{https://doi.org/10.5281/zenodo.11199559,
+     doi = {10.5281/ZENODO.11199559},
+     url = {https://zenodo.org/doi/10.5281/zenodo.11199559},
+     author = {Wahid, Kareem and Dede, Cem and Naser, Mohamed and Fuller, Clifton},
+     keywords = {Magnetic resonance imaging, Artificial intelligence, Machine learning, segmentation, radiotherapy, Head and neck cancer, oropharyngeal cancer, radiation oncology},
+     language = {en},
+     title = {Training Dataset for HNTSMRG 2024 Challenge},
+     publisher = {Zenodo},
+     year = {2024},
+     copyright = {Creative Commons Attribution Non Commercial 4.0 International}
+    }
+radar_doi: 10.35097/4enuc2h4846kegka
+depends_on: []
+notes: null
