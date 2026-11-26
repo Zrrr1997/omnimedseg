@@ -9,8 +9,8 @@ from pathlib import Path
 
 import pytest
 
-import src
-from src.core.constants import DOWNLOAD_URLS, MODALITY_MAP
+import omnimedseg
+from omnimedseg.core.constants import DOWNLOAD_URLS, MODALITY_MAP
 
 # Modality key in constants.py -> converter subpackage
 MODALITY_PACKAGES = {
@@ -27,7 +27,7 @@ MODALITY_PACKAGES = {
 
 
 def _all_modules():
-    return sorted(m.name for m in pkgutil.walk_packages(src.__path__, "src."))
+    return sorted(m.name for m in pkgutil.walk_packages(omnimedseg.__path__, "omnimedseg."))
 
 
 @pytest.mark.parametrize("module", _all_modules())
@@ -47,7 +47,7 @@ def test_modalities_match_converter_packages():
 
 
 def _converter_registry(modality):
-    return importlib.import_module(f"src.converters.{MODALITY_PACKAGES[modality]}").CONVERTERS
+    return importlib.import_module(f"omnimedseg.converters.{MODALITY_PACKAGES[modality]}").CONVERTERS
 
 
 @pytest.mark.parametrize("modality", sorted(MODALITY_PACKAGES))

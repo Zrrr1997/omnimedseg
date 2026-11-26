@@ -64,13 +64,15 @@ Paper = "https://doi.org/10.5445/IR/1000194202"
 Data = "https://doi.org/10.35097/qkc5m4kzran3g1yc"
 
 [project.scripts]
-omnimedseg = "src.cli.main:main"
+omnimedseg = "omnimedseg.cli.main:main"
 
 [tool.setuptools.packages.find]
-include = ["src*"]
+where = ["src"]
+include = ["omnimedseg*"]
 
 [tool.setuptools.package-data]
-"src.converters" = ["*.csv"]
+"omnimedseg.converters" = ["*.csv"]
+"omnimedseg.downloaders" = ["*.py"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

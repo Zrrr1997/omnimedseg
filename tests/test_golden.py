@@ -24,7 +24,7 @@ def test_conversion_matches_golden(modality, dataset, monkeypatch):
 
     # Converters currently resolve 'datasets/...' relative to the working directory.
     monkeypatch.chdir(REPO_ROOT)
-    from src.core.pipeline import process_datasets
+    from omnimedseg.core.pipeline import process_datasets
 
     shutil.rmtree(ds_dir / "converted", ignore_errors=True)
     process_datasets([dataset], modality, convert=True, keep_raw_data=True)

@@ -165,11 +165,7 @@ The golden tests need the raw data on disk once:
 #### Download and Convert a Single Dataset
 
 ```bash
-# Using the CLI
 omnimedseg --dataset PAPILA --download --convert
-
-# Or using the Python script
-python main_script.py --dataset PAPILA --download --convert
 ```
 
 
@@ -293,8 +289,8 @@ graph LR
 
 ## 📝 Adding a New Dataset
 
-1. Add dataset download URL to `src/core/constants.py`
-2. Create converter in `src/converters/[modality]/[dataset].py`
+1. Add dataset download URL to `src/omnimedseg/core/constants.py`
+2. Create converter in `src/omnimedseg/converters/[modality]/[dataset].py`
 3. Make a PR
 3. That's it!
 
