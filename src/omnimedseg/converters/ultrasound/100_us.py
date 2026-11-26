@@ -16,7 +16,7 @@ def convert_100_us():
 
     image_files = [os.path.join(extracted_base, '105 US Images', f) for f in os.listdir(os.path.join(extracted_base, '105 US Images')) if '.png' in f]
 
-    for file in tqdm(image_files, desc="🖼️  Processing 100_US images"):
+    for file in tqdm(image_files, desc="Processing 100_US images"):
         filename = f"{idx:06d}.png"
 
         image = cv2.imread(file)

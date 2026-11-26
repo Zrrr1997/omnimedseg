@@ -54,7 +54,7 @@ def convert_flare_2021():
         results = list(tqdm(
             executor.map(process_fn, tasks),
             total=len(tasks),
-            desc="🖼️  Processing FLARE_2021 images"
+            desc="Processing FLARE_2021 images"
         ))
 
     for filename, mapping in results:

@@ -69,7 +69,7 @@ def convert_arcade():
 
     results = []
     with ProcessPoolExecutor() as executor:
-        for result in tqdm(executor.map(process_image_task, tasks), total=len(tasks), desc="🖼️  Processing ARCADE images"):
+        for result in tqdm(executor.map(process_image_task, tasks), total=len(tasks), desc="Processing ARCADE images"):
             results.append(result)
 
     filename_map = {}

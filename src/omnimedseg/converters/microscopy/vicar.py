@@ -36,7 +36,7 @@ def convert_vicar():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, args) for args in args_list]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing VICAR images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing VICAR images"):
             filename, file, label_path = future.result()
             filename_map[filename] = {
                 'image': file,

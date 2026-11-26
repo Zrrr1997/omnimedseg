@@ -28,13 +28,8 @@ def process_file_uls(idx_file_pair, extracted_base, converted_path, label_classe
     }
 
 def convert_uls():
-    print(
-        "\n" + "=" * 80 +
-        "\n⚠️  WARNING: --keep_raw is disabled for ULS (too large)\n"
-        "   To reproduce the raw data, run again with --extract\n"
-        "   (make sure you have enough disk space!)\n" +
-        "=" * 80 + "\n"
-    )
+    print("note: --keep-raw has no effect for ULS (raw data is too large to keep); "
+          "run `omnimedseg extract ULS` to recreate it")
     converted_path = os.path.join(data_root(), 'CT', 'ULS', 'converted')
     label_classes = ['lesion']
     ensure_directories(converted_path, label_classes)
@@ -72,7 +67,7 @@ def convert_uls():
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_fn, task) for task in tasks]
         results = []
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing ULS images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing ULS images"):
             results.append(future.result())
 
     for filename, mapping in results:

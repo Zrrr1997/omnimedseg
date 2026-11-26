@@ -30,7 +30,7 @@ def convert_fundus_av_seg():
         label: os.path.join(extracted_base, folder_names_extracted[label]) for label in labels
     }
 
-    for image_file in tqdm(image_files, desc="🖼️  Processing FUNDUS AV SEG images"):
+    for image_file in tqdm(image_files, desc="Processing FUNDUS AV SEG images"):
         img_filename = os.path.basename(image_file)
         filename = f"{idx:06d}.png"
 
@@ -42,7 +42,7 @@ def convert_fundus_av_seg():
         label = cv2.imread(label_path)
 
         if label is None:
-            print(f"⚠️ Could not read label for {img_filename}")
+            print(f"warning: could not read label for {img_filename}")
             continue
 
         veins = blue_part(label) | green_part(label)

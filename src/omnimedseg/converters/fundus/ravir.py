@@ -12,7 +12,7 @@ def convert_ravir():
     extracted_base = os.path.join(data_root(), 'Fundus', 'RAVIR', 'extracted')
     image_files = [os.path.join(extracted_base, 'RAVIR Dataset', 'train', 'training_images', f) for f in os.listdir(os.path.join(extracted_base, 'RAVIR Dataset', 'train', 'training_images'))]
 
-    for file in tqdm(sorted(image_files), desc="🖼️  Processing RAVIR images"):
+    for file in tqdm(sorted(image_files), desc="Processing RAVIR images"):
         filename = f"{idx:06d}.png"
         shutil.copy(file, os.path.join(converted_path, 'images', filename))
         shutil.copy(file.replace('training_images', 'training_masks'), os.path.join(converted_path, 'labels', 'vessels', filename))

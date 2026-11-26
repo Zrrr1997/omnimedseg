@@ -74,7 +74,7 @@ def convert_oimhs():
     with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
         futures = [executor.submit(process, file) for file in image_files]
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing OIMHS images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing OIMHS images"):
             result = future.result()
             if result is None:
                 continue

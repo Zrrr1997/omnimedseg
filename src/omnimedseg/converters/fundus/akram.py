@@ -20,7 +20,7 @@ def convert_akram():
     idx = 0
     filename_map = {}
 
-    for folder in tqdm(os.listdir(av_data_path), desc="🖼️  Processing AKRAM images"):
+    for folder in tqdm(os.listdir(av_data_path), desc="Processing AKRAM images"):
         img_dir = os.path.join(av_data_path, folder)
         if not os.path.isdir(img_dir):
             continue

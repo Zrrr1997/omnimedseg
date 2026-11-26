@@ -26,13 +26,13 @@ def convert_dicom_segs_parallel(name, converted_path):
 
     with ProcessPoolExecutor() as executor:
         list(tqdm(executor.map(worker, nifti_paths), total=len(nifti_paths),
-                  desc=f"🖼️  Converting {name} DICOM_SEG files"))
+                  desc=f"Converting {name} DICOM_SEG files"))
 def convert_dicom_segs(name, converted_path):
     nifti_paths = [os.path.join(converted_path, 'all_niftis', el)
                    for el in os.listdir(os.path.join(converted_path, 'all_niftis'))]
 
     for path in tqdm(nifti_paths, total=len(nifti_paths),
-                     desc=f"🖼️  Converting {name} DICOM_SEG files"):
+                     desc=f"Converting {name} DICOM_SEG files"):
         process_dicom_seg(path)
 
 
@@ -73,7 +73,7 @@ def process_dicom_seg(path):
             
 
     except Exception as e:
-        print(f"❌ Failed to process DICOM SEG {path}: {e}")
+        print(f"Failed to process DICOM SEG {path}: {e}")
         return None
 
 
@@ -90,7 +90,7 @@ def match_and_save_niftis_qin_prostate(converted_path):
     seen_files = []
     mapped_files = {}
     # Process files sequentially instead of in parallel
-    for file in tqdm(nifti_paths, desc="🖼️ Matching QIN_PROSTATE"):
+    for file in tqdm(nifti_paths, desc="Matching QIN_PROSTATE"):
         results = process_nifti_case_qin_prostate(file)
 
         if not results:

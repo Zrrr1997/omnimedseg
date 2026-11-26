@@ -93,13 +93,8 @@ def process_file_total_segmentator(idx_file_pair, extracted_base, converted_path
 
 
 def convert_total_segmentator():
-    print(
-        "\n" + "=" * 80 +
-        "\n⚠️  WARNING: --keep_raw is disabled for TOTAL_SEGMENTATOR (too large)\n"
-        "   To reproduce the raw data, run again with --extract\n"
-        "   (make sure you have enough disk space!)\n" +
-        "=" * 80 + "\n"
-    )
+    print("note: --keep-raw has no effect for TOTAL_SEGMENTATOR (raw data is too large to keep); "
+          "run `omnimedseg extract TOTAL_SEGMENTATOR` to recreate it")
     converted_path = os.path.join(data_root(), 'CT', 'TOTAL_SEGMENTATOR', 'converted')
     label_classes = [
         'brain', 'heart', 'liver', 'spleen', 'stomach', 'pancreas', 'gallbladder', 'bladder', 'kidney_cyst', 'left_kidney', 'right_kidney', 'spinal_cord',
@@ -158,7 +153,7 @@ def convert_total_segmentator():
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_fn, task) for task in tasks]
         results = []
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing TOTAL_SEGMENTATOR images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing TOTAL_SEGMENTATOR images"):
             results.append(future.result())
 
     for filename, mapping in results:

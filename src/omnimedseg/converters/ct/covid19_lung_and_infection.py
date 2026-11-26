@@ -40,7 +40,7 @@ def process_file_covid19_lung_and_infection(idx_file, converted_path, label_clas
             **{k: file.replace('COVID-19-CT-Seg_20cases', 'Lung_and_Infection_Mask') for k in label_classes}
         }
     except Exception as e:
-        print(f"❌ Error processing {file}: {e}")
+        print(f"Error processing {file}: {e}")
         return None
 
 
@@ -61,7 +61,7 @@ def convert_covid19_lung_and_infection():
     worker = partial(process_file_covid19_lung_and_infection, converted_path=converted_path, label_classes=label_classes)
 
     with ProcessPoolExecutor() as executor:
-        results = list(tqdm(executor.map(worker, indexed_paths), total=len(indexed_paths), desc="🖼️  Processing COVID19_LUNG_AND_INFECTION images"))
+        results = list(tqdm(executor.map(worker, indexed_paths), total=len(indexed_paths), desc="Processing COVID19_LUNG_AND_INFECTION images"))
 
     for result in results:
         if result:

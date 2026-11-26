@@ -72,7 +72,7 @@ def convert_ccagt():
     with ThreadPoolExecutor(max_workers=os.cpu_count() or 4) as executor:
         futures = [executor.submit(process_image, (idx, file)) for idx, file in enumerate(all_image_files)]
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing CCAGT images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing CCAGT images"):
             result = future.result()
             if result:
                 filename, mapping = result

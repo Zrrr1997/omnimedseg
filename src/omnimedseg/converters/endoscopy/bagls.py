@@ -50,7 +50,7 @@ def convert_bagls():
             for file in image_files:
                 futures.append(executor.submit(process_file, file, split))
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing BAGLS images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing BAGLS images"):
             filename, file, label_file = future.result()
             filename_map[filename] = {
                 'image': file,

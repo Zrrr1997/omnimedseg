@@ -63,7 +63,7 @@ def convert_tom500():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, (idx, file)) for idx, file in enumerate(image_paths)]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing TOM500 images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing TOM500 images"):
             filename, temp_dict = f.result()
             filename_map[filename] = temp_dict
             if 'train' in filename_map[filename]['image']:

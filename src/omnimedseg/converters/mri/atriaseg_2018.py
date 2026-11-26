@@ -57,7 +57,7 @@ def convert_atriaseg_2018():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, (idx, file)) for idx, file in enumerate(image_paths)]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing ATRIASEG_2018 images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing ATRIASEG_2018 images"):
             filename, temp_dict, split = f.result()
             filename_map[filename] = temp_dict
             split_map[split].append(filename)

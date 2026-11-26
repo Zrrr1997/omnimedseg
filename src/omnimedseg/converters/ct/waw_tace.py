@@ -72,7 +72,7 @@ def convert_waw_tace(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_waw_tace, (i, file, converted_path)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing WAW_TACE images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing WAW_TACE images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

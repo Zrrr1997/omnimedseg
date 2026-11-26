@@ -19,13 +19,8 @@ def convert_pituitory_tumor():
     image_paths = [os.path.join(extracted_base, el) for el in os.listdir(os.path.join(extracted_base)) if 'T1.nii' in el or 'T2_f.nii' in el]
 
     filename_map = {}
-    print(
-        "\n" + "=" * 80 +
-        "\n⚠️  WARNING: --keep_raw is disabled for PITUITARY_TUMOR (too large)\n"
-        "   To reproduce the raw data, run again with --extract\n"
-        "   (make sure you have enough disk space!)\n" +
-        "=" * 80 + "\n"
-    )
+    print("note: --keep-raw has no effect for PITUITARY_TUMOR (raw data is too large to keep); "
+          "run `omnimedseg extract PITUITARY_TUMOR` to recreate it")
 
     def process_file(idx_file):
         idx, file = idx_file
@@ -51,7 +46,7 @@ def convert_pituitory_tumor():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, (idx, file)) for idx, file in enumerate(image_paths)]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing PITUITORY_TUMOR images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing PITUITORY_TUMOR images"):
             filename, temp_dict = f.result()
             filename_map[filename] = temp_dict
 

@@ -91,7 +91,7 @@ def convert_chaksu():
         # Parallel execution
         with ThreadPoolExecutor(max_workers=8) as executor:
             futures = [executor.submit(process_image, (file, idx)) for idx, file in enumerate(sorted(image_files))]
-            for future in tqdm(as_completed(futures), total=len(image_files), desc=f"🖼️  Processing CHAKSU {split} images"):
+            for future in tqdm(as_completed(futures), total=len(image_files), desc=f"Processing CHAKSU {split} images"):
                 res = future.result()
                 if res:
                     split_map[split.lower()].append(res['filename'])

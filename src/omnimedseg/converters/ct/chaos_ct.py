@@ -40,13 +40,13 @@ def convert_chaos_ct():
 
     # Parallelize processing of DICOM cases
     with ThreadPoolExecutor() as executor:
-        list(tqdm(executor.map(lambda file: process_image(file, extracted_base, converted_path), image_paths), desc="🖼️  Processing CHAOS_CT images", total=len(image_paths)))
+        list(tqdm(executor.map(lambda file: process_image(file, extracted_base, converted_path), image_paths), desc="Processing CHAOS_CT images", total=len(image_paths)))
 
     nifti_files = [os.path.join(converted_path, 'all_niftis', f) for f in os.listdir(os.path.join(converted_path, 'all_niftis')) if 'nii.gz' in f]
 
     # Parallelize processing of NIfTI files
     with ThreadPoolExecutor() as executor:
-        list(tqdm(executor.map(lambda args: process_nifti(*args), [(file, idx, converted_path, filename_map) for idx, file in enumerate(nifti_files)]), desc="🖼️  Processing CHAOS_CT images", total=len(nifti_files)))
+        list(tqdm(executor.map(lambda args: process_nifti(*args), [(file, idx, converted_path, filename_map) for idx, file in enumerate(nifti_files)]), desc="Processing CHAOS_CT images", total=len(nifti_files)))
 
     save_mapping(converted_path, filename_map)
 
@@ -58,7 +58,7 @@ def load_png_stack(png_dir, num_slices, target_shape):
     slices = []
     png_files = sorted(os.listdir(png_dir))[::-1]
     if len(png_files) != num_slices:
-        print('different number of slices than in the image!', png_dir, len(png_files), num_slices)
+        print('different number of slices than in the image', png_dir, len(png_files), num_slices)
         return np.zeros(target_shape).astype(np.uint8)
     for i in range(num_slices):
         png_path = os.path.join(png_dir, png_files[i])

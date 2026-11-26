@@ -15,7 +15,7 @@ def convert_skin_hair():
 
     filename_map = {}
 
-    for file in tqdm(image_paths, desc="🖼️  Processing SKIN_HAIR images"):
+    for file in tqdm(image_paths, desc="Processing SKIN_HAIR images"):
         filename = f"{idx:06d}.png"
 
         image = cv2.imread(file)

@@ -23,4 +23,4 @@ class PipelineError(OmniMedSegError):
     def __init__(self, failures):
         self.failures = failures
         names = ", ".join(failures)
-        super().__init__(f"{len(failures)} dataset(s) failed: {names}")
+        super().__init__(f"{len(failures)} dataset{'' if len(failures) == 1 else 's'} failed: {names}")

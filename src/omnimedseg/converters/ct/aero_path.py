@@ -24,7 +24,7 @@ def convert_aero_path():
             executor.map(lambda args: process_aero_file(args, converted_path, filename_map, lock),
                          enumerate(image_paths)),
             total=len(image_paths),
-            desc="🖼️  Processing AERO_PATH images"
+            desc="Processing AERO_PATH images"
         ))
 
     save_mapping(converted_path, filename_map)

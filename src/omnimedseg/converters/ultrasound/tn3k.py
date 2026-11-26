@@ -41,7 +41,7 @@ def convert_tn3k(name='TN3K', target='thyroid_tumor'):
                     futures.append(executor.submit(process_image, file, converted_path, target, idx))
                     idx += 1
 
-                for future in tqdm(as_completed(futures), total=len(futures), desc=f"🖼️  Processing {name} {split} images"):
+                for future in tqdm(as_completed(futures), total=len(futures), desc=f"Processing {name} {split} images"):
                     filename, file, label_file = future.result()
                     filename_map[filename] = {
                         'image': file,
@@ -57,7 +57,7 @@ def convert_tn3k(name='TN3K', target='thyroid_tumor'):
                 futures.append(executor.submit(process_image, file, converted_path, target, idx))
                 idx += 1
 
-            for future in tqdm(as_completed(futures), total=len(futures), desc=f"🖼️  Processing {name} images"):
+            for future in tqdm(as_completed(futures), total=len(futures), desc=f"Processing {name} images"):
                 filename, file, label_file = future.result()
                 filename_map[filename] = {
                     'image': file,

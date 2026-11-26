@@ -60,7 +60,7 @@ def convert_brifiseg():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, args) for args in args_list]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing BRIFISEG images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing BRIFISEG images"):
             result = f.result()
             filename_map[result['filename']] = result['mapping']
 

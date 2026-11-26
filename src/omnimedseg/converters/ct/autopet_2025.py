@@ -37,7 +37,7 @@ def convert_autopet_2024_ct(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_autopet_2024_ct, (i, file, converted_path)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing AUTOPET_2024_CT images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing AUTOPET_2024_CT images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

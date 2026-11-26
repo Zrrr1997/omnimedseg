@@ -19,7 +19,7 @@ def convert_train_test_dataset(extracted_base, converted_path, split_data, conve
             idx += 1
 
     with ThreadPoolExecutor() as executor:
-        results = list(tqdm(executor.map(process_file, all_args), total=len(all_args), desc="🖼️  Processing images..."))
+        results = list(tqdm(executor.map(process_file, all_args), total=len(all_args), desc="Processing images"))
 
     for result in results:
         filename = result['filename']
@@ -56,7 +56,7 @@ def process_file(args):
         if label is not None:
             cv2.imwrite(os.path.join(converted_path, 'labels', 'vessels', filename), label)
         else:
-            print(f"⚠️ Could not read label: {label_file}")
+            print(f"warning: could not read label: {label_file}")
 
     result['filename'] = filename
     result['split'] = split.lower()

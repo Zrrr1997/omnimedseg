@@ -41,10 +41,10 @@ def log_step(step_name):
             try:
                 result = func(*args, **kwargs)
                 elapsed = time.time() - start_time
-                logger.info(f"✅ Completed: {step_name} ({elapsed:.2f}s)")
+                logger.info(f"Completed: {step_name} ({elapsed:.2f}s)")
                 return result
             except Exception as e:
-                logger.error(f"❌ Failed: {step_name} - {e}")
+                logger.error(f"Failed: {step_name} - {e}")
                 raise
         return wrapper
     return decorator

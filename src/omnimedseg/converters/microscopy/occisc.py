@@ -20,7 +20,7 @@ def convert_occisc():
     filename_map = {}
     split_map = {'train': [], 'test': [], 'unknown': []}
 
-    for file in tqdm(image_files, desc="🖼️  Processing OCCISC images"):
+    for file in tqdm(image_files, desc="Processing OCCISC images"):
         filename = f"{idx:06d}.png"
         image = cv2.imread(file)
         label = cv2.imread(file.replace('.png', '_GT.png'))

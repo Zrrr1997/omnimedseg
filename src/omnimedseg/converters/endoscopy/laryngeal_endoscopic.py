@@ -51,7 +51,7 @@ def convert_laryngeal_endoscopic():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, arg) for arg in args]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing LARYNGEAL_ENDOSCOPIC images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing LARYNGEAL_ENDOSCOPIC images"):
             filename, file, label_classes, label_file = f.result()
             filename_map[filename] = {
                 'image': file,

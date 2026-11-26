@@ -33,7 +33,7 @@ def convert_busi():
 
     with ThreadPoolExecutor() as executor:
         futures = {executor.submit(process_image, file, converted_path, idx): idx for idx, file in enumerate(image_files)}
-        for future in tqdm(as_completed(futures), total=len(image_files), desc="🖼️  Processing BUSI images"):
+        for future in tqdm(as_completed(futures), total=len(image_files), desc="Processing BUSI images"):
             filename, file_map = future.result()
             filename_map[filename] = file_map
 

@@ -22,7 +22,7 @@ def convert_nevus():
 
     with ProcessPoolExecutor() as executor:
         futures = [executor.submit(process_file_ham_10000_nevus, args) for args in args_list]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing NEVUS images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing NEVUS images"):
             result = future.result()
             if result:
                 filename, image_file, label_file = result

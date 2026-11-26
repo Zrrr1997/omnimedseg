@@ -53,7 +53,7 @@ def convert_hvsmr_20():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, (idx, file)) for idx, file in enumerate(image_paths)]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing HVSMR_20 images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing HVSMR_20 images"):
             filename, temp_dict = f.result()
             filename_map[filename] = temp_dict
 

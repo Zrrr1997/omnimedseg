@@ -68,7 +68,7 @@ def convert_slimia():
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, file) for file in image_files]
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing SLIMIA images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing SLIMIA images"):
             idx_filename, entry, missing_file, error = future.result()
             if entry:
                 filename_map[idx_filename] = entry

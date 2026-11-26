@@ -11,7 +11,7 @@ export PATH=$PATH:$LIB_DIR/
 export PATH=$PATH:$LIB_DIR/plastimatch/build/
 export PATH=$PATH:$LIB_DIR/ITK/build/bin/
 
-echo "✅ Environment set up for benchmark tools"
+echo "Environment set up for OmniMedSeg tools"
 echo ""
 echo "Available tools:"
 echo "  plastimatch: $(which plastimatch 2>/dev/null || echo 'not found')"
@@ -20,7 +20,7 @@ echo "  7zz:        $(which 7zz 2>/dev/null || echo 'not found')"
 echo "  unrar:      $(which unrar 2>/dev/null || echo 'not found')"
 echo "  isic:       $(which isic 2>/dev/null || echo 'not found')"
 echo ""
-echo "📦 Python dependencies:"
+echo "Python dependencies:"
 echo "   If not already installed, run:"
 echo "   pip install -r requirements.txt"
 echo ""

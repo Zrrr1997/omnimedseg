@@ -57,7 +57,7 @@ def convert_liver_segments(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_liver_segments, (i, file, converted_path, label_classes)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing LIVER_SEGMENTS images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing LIVER_SEGMENTS images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

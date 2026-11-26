@@ -29,7 +29,7 @@ def convert_hyper_kvasir():
     args_list = [(idx, file, converted_path) for idx, file in enumerate(image_files)]
 
     with ThreadPoolExecutor() as executor:
-        results = list(tqdm(executor.map(process_file, args_list), total=len(args_list), desc="🖼️  Processing HYPER_KVASIR images"))
+        results = list(tqdm(executor.map(process_file, args_list), total=len(args_list), desc="Processing HYPER_KVASIR images"))
 
     for filename, mapping in results:
         filename_map[filename] = mapping

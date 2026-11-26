@@ -41,7 +41,7 @@ def convert_fluorescent_neuronal_cells():
         future_to_task = {executor.submit(process_image_fluorescent_neuronal_cells, file, i, converted_path): (i, split)
                           for file, i, split in tasks}
 
-        for future in tqdm(as_completed(future_to_task), total=len(future_to_task), desc="🖼️  Processing FLUORESCENT_NEURONAL_CELLS images"):
+        for future in tqdm(as_completed(future_to_task), total=len(future_to_task), desc="Processing FLUORESCENT_NEURONAL_CELLS images"):
             i, split = future_to_task[future]
             try:
                 filename, image_path, label_path = future.result()

@@ -34,7 +34,7 @@ def convert_teeth_seg():
             for idx, file in enumerate(image_paths)
         }
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing TEETH_SEG images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing TEETH_SEG images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

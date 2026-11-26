@@ -42,7 +42,7 @@ def convert_topcow(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_topcow, (i, file, converted_path)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing TOPCOW images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing TOPCOW images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

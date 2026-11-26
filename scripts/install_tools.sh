@@ -4,7 +4,7 @@
 
 set -e
 
-echo "🔧 Benchmark Tools Fast Installer"
+echo "OmniMedSeg: installing external tools (7zip, unrar, plastimatch)"
 echo "================================"
 echo ""
 
@@ -13,7 +13,7 @@ echo ""
 # ----------------------------------------------------------------------------
 CORES=$(nproc)
 MAKE_JOBS=$((CORES * 2))
-echo "🚀 Using $MAKE_JOBS parallel jobs for compilation"
+echo "Using $MAKE_JOBS parallel jobs for compilation"
 
 mkdir -p lib
 cd lib
@@ -35,7 +35,7 @@ command_exists() {
 # ----------------------------------------------------------------------------
 hash -r 2>/dev/null || true
 if ! command_exists 7z && ! command_exists 7zz; then
-    echo "📥 Downloading 7zip..."
+    echo "Downloading 7zip..."
     LATEST_7Z=$(wget -qO- https://www.7-zip.org/download.html | grep -oP '7z\d{4}-linux-x64\.tar\.xz' | head -1)
     if [ -z "$LATEST_7Z" ]; then
         LATEST_7Z="7z2409-linux-x64.tar.xz"
@@ -44,7 +44,7 @@ if ! command_exists 7z && ! command_exists 7zz; then
     tar -xf "$LATEST_7Z"
     chmod +x 7zz 7zzs
     rm "$LATEST_7Z"
-    echo "✅ 7zip installed"
+    echo "7zip installed"
 else
     echo "⏭️  7zip already installed (skipping)"
 fi
@@ -52,7 +52,7 @@ fi
 # ----------------------------------------------------------------------------
 # 2. unrar - ALWAYS INSTALL (force reinstall to be safe)
 # ----------------------------------------------------------------------------
-echo "📦 Installing unrar..."
+echo "Installing unrar..."
 
 # Remove any stale cache
 hash -r 2>/dev/null || true
@@ -65,10 +65,10 @@ if is_debian_based && has_sudo; then
     sudo apt-get install -y --reinstall unrar
     hash -r 2>/dev/null || true
     if command_exists unrar; then
-        echo "✅ unrar installed via apt"
+        echo "unrar installed via apt"
         UNRAR_INSTALLED=true
     else
-        echo "⚠️  apt install failed"
+        echo "warning: apt install failed"
     fi
 fi
 
@@ -86,13 +86,13 @@ if [ "$UNRAR_INSTALLED" = false ]; then
     chmod +x unrar.bin
     mv unrar.bin unrar
     rm -rf unrar unrarsrc-7.1.1.tar.gz
-    echo "✅ unrar installed in lib/"
+    echo "unrar installed in lib/"
 fi
 
 # ----------------------------------------------------------------------------
 # 3. plastimatch - ALWAYS INSTALL (force reinstall to be safe)
 # ----------------------------------------------------------------------------
-echo "📦 Installing plastimatch..."
+echo "Installing plastimatch..."
 
 hash -r 2>/dev/null || true
 
@@ -103,10 +103,10 @@ if is_debian_based && has_sudo; then
     sudo apt-get install -y --reinstall plastimatch
     hash -r 2>/dev/null || true
     if command_exists plastimatch; then
-        echo "✅ plastimatch installed via apt"
+        echo "plastimatch installed via apt"
         PLASTIMATCH_INSTALLED=true
     else
-        echo "⚠️  apt install failed"
+        echo "warning: apt install failed"
     fi
 fi
 
@@ -117,13 +117,13 @@ if [ "$PLASTIMATCH_INSTALLED" = false ]; then
     # Check if DCMTK is available
     DCMTK_DIR=""
     if command_exists dcmdump && [ -d "/usr/include/dcmtk" ]; then
-        echo "✅ Found system DCMTK"
+        echo "Found system DCMTK"
         DCMTK_DIR="/usr/lib/x86_64-linux-gnu/cmake/dcmtk"
     elif [ -d "dcmtk/build" ]; then
-        echo "✅ Using local DCMTK build"
+        echo "Using local DCMTK build"
         DCMTK_DIR="$(pwd)/dcmtk/build"
     else
-        echo "📥 Building DCMTK (minimal)..."
+        echo "Building DCMTK (minimal)..."
         git clone --depth 1 https://github.com/DCMTK/dcmtk.git
         cd dcmtk
         mkdir -p build && cd build
@@ -144,13 +144,13 @@ if [ "$PLASTIMATCH_INSTALLED" = false ]; then
     # Check if ITK is available
     ITK_DIR=""
     if [ -d "/usr/lib/x86_64-linux-gnu/cmake/ITK-5.3" ]; then
-        echo "✅ Found system ITK"
+        echo "Found system ITK"
         ITK_DIR="/usr/lib/x86_64-linux-gnu/cmake/ITK-5.3"
     elif [ -d "ITK/build" ]; then
-        echo "✅ Using local ITK build"
+        echo "Using local ITK build"
         ITK_DIR="$(pwd)/ITK/build"
     else
-        echo "📥 Building ITK 4.13.3..."
+        echo "Building ITK 4.13.3..."
         git clone --branch v4.13.3 --depth 1 https://github.com/InsightSoftwareConsortium/ITK.git
         cd ITK
         mkdir -p build && cd build
@@ -168,19 +168,19 @@ if [ "$PLASTIMATCH_INSTALLED" = false ]; then
         make -j$(nproc)
         cd ../..
         ITK_DIR="$(pwd)/ITK/build"
-        echo "✅ ITK 4.13.3 installed"
+        echo "ITK 4.13.3 installed"
     fi
     
     # Build plastimatch
     if [ ! -d "plastimatch" ]; then
-        echo "📥 Cloning plastimatch..."
+        echo "Cloning plastimatch..."
         git clone --depth 1 https://gitlab.com/plastimatch/plastimatch.git
     fi
     
     cd plastimatch
     
     # Disable SuperBuild
-    echo "🔧 Disabling SuperBuild..."
+    echo "Disabling SuperBuild..."
     sed -i 's/INCLUDE_SUPERBUILD ON/INCLUDE_SUPERBUILD OFF/g' CMakeLists.txt 2>/dev/null || true
     sed -i 's/INCLUDE_SUPERBUILD 1/INCLUDE_SUPERBUILD OFF/g' CMakeLists.txt 2>/dev/null || true
     
@@ -198,7 +198,7 @@ if [ "$PLASTIMATCH_INSTALLED" = false ]; then
     
     mkdir -p build && cd build
     
-    echo "🔧 Configuring plastimatch..."
+    echo "Configuring plastimatch..."
     cmake -DCMAKE_INSTALL_PREFIX=../.. \
         -DITK_DIR="$ITK_DIR" \
         -DDCMTK_DIR="$DCMTK_DIR" \
@@ -208,10 +208,10 @@ if [ "$PLASTIMATCH_INSTALLED" = false ]; then
         -DPLASTIMATCH_BUILD_TESTS=OFF \
         ..
 
-    echo "🔨 Building plastimatch..."
+    echo "Building plastimatch..."
     make -j$(nproc)
     cd ../..
-    echo "✅ plastimatch built"
+    echo "plastimatch built"
 fi
 
 
@@ -235,9 +235,9 @@ hash -r 2>/dev/null || true
 export UNRAR_LIB_PATH="/usr/lib/x86_64-linux-gnu/libunrar.so"
 export UNRAR_LIB_PATH="/usr/lib/libunrar.so"
 
-echo "🔧 PATH updated: $SCRIPT_DIR/lib"
+echo "PATH updated: $SCRIPT_DIR/lib"
 echo ""
-echo "🔍 Available tools:"
+echo "Available tools:"
 echo "  7zip:              $(which 7z 2>/dev/null || which 7zz 2>/dev/null || echo 'not found')"
 echo "  unrar:             $(which unrar 2>/dev/null || echo 'not found')"
 echo "  plastimatch:       $(which plastimatch 2>/dev/null || echo 'not found')"
@@ -252,14 +252,14 @@ chmod +x setup_path.sh
 # ----------------------------------------------------------------------------
 echo ""
 echo "========================================="
-echo "✅ Installation complete!"
+echo "Installation complete."
 echo "========================================="
 echo ""
-echo "📁 Tools installed in: $(pwd)/lib/"
+echo "Tools installed in: $(pwd)/lib/"
 echo ""
-echo "📍 Run: source setup_path.sh"
+echo "Run: source setup_path.sh"
 echo ""
-echo "🔍 Installed tools:"
+echo "Installed tools:"
 echo "  7zip:              $(which 7z 2>/dev/null || which 7zz 2>/dev/null || echo 'not found')"
 echo "  unrar:             $(which unrar 2>/dev/null || echo 'not found')"
 echo "  plastimatch:       $(which plastimatch 2>/dev/null || echo 'not found')"

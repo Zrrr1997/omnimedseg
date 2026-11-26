@@ -56,7 +56,7 @@ def convert_mediastinal_structures():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(_process_mediastinal_structures, (i, file, converted_path)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing MEDIASTINAL_STRUCTURES images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing MEDIASTINAL_STRUCTURES images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

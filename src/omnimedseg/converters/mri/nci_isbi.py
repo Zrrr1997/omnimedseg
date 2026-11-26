@@ -91,7 +91,7 @@ def convert_nci_isbi():
             for idx, image_path in enumerate(image_paths)
         }
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️ Converting NCI_ISBI..."):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Converting NCI_ISBI"):
             result = future.result()
             filename_map[result['filename']] = result['mapping']
             split_map[result['split']].append(result['filename'])

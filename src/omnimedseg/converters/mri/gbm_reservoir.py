@@ -32,13 +32,8 @@ def convert_gbm_reservoir():
     image_paths = [el for el in image_paths if filter_processed(el)]
 
     filename_map = {}
-    print(
-        "\n" + "=" * 80 +
-        "\n⚠️  WARNING: --keep_raw is disabled for GBM_RESERVOIR (too large)\n"
-        "   To reproduce the raw data, run again with --extract\n"
-        "   (make sure you have enough disk space!)\n" +
-        "=" * 80 + "\n"
-    )
+    print("note: --keep-raw has no effect for GBM_RESERVOIR (raw data is too large to keep); "
+          "run `omnimedseg extract GBM_RESERVOIR` to recreate it")
 
     def process_file(idx_file):
         idx, file = idx_file
@@ -70,7 +65,7 @@ def convert_gbm_reservoir():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_file, (idx, file)) for idx, file in enumerate(image_paths)]
-        for f in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing GBM_RESERVOIR images"):
+        for f in tqdm(as_completed(futures), total=len(futures), desc="Processing GBM_RESERVOIR images"):
             filename, temp_dict = f.result()
             filename_map[filename] = temp_dict
 

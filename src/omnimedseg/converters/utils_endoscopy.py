@@ -41,7 +41,7 @@ def json_mask_to_png(json_filename, class_mapping=None):
             mask.paste(bitmap_arr, (origin_x, origin_y), bitmap_img)
 
         except Exception as e:
-            print(f"❌ Error in {json_filename}: {e}")
+            print(f"Error in {json_filename}: {e}")
             continue
 
     return mask

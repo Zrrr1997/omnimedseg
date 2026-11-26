@@ -44,7 +44,7 @@ def convert_btxrd():
     filename_map = {}
     with ProcessPoolExecutor(max_workers=os.cpu_count() or 4) as executor:
         futures = [executor.submit(process_file, (idx, file), converted_path) for idx, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing BTXRD images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing BTXRD images"):
             result = future.result()
             if result:
                 filename, mapping = result

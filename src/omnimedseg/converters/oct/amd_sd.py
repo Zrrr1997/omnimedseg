@@ -84,7 +84,7 @@ def convert_amd_sd():
         elif basename in validation_ids:
             split = 'validation'
         else:
-            print(f'❌ Image {file} not found in train/val lists!')
+            print(f'error: image {file} not found in train/val lists')
             split = None
 
         return filename, file, split
@@ -92,7 +92,7 @@ def convert_amd_sd():
     with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
         futures = [executor.submit(process, file) for file in image_files]
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing AMD_SD images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing AMD_SD images"):
             result = future.result()
             if result is None:
                 continue

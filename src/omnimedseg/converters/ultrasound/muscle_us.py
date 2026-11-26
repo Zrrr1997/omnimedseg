@@ -45,7 +45,7 @@ def convert_muscle_us():
             idx += 1
 
     with ProcessPoolExecutor() as executor:
-        for result in tqdm(executor.map(process_image_muscle_us, tasks), total=len(tasks), desc="🖼️  Processing MuscleUS images..."):
+        for result in tqdm(executor.map(process_image_muscle_us, tasks), total=len(tasks), desc="Processing MuscleUS images"):
             filename, file, muscle_dir = result
             filename_map[filename] = {
                 'image': file,

@@ -33,7 +33,7 @@ def convert_luna():
 
     filename_map = {}
     with ProcessPoolExecutor() as executor:
-        for filename, data in tqdm(executor.map(process_luna_case, args_list), total=len(args_list), desc="🖼️  Processing LUNA images"):
+        for filename, data in tqdm(executor.map(process_luna_case, args_list), total=len(args_list), desc="Processing LUNA images"):
             filename_map[filename] = data
 
     save_mapping(converted_path, filename_map)

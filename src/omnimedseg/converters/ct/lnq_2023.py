@@ -27,7 +27,7 @@ def convert_dicom_segs(name, converted_path):
 
     with ProcessPoolExecutor() as executor:
         list(tqdm(executor.map(worker, nifti_paths), total=len(nifti_paths),
-                  desc=f"🖼️  Converting {name} DICOM_SEG files"))
+                  desc=f"Converting {name} DICOM_SEG files"))
 
 
 def process_dicom_seg(path):
@@ -65,7 +65,7 @@ def process_dicom_seg(path):
 
 
     except Exception as e:
-        print(f"❌ Failed to process DICOM SEG {path}: {e}")
+        print(f"Failed to process DICOM SEG {path}: {e}")
         return None
 
 def resample_seg_to_image(seg_path, image_path, output_path):

@@ -34,6 +34,10 @@ OMNIMEDSEG_BIBTEX = """@misc{marinov2026omnimedseg,
 }"""
 
 
+def _n(count: int, word: str = "dataset") -> str:
+    return f"{count} {word}" + ("" if count == 1 else "s")
+
+
 class CLIError(Exception):
     """A user error (unknown dataset, bad selection) reported without a traceback."""
 
@@ -58,7 +62,7 @@ def select_cards(names: List[str], modalities: List[str] = None, all_datasets: b
         else:
             unknown.append(name)
     if unknown:
-        raise CLIError(f"Unknown dataset(s): {', '.join(unknown)}. Run `omnimedseg list` to see all datasets.")
+        raise CLIError(f"unknown dataset: {', '.join(unknown)} (run `omnimedseg list` to see all datasets)")
     for m in modalities or []:
         m = _canonical_modality(m)
         for name, card in cards.items():
@@ -137,7 +141,7 @@ def cmd_list(args) -> int:
         print("  ".join(headers[k].ljust(widths[k]) for k in cols), file=out)
         for r in rows:
             print("  ".join(str(r[k]).ljust(widths[k]) for k in cols), file=out)
-        print(f"\n{len(rows)} dataset(s). Data root: {os.path.abspath(data_root())}", file=sys.stderr)
+        print(f"\n{_n(len(rows))}. Data root: {os.path.abspath(data_root())}", file=sys.stderr)
     return 0
 
 
@@ -171,7 +175,7 @@ def cmd_cite(args) -> int:
     else:
         sys.stdout.write(text)
     if missing:
-        print(f"⚠️  No citation recorded yet for: {', '.join(missing)} (see their homepage via `omnimedseg info`)",
+        print(f"warning: no citation recorded for {', '.join(missing)}; see `omnimedseg info <name>` for the homepage",
               file=sys.stderr)
     return 0
 
@@ -189,8 +193,8 @@ def run_pipeline(cards: List[DatasetCard], **steps) -> int:
         by_modality.setdefault(c.modality, []).append(c.name)
 
     logger.info(f"Data root: {os.path.abspath(data_root())}")
-    logger.info(f"Processing {len(cards)} dataset(s): {', '.join(c.name for c in cards[:8])}"
-                + (f" ... and {len(cards) - 8} more" if len(cards) > 8 else ""))
+    logger.info(f"Datasets:  {', '.join(c.name for c in cards[:8])}"
+                + (f" and {len(cards) - 8} more" if len(cards) > 8 else ""))
     failures = {}
     try:
         for modality, names in by_modality.items():
@@ -199,15 +203,15 @@ def run_pipeline(cards: List[DatasetCard], **steps) -> int:
             except PipelineError as e:
                 failures.update(e.failures)
     except KeyboardInterrupt:
-        logger.warning("⚠️  Interrupted by user")
+        logger.warning("interrupted")
         return 130
 
     if failures:
-        logger.error(f"❌ {len(failures)} of {len(cards)} dataset(s) failed:")
+        logger.error(f"{len(failures)} of {_n(len(cards))} failed:")
         for name, err in failures.items():
-            logger.error(f"   - {name}: {type(err).__name__}: {err}")
+            print(f"  {name}: {type(err).__name__}: {err}", file=sys.stderr)
         return 1
-    logger.info("✅ All processing complete!")
+    logger.info(f"\nDone ({_n(len(cards))}).")
     return 0
 
 

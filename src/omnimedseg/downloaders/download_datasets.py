@@ -27,7 +27,7 @@ FIGSHARE_API_URL = 'https://api.figshare.com/v2'
 
 def download_file(url, dest_path, name, user_agent=None, verify_ssl=True, part=''):
     try:
-        print(f"📥 Downloading {name} → {dest_path}")
+        print(f"Downloading {name} -> {dest_path}")
 
         headers = {
             'User-Agent': user_agent or 'Mozilla/5.0',
@@ -59,13 +59,13 @@ def download_file(url, dest_path, name, user_agent=None, verify_ssl=True, part='
                         pbar.update(len(chunk))
             pbar.close()
 
-        print(f"✅ {name} downloaded{part}.")
+        print(f"{name} downloaded{part}.")
         if '.tcia' in dest_path:
             handle_tcia(name, dest_path, os.path.dirname(dest_path))
         return True
 
     except Exception as e:
-        print(f"❌ Error downloading {name}: {e}")
+        print(f"Error downloading {name}: {e}")
         # Remove a truncated file, otherwise already_downloaded() would skip it on every later run.
         if os.path.isfile(dest_path):
             os.remove(dest_path)
@@ -81,15 +81,15 @@ def download_gdown(url, dest_path, name=None):
         name (str): Optional display name for progress.
     """
     try:
-        print(f"📥 Downloading {name or os.path.basename(dest_path)} from Google Drive → {dest_path}")
+        print(f"Downloading {name or os.path.basename(dest_path)} from Google Drive -> {dest_path}")
         if 'folder' not in url:
             gdown.download(url, output=dest_path, quiet=False, fuzzy=True)
         else:
             gdown.download_folder(id=url.split('/')[-1], output=dest_path, quiet=False, use_cookies=False)
 
-        print(f"✅ {name or os.path.basename(dest_path)} downloaded.")
+        print(f"{name or os.path.basename(dest_path)} downloaded.")
     except Exception as e:
-        print(f"❌ Error downloading from Google Drive: {e}")
+        print(f"Error downloading from Google Drive: {e}")
 
 
 def handle_figshare(name, url, dest_folder):
@@ -102,10 +102,10 @@ def handle_figshare(name, url, dest_folder):
     
     # Check if already downloaded
     if already_downloaded(dest_folder):
-        print(f"✅ {name} already exists at {dest_folder}. Skipping download.")
+        print(f"{name} already downloaded ({dest_folder}), skipping")
         return
     
-    print(f"📥 Downloading {name} from Figshare → {dest_folder}")
+    print(f"Downloading {name} from Figshare -> {dest_folder}")
     
     # Normalize URL to list
     if isinstance(url, str):
@@ -120,11 +120,11 @@ def handle_figshare(name, url, dest_folder):
         # Extract article ID from URL
         article_id = single_url.strip().split('/')[-1]
         # Step 1: Get file metadata from API
-        print(f"🔍 Fetching file info from Figshare API for article {article_id}...")
+        print(f"Fetching file info from Figshare API for article {article_id}...")
         r = requests.get(f'{BASE_URL}/articles/{article_id}/files')
         
         if r.status_code != 200:
-            print(f'❌ Failed to get file info: {r.content}')
+            print(f'Failed to get file info: {r.content}')
             continue
         
         file_metadata = r.json()
@@ -142,18 +142,18 @@ def handle_figshare(name, url, dest_folder):
             
             # Skip if already downloaded
             if os.path.exists(dest_path) and os.path.getsize(dest_path) > 0:
-                print(f"⏭️  {file_name} already exists, skipping")
+                print(f"{file_name} already exists, skipping")
                 continue
             
             # Step 3: Download the file using the file download endpoint
-            print(f"📥 Downloading {file_name}...")
+            print(f"Downloading {file_name}...")
             response = requests.get(
                 f'{BASE_URL}/file/download/{file_id}',
                 stream=True
             )
             
             if response.status_code != 200:
-                print(f"❌ Failed to download {file_name}: {response.status_code}")
+                print(f"Failed to download {file_name}: {response.status_code}")
                 continue
             
             # Save with progress bar
@@ -165,9 +165,9 @@ def handle_figshare(name, url, dest_folder):
                             f.write(chunk)
                             pbar.update(len(chunk))
             
-            print(f"✅ Downloaded {file_name}")
+            print(f"Downloaded {file_name}")
     
-    print(f"✅ All Figshare files for {name} downloaded.")
+    print(f"All Figshare files for {name} downloaded.")
 
 
 def download_github_subdir(repo_url, subdir_path, dest_dir):
@@ -220,7 +220,7 @@ def download_github_subdir(repo_url, subdir_path, dest_dir):
 
     zip_filename = f"{final_dest}.zip"
     shutil.make_archive(final_dest, 'zip', final_dest)
-    print(f"🗜️ Zipped '{final_dest}' to '{zip_filename}'.")
+    print(f"Zipped '{final_dest}' to '{zip_filename}'.")
     shutil.move(final_dest, os.path.join(os.path.dirname(final_dest), 'extracted'))
 
 
@@ -247,13 +247,13 @@ def download_github_repo(repo_url, dest_dir):
 def extract_all_zips(dest_folder, name, filter_pattern=None, new_folder=False):
     zip_files = [f for f in os.listdir(dest_folder) if is_compressed_file(os.path.join(dest_folder, f))]
     
-    print("🧾 Found zip/rar/tar files:", zip_files)
+    print("Found zip/rar/tar files:", zip_files)
     if len(zip_files) == 0:
-        print(f"⚠️  There are no found archives for {name}!")
+        print(f"warning: there are no found archives for {name}")
         all_files = [os.path.join(dest_folder, f) for f in os.listdir(dest_folder) if '.mat' in f]
         if len(all_files) > 0:
             os.makedirs(os.path.join(dest_folder, 'extracted'))
-            print(f'Found {len(all_files)} .mat files! Moving them to {dest_folder}/extracted')
+            print(f'Found {len(all_files)} .mat files. Moving them to {dest_folder}/extracted')
             for file in all_files:
                 shutil.copy(file, os.path.join(dest_folder, 'extracted', os.path.basename(file)))
 
@@ -263,7 +263,7 @@ def extract_all_zips(dest_folder, name, filter_pattern=None, new_folder=False):
     for zip_file in zip_files:
         zip_path = os.path.join(dest_folder, zip_file)
         if is_unzipped(extract_path, zip_path):
-            print(f"✅ {zip_file} from {name} already unzipped.")
+            print(f"{zip_file} from {name} already unzipped.")
         else:
             filter_pattern_ = None if 'CHAKSU' in dest_folder else filter_pattern
             if new_folder and name != 'VESSEL12' and name != 'MEDSEG_VENTRICLES' and name != 'PROMISE12':
@@ -279,7 +279,7 @@ def extract_all_zips(dest_folder, name, filter_pattern=None, new_folder=False):
     for zip_file in inner_zip_files:
         zip_path = os.path.join(extract_path, zip_file)
         if is_unzipped(extract_path, zip_path, filter_pattern=filter_pattern):
-            print(f"✅ {zip_file} from {name} already unzipped.")
+            print(f"{zip_file} from {name} already unzipped.")
         else:
             if new_folder:
                 extract_path_ = os.path.join(extract_path, os.path.basename(zip_file).split('.')[0])
@@ -322,10 +322,10 @@ def handle_dataverse(name, url, dest_folder):
     os.makedirs(dest_folder, exist_ok=True)
 
     if already_downloaded(dest_folder):
-        print(f"✅ {name} already exists at {dest_folder}. Skipping download.")
+        print(f"{name} already downloaded ({dest_folder}), skipping")
         return
 
-    print(f"📥 Downloading {name} from Dataverse → {dest_folder}")
+    print(f"Downloading {name} from Dataverse -> {dest_folder}")
 
     # In Dataverse, appending "?format=original" often gives direct file access
     if isinstance(url, str):
@@ -341,7 +341,7 @@ def handle_dataverse(name, url, dest_folder):
 
             dest_path = os.path.join(dest_folder, filename)
             if os.path.exists(dest_path):
-                tqdm.write(f"⏭️ Skipping {filename}, already exists.")
+                tqdm.write(f"Skipping {filename}, already exists.")
                 return
 
             with requests.get(file_url, stream=True, timeout=120) as r:
@@ -355,16 +355,16 @@ def handle_dataverse(name, url, dest_folder):
                             f.write(chunk)
                             pbar.update(len(chunk))
                 pbar.close()
-            tqdm.write(f"✅ Downloaded {filename}")
+            tqdm.write(f"Downloaded {filename}")
         except Exception as e:
-            tqdm.write(f"❌ Error downloading {file_url}: {e}")
+            tqdm.write(f"Error downloading {file_url}: {e}")
 
     num_workers = min(multiprocessing.cpu_count(), 8)
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         list(tqdm(executor.map(download_dataverse_file, urls), total=len(urls), desc="Files"))
 
-    print(f"✅ All Dataverse files for {name} downloaded.")
+    print(f"All Dataverse files for {name} downloaded.")
 
 
 def already_downloaded(dest_folder):
@@ -378,7 +378,7 @@ def already_downloaded(dest_folder):
 
 def handle_gdown(name, url, dest_folder):
     if already_downloaded(dest_folder):
-        print(f"✅ {name} already exists at {dest_folder}. Skipping download.")
+        print(f"{name} already downloaded ({dest_folder}), skipping")
     else:
         if isinstance(url, str):
             download_gdown(url, dest_folder, name)
@@ -389,7 +389,7 @@ def handle_gdown(name, url, dest_folder):
 
 def handle_orvs(name, dest_folder, url):
     if already_downloaded(dest_folder):
-        print(f"✅ {name} already exists at {dest_folder}. Skipping download.")
+        print(f"{name} already downloaded ({dest_folder}), skipping")
     else:
         if name == 'ORVS':
             download_github_subdir(
@@ -401,7 +401,7 @@ def handle_orvs(name, dest_folder, url):
 
 def handle_tcia(name, url, dest_folder):
     os.makedirs(dest_folder, exist_ok=True)
-    print(f"📥  Downloading {name}...")
+    print(f"Downloading {name}...")
 
     # Check if URL is a .tcia manifest file
     if url.endswith('.tcia'):
@@ -417,7 +417,7 @@ def handle_tcia(name, url, dest_folder):
             if response.status_code == 200:
                 with open(file_path, 'wb') as f:
                     f.write(response.content)
-                print(f"✅ Manifest downloaded to {file_path}")
+                print(f"Manifest downloaded to {file_path}")
             else:
                 raise Exception(f"Failed to download manifest: HTTP {response.status_code}")
 
@@ -466,7 +466,7 @@ def handle_tcia(name, url, dest_folder):
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         list(tqdm(executor.map(download_series, series_uids), total=len(series_uids), desc="Downloading"))
 
-    print("✅ All downloads complete.")
+    print("All downloads complete.")
 
 
 def handle_zenodo(name, url, dest_folder):
@@ -479,10 +479,10 @@ def handle_zenodo(name, url, dest_folder):
     os.makedirs(dest_folder, exist_ok=True)
     
     if already_downloaded(dest_folder):
-        print(f"✅ {name} already exists at {dest_folder}. Skipping download.")
+        print(f"{name} already downloaded ({dest_folder}), skipping")
         return
     
-    print(f"📥 Downloading {name} from Zenodo → {dest_folder}")
+    print(f"Downloading {name} from Zenodo -> {dest_folder}")
     
     if isinstance(url, str):
         urls = [url]
@@ -496,20 +496,20 @@ def handle_zenodo(name, url, dest_folder):
             output = os.path.join(dest_folder, f"{name}.zip")
         
         if os.path.exists(output) and os.path.getsize(output) > 0:
-            print(f"⏭️  {os.path.basename(output)} already exists, skipping")
+            print(f"{os.path.basename(output)} already exists, skipping")
             continue
         
-        print(f"📥 Downloading {os.path.basename(output)}...")
+        print(f"Downloading {os.path.basename(output)}...")
         
         # Simple wget command - same as terminal
         subprocess.run(["wget", "-O", output, single_url])
         
         if os.path.exists(output) and os.path.getsize(output) > 0:
-            print(f"✅ Downloaded {os.path.basename(output)}")
+            print(f"Downloaded {os.path.basename(output)}")
         else:
-            print(f"❌ Failed to download {os.path.basename(output)}")
+            print(f"Failed to download {os.path.basename(output)}")
     
-    print(f"✅ All Zenodo files for {name} downloaded.")
+    print(f"All Zenodo files for {name} downloaded.")
     
 
 def handle_researchgate(name, url, dest_folder):
@@ -539,7 +539,7 @@ def handle_researchgate(name, url, dest_folder):
                 "-O", output
             ])
     else:
-        print(f"❌ Error downloading from ResearchGate. Unknown type of url {type(url)}")
+        print(f"Error downloading from ResearchGate. Unknown type of url {type(url)}")
 
 
 def handle_kits19(dest_folder):
@@ -585,10 +585,10 @@ def get_chrome_version():
 def handle_kingston(name, url, dest_folder):    
     os.makedirs(dest_folder, exist_ok=True)
 
-    print(f"📥 Downloading {name} via Kingston → {dest_folder}")
+    print(f"Downloading {name} via Kingston -> {dest_folder}")
 
     chrome_version = get_chrome_version()
-    print(f"🧠 Using Chrome version: {chrome_version}")
+    print(f"Using Chrome version: {chrome_version}")
 
     # -------------------------
     # Find Chrome binary
@@ -609,11 +609,11 @@ def handle_kingston(name, url, dest_folder):
     for path in chrome_paths:
         if os.path.exists(path):
             chrome_binary = path
-            print(f"✅ Found Chrome at: {chrome_binary}")
+            print(f"Found Chrome at: {chrome_binary}")
             break
     
     if not chrome_binary:
-        print("⚠️  Chrome not found. Trying without specifying binary path...")
+        print("warning: chrome not found. Trying without specifying binary path...")
         print("   This may fail if Chrome is not installed.")
 
     # -------------------------
@@ -642,15 +642,15 @@ def handle_kingston(name, url, dest_folder):
     # Try to create driver with fallback
     # -------------------------
     try:
-        print("🔄 Starting Chrome driver...")
+        print("Starting Chrome driver...")
         driver = uc.Chrome(
             options=options,
             version_main=chrome_version,
             use_subprocess=True
         )
     except Exception as e:
-        print(f"❌ Failed to create Chrome driver: {e}")
-        print("💡 Falling back to manual download...")
+        print(f"Failed to create Chrome driver: {e}")
+        print("Falling back to manual download...")
         print(f"   Please manually download: {url}")
         print(f"   And place files in: {dest_folder}")
         return
@@ -666,16 +666,16 @@ def handle_kingston(name, url, dest_folder):
         )
 
         # Open page
-        print("🌐 Opening page...")
+        print("Opening page...")
         driver.get(url)
         time.sleep(10)  # Wait for download to start
 
-        print(f"✅ {name} download initiated → {dest_folder}")
+        print(f"{name} download initiated -> {dest_folder}")
         print("   Check the folder for the downloaded file.")
 
     except Exception as e:
-        print(f"❌ Kingston download failed: {e}")
-        print("💡 Try manually downloading the file.")
+        print(f"Kingston download failed: {e}")
+        print("Try manually downloading the file.")
 
     finally:
         try:
@@ -766,10 +766,10 @@ class FigshareHandler(SourceHandler):
         os.makedirs(self.dest_folder, exist_ok=True)
         
         if self._is_already_downloaded():
-            print(f"✅ {self.name} already exists at {self.dest_folder}. Skipping download.")
+            print(f"{self.name} already downloaded ({self.dest_folder}), skipping")
             return
         
-        print(f"📥 Downloading {self.name} from Figshare → {self.dest_folder}")
+        print(f"Downloading {self.name} from Figshare -> {self.dest_folder}")
         
         urls = self.url if isinstance(self.url, list) else [self.url]
         
@@ -782,15 +782,15 @@ class FigshareHandler(SourceHandler):
         if non_figshare_urls:
             download_dataset(self.name, non_figshare_urls, **self.kwargs)
         
-        print(f"✅ All Figshare files for {self.name} downloaded.")
+        print(f"All Figshare files for {self.name} downloaded.")
     
     def _download_figshare_article(self, article_id, idx, total):
         """Download a single Figshare article."""
-        print(f"🔍 Fetching file info from Figshare API for article {article_id}...")
+        print(f"Fetching file info from Figshare API for article {article_id}...")
         r = requests.get(f'{FIGSHARE_API_URL}/articles/{article_id}/files')
         
         if r.status_code != 200:
-            print(f'❌ Failed to get file info: {r.content}')
+            print(f'Failed to get file info: {r.content}')
             return
         
         file_metadata = r.json()
@@ -802,7 +802,7 @@ class FigshareHandler(SourceHandler):
             dest_path = self._get_file_path(file_name, len(file_metadata) > 1, idx)
             
             if os.path.exists(dest_path) and os.path.getsize(dest_path) > 0:
-                print(f"⏭️  {file_name} already exists, skipping")
+                print(f"{file_name} already exists, skipping")
                 continue
             
             self._download_file(file_id, file_name, dest_path)
@@ -815,14 +815,14 @@ class FigshareHandler(SourceHandler):
     
     def _download_file(self, file_id, file_name, dest_path):
         """Download a file from Figshare."""
-        print(f"📥 Downloading {file_name}...")
+        print(f"Downloading {file_name}...")
         response = requests.get(
             f'{FIGSHARE_API_URL}/file/download/{file_id}',
             stream=True
         )
         
         if response.status_code != 200:
-            print(f"❌ Failed to download {file_name}: {response.status_code}")
+            print(f"Failed to download {file_name}: {response.status_code}")
             return
         
         total_size = int(response.headers.get('content-length', 0))
@@ -833,7 +833,7 @@ class FigshareHandler(SourceHandler):
                         f.write(chunk)
                         pbar.update(len(chunk))
         
-        print(f"✅ Downloaded {file_name}")
+        print(f"Downloaded {file_name}")
 
 
 class ZenodoHandler(SourceHandler):
@@ -846,10 +846,10 @@ class ZenodoHandler(SourceHandler):
         os.makedirs(self.dest_folder, exist_ok=True)
         
         if self._is_already_downloaded():
-            print(f"✅ {self.name} already exists at {self.dest_folder}. Skipping download.")
+            print(f"{self.name} already downloaded ({self.dest_folder}), skipping")
             return
         
-        print(f"📥 Downloading {self.name} from Zenodo → {self.dest_folder}")
+        print(f"Downloading {self.name} from Zenodo -> {self.dest_folder}")
         
         urls = self.url if isinstance(self.url, list) else [self.url]
         
@@ -857,16 +857,16 @@ class ZenodoHandler(SourceHandler):
             output = self._get_output_path(idx, len(urls))
             
             if os.path.exists(output) and os.path.getsize(output) > 0:
-                print(f"⏭️  {os.path.basename(output)} already exists, skipping")
+                print(f"{os.path.basename(output)} already exists, skipping")
                 continue
             
-            print(f"📥 Downloading {os.path.basename(output)}...")
+            print(f"Downloading {os.path.basename(output)}...")
             subprocess.run(["wget", "-O", output, single_url])
             
             if os.path.exists(output) and os.path.getsize(output) > 0:
-                print(f"✅ Downloaded {os.path.basename(output)}")
+                print(f"Downloaded {os.path.basename(output)}")
             else:
-                print(f"❌ Failed to download {os.path.basename(output)}")
+                print(f"Failed to download {os.path.basename(output)}")
         
         # Handle any non-Zenodo URLs
         if isinstance(self.url, list):
@@ -874,7 +874,7 @@ class ZenodoHandler(SourceHandler):
             if non_zenodo_urls:
                 download_dataset(self.name, non_zenodo_urls, **self.kwargs)
         
-        print(f"✅ All Zenodo files for {self.name} downloaded.")
+        print(f"All Zenodo files for {self.name} downloaded.")
     
     def _get_output_path(self, idx, total):
         """Get the output path for a file."""
@@ -893,10 +893,10 @@ class DataverseHandler(SourceHandler):
         os.makedirs(self.dest_folder, exist_ok=True)
         
         if self._is_already_downloaded():
-            print(f"✅ {self.name} already exists at {self.dest_folder}. Skipping download.")
+            print(f"{self.name} already downloaded ({self.dest_folder}), skipping")
             return
         
-        print(f"📥 Downloading {self.name} from Dataverse → {self.dest_folder}")
+        print(f"Downloading {self.name} from Dataverse -> {self.dest_folder}")
         
         urls = self.url if isinstance(self.url, list) else [self.url]
         
@@ -908,7 +908,7 @@ class DataverseHandler(SourceHandler):
                 
                 dest_path = os.path.join(self.dest_folder, filename)
                 if os.path.exists(dest_path):
-                    tqdm.write(f"⏭️ Skipping {filename}, already exists.")
+                    tqdm.write(f"Skipping {filename}, already exists.")
                     return
                 
                 with requests.get(file_url, stream=True, timeout=120) as r:
@@ -922,15 +922,15 @@ class DataverseHandler(SourceHandler):
                                 f.write(chunk)
                                 pbar.update(len(chunk))
                     pbar.close()
-                tqdm.write(f"✅ Downloaded {filename}")
+                tqdm.write(f"Downloaded {filename}")
             except Exception as e:
-                tqdm.write(f"❌ Error downloading {file_url}: {e}")
+                tqdm.write(f"Error downloading {file_url}: {e}")
         
         num_workers = min(multiprocessing.cpu_count(), 8)
         with ThreadPoolExecutor(max_workers=num_workers) as executor:
             list(tqdm(executor.map(download_dataverse_file, urls), total=len(urls), desc="Files"))
         
-        print(f"✅ All Dataverse files for {self.name} downloaded.")
+        print(f"All Dataverse files for {self.name} downloaded.")
 
 
 class TCIASeriesHandler(SourceHandler):
@@ -941,7 +941,7 @@ class TCIASeriesHandler(SourceHandler):
     
     def process(self):
         os.makedirs(self.dest_folder, exist_ok=True)
-        print(f"📥  Downloading {self.name}...")
+        print(f"Downloading {self.name}...")
         
         # Handle special case for HCC_TACE_SEG
         if self.name == 'HCC_TACE_SEG':
@@ -959,7 +959,7 @@ class TCIASeriesHandler(SourceHandler):
         # Download all series
         self._download_series(series_uids)
         
-        print("✅ All downloads complete.")
+        print("All downloads complete.")
     
     def _get_series_uids(self):
         """Get series UIDs from .tcia manifest or collection name."""
@@ -981,7 +981,7 @@ class TCIASeriesHandler(SourceHandler):
             if response.status_code == 200:
                 with open(file_path, 'wb') as f:
                     f.write(response.content)
-                print(f"✅ Manifest downloaded to {file_path}")
+                print(f"Manifest downloaded to {file_path}")
             else:
                 raise Exception(f"Failed to download manifest: HTTP {response.status_code}")
         
@@ -1041,7 +1041,7 @@ class GDriveHandler(SourceHandler):
     
     def process(self):
         if self._is_already_downloaded():
-            print(f"✅ {self.name} already exists at {self.dest_folder}. Skipping download.")
+            print(f"{self.name} already downloaded ({self.dest_folder}), skipping")
             return
         
         urls = self.url if isinstance(self.url, list) else [self.url]
@@ -1057,20 +1057,20 @@ class KingstonHandler(SourceHandler):
     
     def process(self):
         if self._is_already_downloaded():
-            print(f"✅ {self.name} already exists at {self.dest_folder}. Skipping download.")
+            print(f"{self.name} already downloaded ({self.dest_folder}), skipping")
             return
         
         os.makedirs(self.dest_folder, exist_ok=True)
-        print(f"📥 Downloading {self.name} via Kingston → {self.dest_folder}")
+        print(f"Downloading {self.name} via Kingston -> {self.dest_folder}")
         
         chrome_version = get_chrome_version()
-        print(f"🧠 Using Chrome version: {chrome_version}")
+        print(f"Using Chrome version: {chrome_version}")
         
         chrome_binary = self._find_chrome_binary()
         driver = self._setup_chrome_driver(chrome_binary, chrome_version)
         
         if not driver:
-            print(f"💡 Please manually download: {self.url}")
+            print(f"Please manually download: {self.url}")
             print(f"   And place files in: {self.dest_folder}")
             return
         
@@ -1080,14 +1080,14 @@ class KingstonHandler(SourceHandler):
                 {"behavior": "allow", "downloadPath": os.path.abspath(self.dest_folder)}
             )
             
-            print("🌐 Opening page...")
+            print("Opening page...")
             driver.get(self.url)
             time.sleep(10)
             
-            print(f"✅ {self.name} download initiated → {self.dest_folder}")
+            print(f"{self.name} download initiated -> {self.dest_folder}")
         except Exception as e:
-            print(f"❌ Kingston download failed: {e}")
-            print("💡 Try manually downloading the file.")
+            print(f"Kingston download failed: {e}")
+            print("Try manually downloading the file.")
         finally:
             try:
                 driver.quit()
@@ -1110,10 +1110,10 @@ class KingstonHandler(SourceHandler):
         
         for path in chrome_paths:
             if os.path.exists(path):
-                print(f"✅ Found Chrome at: {path}")
+                print(f"Found Chrome at: {path}")
                 return path
         
-        print("⚠️  Chrome not found. Trying without specifying binary path...")
+        print("warning: chrome not found. Trying without specifying binary path...")
         return None
     
     def _setup_chrome_driver(self, chrome_binary, chrome_version):
@@ -1137,10 +1137,10 @@ class KingstonHandler(SourceHandler):
         options.add_experimental_option("prefs", prefs)
         
         try:
-            print("🔄 Starting Chrome driver...")
+            print("Starting Chrome driver...")
             return uc.Chrome(options=options, version_main=chrome_version, use_subprocess=True)
         except Exception as e:
-            print(f"❌ Failed to create Chrome driver: {e}")
+            print(f"Failed to create Chrome driver: {e}")
             return None
 
 
@@ -1351,7 +1351,7 @@ class SourceDispatcher:
             part_msg = f' part {idx + 1} of {len(urls)}' if len(urls) > 1 else ''
             
             if already_downloaded(dest_path):
-                print(f"✅ {name} already exists at {dest_path}. Skipping download.")
+                print(f"{name} already downloaded ({dest_path}), skipping")
                 continue
             
             if not download_file(u, dest_path, name, user_agent=user_agent, verify_ssl=verify_ssl, part=part_msg):
@@ -1359,7 +1359,7 @@ class SourceDispatcher:
         
         # Extract archives
         if os.path.exists(os.path.join(dest_folder, 'converted')):
-            print(f'⚠️  The dataset {name} is already converted.')
+            print(f"{name} is already converted, skipping extraction")
         else:
             extract_all_zips(dest_folder, name, filter_pattern=filter_pattern, new_folder=new_folder)
 

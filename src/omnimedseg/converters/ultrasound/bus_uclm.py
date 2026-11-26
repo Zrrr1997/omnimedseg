@@ -35,7 +35,7 @@ def convert_bus_uclm():
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, file, converted_path) for file in image_files]
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing BUS_UCLM images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing BUS_UCLM images"):
             result = future.result()
             if result:
                 filename, mapping = result

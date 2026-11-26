@@ -35,7 +35,7 @@ def convert_ptx_498():
 
     with ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_image, file, converted_path) for file in image_paths]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing PTX_498 images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing PTX_498 images"):
             filename, file, label_file = future.result()
             filename_map[filename] = {
                 'image': file,

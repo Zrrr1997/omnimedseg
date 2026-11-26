@@ -16,7 +16,7 @@ def convert_chasedb():
     os.makedirs(os.path.join(converted_path, 'labels', 'vessels_annotator_1'), exist_ok=True)
     os.makedirs(os.path.join(converted_path, 'labels', 'vessels_annotator_2'), exist_ok=True)
 
-    for file in tqdm(image_files, desc="🖼️  Processing CHASEDB images"):
+    for file in tqdm(image_files, desc="Processing CHASEDB images"):
         filename = f"{idx:06d}.png"
 
         image = cv2.imread(file)

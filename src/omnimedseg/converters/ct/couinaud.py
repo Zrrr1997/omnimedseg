@@ -61,7 +61,7 @@ def convert_couinaud(num_workers=8):
 
     with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [executor.submit(_process_couinaud, (i, file, converted_path, label_classes)) for i, file in enumerate(image_paths)]
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing COUINAUD images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing COUINAUD images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

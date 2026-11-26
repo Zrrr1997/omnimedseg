@@ -12,7 +12,7 @@ def convert_rop():
     extracted_base = os.path.join(data_root(), 'Fundus', 'ROP', 'extracted')
     image_files = [os.path.join(extracted_base, 'Optic disc segmentation(ROP)', f) for f in os.listdir(os.path.join(extracted_base, 'Optic disc segmentation(ROP)')) if '.jpg' in f]
 
-    for file in tqdm(sorted(image_files), desc="🖼️  Processing ROP images"):
+    for file in tqdm(sorted(image_files), desc="Processing ROP images"):
         filename = f"{idx:06d}.png"
         shutil.copy(file, os.path.join(converted_path, 'images', filename))
         label_path = file.replace('.jpg', '.json')

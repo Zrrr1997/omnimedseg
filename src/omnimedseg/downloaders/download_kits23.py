@@ -59,13 +59,13 @@ def download_case(case_num: int, session: requests.Session) -> str:
                             f.write(chunk)
 
             move(str(tmp_pth), str(destination))
-            return f"✅ case_{case_num:05d} done"
+            return f"case_{case_num:05d} done"
         except Exception as e:
             if tries < 5:
                 print(f"Retry case_{case_num:05d} (attempt {tries}) in 30s: {e}")
                 time.sleep(30)
             else:
-                return f"❌ case_{case_num:05d} failed: {e}"
+                return f"Error: case_{case_num:05d} failed: {e}"
 
 
 def download_dataset():

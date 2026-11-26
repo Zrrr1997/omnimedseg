@@ -32,7 +32,7 @@ def convert_fass():
     with ThreadPoolExecutor() as executor:
         futures = {executor.submit(process_file, file, converted_path, idx): idx for idx, file in enumerate(image_files)}
 
-        for future in tqdm(as_completed(futures), total=len(futures), desc="🖼️  Processing FASS images"):
+        for future in tqdm(as_completed(futures), total=len(futures), desc="Processing FASS images"):
             filename, mapping = future.result()
             filename_map[filename] = mapping
 

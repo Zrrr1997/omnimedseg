@@ -55,10 +55,10 @@ def is_unzipped(extract_to, zip_path, filter_pattern=None):
             with tarfile.open(zip_path, 'r:*') as tar_ref:
                 expected_files = tar_ref.getnames()
         else:
-            raise ValueError(f"[❌ ERROR] File '{zip_path}' is not a valid zip, rar, or tar file!")
+            raise ValueError(f"[ERROR] File '{zip_path}' is not a valid zip, rar, or tar file")
     except Exception as e:
         if 'WAW_TACE' not in zip_path:
-            print(f"[❌ ERROR] Failed to read archive contents: {e}")
+            print(f"[ERROR] Failed to read archive contents: {e}")
         return False
 
     # Check if expected files exist in extract_to
@@ -127,7 +127,7 @@ def unzip_file(zip_path, extract_to=None, filter_pattern=None, verbose=True):
 
     """Unzip or unrar a file, depending on its format (ZIP or RAR)."""
     if not is_compressed_file(zip_path) or '.DS_Store' in zip_path:
-        print(f"❌ Not a zip/rar/tar file: {zip_path}")
+        print(f"error: not a zip/rar/tar file: {zip_path}")
         return
     max_workers = 1
 
@@ -146,7 +146,7 @@ def unzip_file(zip_path, extract_to=None, filter_pattern=None, verbose=True):
         if extract_to is None:
             extract_to = os.path.splitext(zip_path)[0]
         if verbose:
-            print(f"📦 Extracting {zip_path} → {extract_to}")
+            print(f"Extracting {zip_path} -> {extract_to}")
         os.makedirs(extract_to, exist_ok=True)
 
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -170,13 +170,13 @@ def unzip_file(zip_path, extract_to=None, filter_pattern=None, verbose=True):
                         future.result()  # Blocking until each future is done
                         pbar.update(1)
         if verbose:
-            print(f"✅ Extracted ZIP to {extract_to}")
+            print(f"Extracted ZIP to {extract_to}")
     elif rarfile.is_rarfile(zip_path):
         # If it's a RAR file, extract using parallel threads
         if extract_to is None:
             extract_to = os.path.splitext(zip_path)[0]
         if verbose:
-            print(f"📦 Extracting {zip_path} → {extract_to}")
+            print(f"Extracting {zip_path} -> {extract_to}")
         os.makedirs(extract_to, exist_ok=True)
 
         try:
@@ -194,12 +194,12 @@ def unzip_file(zip_path, extract_to=None, filter_pattern=None, verbose=True):
                             future.result()  # Blocking until each future is done
                             pbar.update(1)
             if verbose:
-                print(f"✅ Extracted RAR to {extract_to}")
+                print(f"Extracted RAR to {extract_to}")
         except rarfile.Error as e:
-            print(f"❌ Error reading RAR file {zip_path}: {e}")
+            print(f"Error reading RAR file {zip_path}: {e}")
     elif tarfile.is_tarfile(zip_path) or 'YEAZ' in zip_path:
                 if verbose:
-                    print(f"📦 Extracting TAR: {zip_path} → {extract_to}")
+                    print(f"Extracting TAR: {zip_path} -> {extract_to}")
                 with tarfile.open(zip_path, 'r:*') as tar_ref:
                     members = tar_ref.getmembers()
                     with tqdm(total=len(members), desc=f"Untarring {os.path.basename(zip_path)}", unit='file') as pbar:
@@ -207,7 +207,7 @@ def unzip_file(zip_path, extract_to=None, filter_pattern=None, verbose=True):
                             extract_member(tar_ref, member, extract_to)
                             pbar.update(1)
                 if verbose:
-                    print(f"✅ Extracted TAR to {extract_to}")
+                    print(f"Extracted TAR to {extract_to}")
 
     else:
         raise ValueError(f"Unsupported archive format: {zip_path}")

@@ -19,7 +19,7 @@ def convert_csc():
 
     for split in ['train', 'test']:
         extracted_split = os.path.join(extracted_base, split)
-        for file in tqdm(os.listdir(extracted_split), desc=f"🖼️  Processing CSC {split} images", unit="file"):
+        for file in tqdm(os.listdir(extracted_split), desc=f"Processing CSC {split} images", unit="file"):
             image_file = os.path.join(extracted_split, file)
             filename = f"{idx:06d}.png"
             filename_map[filename] = {

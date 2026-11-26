@@ -67,7 +67,8 @@ def convert_dataset(modality: str, dataset: str) -> None:
     """Run the converter for ``dataset`` plus any modality-specific post-processing."""
     name = dataset.upper()
     converter = get_converter(modality, name)
-    logger.info(f"🚀 Converting {name} with {converter.__module__}.{converter.__name__}")
+    logger.info(f"Converting {name}")
+    logger.debug(f"Converter: {converter.__module__}.{converter.__name__}")
     converter()
     if modality in _ALIGN_MODALITIES and name not in _SKIP_ALIGN:
         from omnimedseg.converters.utils_ct import align_all_pairs
